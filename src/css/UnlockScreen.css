@@ -1,0 +1,38 @@
+.vertical-flex-container {
+  display: flex;
+  flex-direction: column;
+  margin: 6px;
+  flex: 1;
+}
+
+.horizontal-flex-container {
+  display: flex;
+}
+
+.unlock-screen-container {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../assets/beach.png);
+  background-size: cover;
+}
+
+.springboard-bar {
+  background-image: url(../assets/springboard-bar-bg.png);
+}
+
+.horizontal-flex-space-between {
+  justify-content: space-between;
+}
+
+.horizontal-flex-start {
+  justify-content: flex-start;
+}
+
+#springboard-app-holder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}

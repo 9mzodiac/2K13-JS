@@ -1,0 +1,21 @@
+.app-icon-button {
+  padding: 0;
+  border: none;
+  background: none;
+  margin: 8px 0;
+}
+
+.app-icon-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  align-items: center;
+  width: 75px;
+}
+
+.icon-name {
+  text-align: center;
+  margin: 5px;
+  color: #fff;
+  font-size: 10px;
+}

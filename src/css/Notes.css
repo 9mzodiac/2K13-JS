@@ -1,0 +1,46 @@
+.notes-paper {
+  min-height: 100%;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ffffc2;
+}
+
+/* styling gray vertical line */
+.notes-paper::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  background-color: #4b4b4b40;
+}
+
+/* styling gray horizontal lines */
+.notes-pattern {
+  margin-left: 25px;
+  background-image: repeating-linear-gradient(
+    #ffffc2 0px,
+    #ffffc2 29px,
+    #4b4b4b 30px
+  );
+}
+
+/* styling text content */
+.notes-content {
+  font-family: sans-serif;
+  padding-top: 6px;
+  padding-left: 32px;
+  padding-right: 16px;
+  line-height: 30px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+}
+
+.note-item-date {
+  text-align: center;
+  color: #4b4b4b;
+  font-size: 14px;
+}
