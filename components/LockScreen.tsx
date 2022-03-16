@@ -22,8 +22,6 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const lockSlider = () => {};
 
   const renderDateTime = () => {
-    console.log("Render date time");
-    // Set the date and time
     let dayNames = [
       "Sunday",
       "Monday",
@@ -58,88 +56,111 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       `${dayNames[currentDay]}, ${monthNames[currentMonth]} ${currentDate}`
     );
 
-    setTime(`${currentHour.toPrecision(2)}:${currentMin.toPrecision(2)}`);
+    setTime(`${("0" + currentHour).slice(-2)}:${("0" + currentMin).slice(-2)}`);
   };
-  const constraintsRef = useRef(null);
+
+  const unlockVariants = {
+    initial: {
+      scale: 1.5,
+      opacity: 0,
+      transition: {
+        duration: 1,
+        type: "linear",
+      },
+    },
+    locked: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        type: "linear",
+      },
+    },
+    exit: {
+      scale: 1.5,
+      opacity: 0,
+      transition: {
+        duration: 1,
+      },
+    },
+  };
+  const constraintsRef = useRef<any>(null);
   return (
-    <IphoneScreenContainer>
-      <IPhoneInside>
+    <motion.div
+      css={tw`w-full h-full flex flex-col`}
+      animate="locked"
+      initial="initial"
+      exit="exit"
+      variants={unlockVariants}
+    >
+      <UnlockTop>
         <Image
-          src="/images/iphone-lockscreen-image.jpeg"
+          src="/images/lock-top.png"
           layout="fill"
           objectFit="cover"
           className="index-behind"
         />
-        <UnlockTop>
+        <p css={tw`font-normal text-2xl text-white`}>{time}</p>
+        <p css={tw`font-normal text-lg text-white`}>{date}</p>
+      </UnlockTop>
+      <UnlockSpacer>
+        <NotificationWrapper>
+          <div css={tw`w-full h-full`}></div>
+        </NotificationWrapper>
+      </UnlockSpacer>
+      <div className="unlock-bottom-container">
+        <UnlockButton>
           <Image
-            src="/images/lock-top.png"
+            src="/images/lock-bottom.png"
             layout="fill"
             objectFit="cover"
-            className="index-behind"
           />
-          <p className="time">{time}</p>
-          <p className="date">{date}</p>
-        </UnlockTop>
-        <UnlockSpacer>{/* <NotificationCenter /> */}</UnlockSpacer>
-        <div className="unlock-bottom-container">
-          <UnlockButton>
+          <SlideToUnlock>
             <Image
-              src="/images/lock-bottom.png"
+              src="/images/slide-to-unlock.gif"
               layout="fill"
               objectFit="cover"
             />
-            <SlideToUnlock>
+          </SlideToUnlock>
+          <UnlockSliderWrapper ref={constraintsRef}>
+            <Slider
+              drag="x"
+              dragConstraints={constraintsRef}
+              dragElastic={0.1}
+              dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
+              dragSnapToOrigin
+              whileDrag={{ scale: 1.1 }}
+              whileTap={{ cursor: "grabbing" }}
+              onDragEnd={(event: any, info: any) => {
+                const refRect = constraintsRef.current?.getBoundingClientRect();
+                if (info.point.x > refRect.right) {
+                  onUnlock();
+                }
+              }}
+            >
               <Image
-                src="/images/slide-to-unlock.gif"
+                src="/images/lock-slider.png"
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
+                className="slider-image"
               />
-            </SlideToUnlock>
-            <UnlockSliderWrapper ref={constraintsRef}>
-              <Slider
-                drag="x"
-                dragConstraints={constraintsRef}
-                dragElastic={0.1}
-                dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
-                dragSnapToOrigin
-                whileDrag={{ scale: 1.1 }}
-                onDragEnd={(event: any, info: any) => {
-                  console.log(info);
-                  console.log(event);
-                }}
-              >
-                <Image
-                  src="/images/lock-slider.png"
-                  layout="fill"
-                  objectFit="contain"
-                  className="slider-image"
-                />
-              </Slider>
-            </UnlockSliderWrapper>
-          </UnlockButton>
-        </div>
-      </IPhoneInside>
-    </IphoneScreenContainer>
+            </Slider>
+          </UnlockSliderWrapper>
+        </UnlockButton>
+      </div>
+    </motion.div>
   );
 };
 
 export default LockScreen;
 
-const IphoneScreenContainer = styled.div(() => [
-  tw`container mx-auto flex`,
-  tw`w-full h-full relative justify-center items-center px-0 pt-0 pb-0`,
-  tw`md:(px-[11%] pt-[34%] pb-[28%])`,
-]);
-
-const IPhoneInside = styled.div(() => [
-  tw`w-full h-full relative flex flex-col justify-between`,
-]);
-
 const UnlockTop = styled.div(() => [
   tw`relative h-20 w-full flex flex-col items-center justify-center`,
 ]);
 const UnlockButton = styled.div(() => [tw`w-full relative h-20`]);
-const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
+const UnlockSpacer = styled.div(() => [
+  tw`w-full relative flex flex-grow-[1] px-5 py-3`,
+]);
 
 const SlideToUnlock = styled.div(() => [tw`absolute h-full w-full`]);
 
@@ -155,3 +176,5 @@ const Slider = styled(motion.div)(() => [
     }
   `,
 ]);
+
+const NotificationWrapper = styled.div(() => [tw`w-full h-[max-content] `]);

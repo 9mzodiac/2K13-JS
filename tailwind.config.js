@@ -1,16 +1,26 @@
 module.exports = {
   mode: "jit",
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: "class",
   theme: {
-    fontSize: {},
+    fontSize: {
+      xs: ["0.65rem", "0.75rem"],
+      sm: ["0.75rem", "0.875rem"],
+      md: ["0.875rem", "1rem"],
+      lg: ["1rem", "1.5rem"],
+      xl: ["1.25rem", "2rem"],
+      "2xl": ["2.25rem", "2rem"],
+    },
     extend: {
       colors: {
         "blue-primary": "#00C2FF",
       },
     },
     fontFamily: {
-      sans: ["Aeonik", "sans-serif"],
+      sans: ["Helvetica", "sans-serif"],
     },
   },
   variants: {
