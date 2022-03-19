@@ -1,13 +1,10 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import tw from "twin.macro";
-import LockScreen from "./LockScreen";
 
 const MobileInterface: React.FC<any> = ({ children }: any) => {
- 
-
   return (
     <IPhoneFrame>
       <Image
@@ -27,7 +24,11 @@ const MobileInterface: React.FC<any> = ({ children }: any) => {
           {children}
         </IPhoneInside>
       </IphoneScreenContainer>
-      <HomeButton onClick={() => {}}></HomeButton>
+      <Link href="/">
+        <a>
+          <HomeButton></HomeButton>
+        </a>
+      </Link>
     </IPhoneFrame>
   );
 };

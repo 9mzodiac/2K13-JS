@@ -105,7 +105,34 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper>
-          <div css={tw`w-full h-full`}></div>
+          <div
+            css={tw`absolute w-full h-full overflow-auto`}
+            className="no-scrollbar"
+          >
+            {Notifications.map((item, key) => (
+              <NotificationItem
+                key={key}
+                drag="x"
+                dragElastic={0.1}
+                dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
+                dragSnapToOrigin
+                whileTap={{ cursor: "grabbing" }}
+              >
+                <div css={tw`flex gap-x-2`}>
+                  <div css={tw`w-8 h-8 relative self-center`}>
+                    <Image src={item.icon} layout="fill" objectFit="contain" />
+                  </div>
+                  <div css={tw`flex flex-col`}>
+                    <p css={tw`font-bold text-lg text-white`}>{item.title}</p>
+                    <span css={tw`font-normal text-md text-white`}>
+                      {item.subtitle}
+                    </span>
+                  </div>
+                </div>
+                <span css={tw`font-bold text-sm text-white`}>{item.time}</span>
+              </NotificationItem>
+            ))}
+          </div>
         </NotificationWrapper>
       </UnlockSpacer>
       <div className="unlock-bottom-container">
@@ -156,20 +183,21 @@ export default LockScreen;
 
 const UnlockTop = styled.div(() => [
   tw`relative h-20 w-full flex flex-col items-center justify-center`,
+  tw`border-[#00000040] border-b-[1px]`,
 ]);
-const UnlockButton = styled.div(() => [tw`w-full relative h-20`]);
-const UnlockSpacer = styled.div(() => [
-  tw`w-full relative flex flex-grow-[1] px-5 py-3`,
-]);
+const UnlockButton = styled.div(() => [tw`w-full relative h-16`]);
+const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
 
 const SlideToUnlock = styled.div(() => [tw`absolute h-full w-full`]);
 
 const UnlockSliderWrapper = styled(motion.div)(() => [
-  tw`absolute w-[calc(100% - 3rem)] h-[calc(100% - 2rem)] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2`,
+  tw`absolute w-[calc(100% - 2.2rem)] h-[calc(100% - 1.6rem)] 
+  left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2`,
+  tw`lg:(w-[calc(100% - 3rem)] h-[calc(100% - 1rem)] )`,
 ]);
 
 const Slider = styled(motion.div)(() => [
-  tw`w-16 h-12 absolute cursor-pointer`,
+  tw`w-16 h-10 lg:(h-12) absolute cursor-pointer`,
   css`
     .slider-image {
       pointer-events: none;
@@ -177,4 +205,53 @@ const Slider = styled(motion.div)(() => [
   `,
 ]);
 
-const NotificationWrapper = styled.div(() => [tw`w-full h-[max-content] `]);
+const NotificationWrapper = styled.div(() => [tw`w-full flex-[1]`]);
+
+const NotificationItem = styled(motion.div)(() => [
+  tw`w-full flex bg-[#00000080] justify-between items-center text-left px-2 py-2`,
+  tw`border-[#00000040] border-b-[2px]`,
+]);
+const Notifications = [
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Docotor appointment",
+    subtitle: "",
+    time: "in 3m",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Meeting with Bob",
+    subtitle: "",
+    time: "in 3m",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Troy",
+    subtitle: "Doesn't work bro.",
+    time: "2:44 PM",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Troy",
+    subtitle: "Doesn't work bro.",
+    time: "2:44 PM",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Troy",
+    subtitle: "Doesn't work bro.",
+    time: "2:44 PM",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Troy",
+    subtitle: "Doesn't work bro.",
+    time: "2:44 PM",
+  },
+  {
+    icon: "/images/icon_instagram.png",
+    title: "Troy",
+    subtitle: "Doesn't work bro.",
+    time: "2:44 PM",
+  },
+];

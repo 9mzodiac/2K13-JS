@@ -12,7 +12,7 @@ module.exports = {
       md: ["0.875rem", "1rem"],
       lg: ["1rem", "1.5rem"],
       xl: ["1.25rem", "2rem"],
-      "2xl": ["2.25rem", "2rem"],
+      "2xl": ["2.6rem", "2rem"],
     },
     extend: {
       colors: {
@@ -20,7 +20,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Helvetica", "sans-serif"],
+      sans: ["Roboto", "sans-serif"],
     },
   },
   variants: {
