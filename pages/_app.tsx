@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import LockScreen from "@/components/LockScreen";
 import { useRouter } from "next/router";
 import MobileInterface from "@/components/MobileInterface";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -18,24 +19,29 @@ function MyApp({
 }: MyAppProps) {
   const router = useRouter();
   const [unlocked, setUnlocked] = useState(false);
+  const [queryClient] = useState(() => new QueryClient());
 
   const onUnlock = () => {
     setUnlocked(true);
   };
 
   return (
-    <CacheProvider value={emotionCache}>
-      <GlobalStyles />
-      <MobileInterface>
-        <AnimatePresence exitBeforeEnter>
-          {unlocked ? (
-            <Component {...pageProps} key={router.route} />
-          ) : (
-            <LockScreen onUnlock={onUnlock} />
-          )}
-        </AnimatePresence>
-      </MobileInterface>
-    </CacheProvider>
+    <QueryClientProvider client={queryClient}>
+      <CacheProvider value={emotionCache}>
+        <GlobalStyles />
+        <MobileInterface>
+          <Hydrate state={pageProps.dehydratedState}>
+            <AnimatePresence exitBeforeEnter>
+              {unlocked ? (
+                <Component {...pageProps} key={router.route} />
+              ) : (
+                <LockScreen onUnlock={onUnlock} />
+              )}
+            </AnimatePresence>
+          </Hydrate>
+        </MobileInterface>
+      </CacheProvider>
+    </QueryClientProvider>
   );
 }
 

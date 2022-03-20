@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <motion.div
-      css={tw`flex flex-col justify-between h-full pt-5`}
+      css={tw`flex flex-col justify-between h-full pt-4`}
       animate="animate"
       initial="initial"
       exit="exit"
@@ -42,9 +42,7 @@ const Home: NextPage = () => {
                         objectFit="contain"
                       />
                     </AppIcon>
-                    <span css={tw`block text-sm font-normal text-white`}>
-                      {item.lable}
-                    </span>
+                    <AppLabel>{item.lable}</AppLabel>
                   </AppWrapper>
                 </a>
               </Link>
@@ -53,15 +51,21 @@ const Home: NextPage = () => {
         </SwiperSlide>
         <SwiperSlide>
           <AppSlideWrapper>
-            {Apps.map((item) => (
-              <AppWrapper>
-                <AppIcon>
-                  <Image src={item.path} layout="fill" objectFit="contain" />
-                </AppIcon>
-                <span css={tw`block text-sm font-normal text-white`}>
-                  {item.lable}
-                </span>
-              </AppWrapper>
+            {Apps.map((item: any, key: number) => (
+              <Link href="/" passHref key={`tray-${key}`}>
+                <a>
+                  <AppWrapper>
+                    <AppIcon>
+                      <Image
+                        src={item.path}
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    </AppIcon>
+                    <AppLabel>{item.lable}</AppLabel>
+                  </AppWrapper>
+                </a>
+              </Link>
             ))}
           </AppSlideWrapper>
         </SwiperSlide>
@@ -69,9 +73,16 @@ const Home: NextPage = () => {
 
       <AppTrayWrapper>
         {TrayApps.map((item, key) => (
-          <AppIcon backdrop={item.path}>
-            <Image src={item.path} layout="fill" objectFit="contain" />
-          </AppIcon>
+          <Link href={item.link} passHref key={`tray-${key}`}>
+            <a>
+              <AppWrapper>
+                <AppIcon backdrop={item.path}>
+                  <Image src={item.path} layout="fill" objectFit="contain" />
+                </AppIcon>
+                <AppLabel>{item.lable}</AppLabel>
+              </AppWrapper>
+            </a>
+          </Link>
         ))}
       </AppTrayWrapper>
     </motion.div>
@@ -82,49 +93,64 @@ export default Home;
 
 const AppTrayWrapper = styled.div(() => [
   tw`w-full grid grid-flow-row grid-cols-4 
-  justify-items-center h-20 items-center relative`,
-  tw`before:(content-[""] absolute w-full h-full bg-white opacity-40 top-2/3)`,
+  justify-items-center h-24 items-center relative`,
   css`
     &:before {
+      ${tw`content-[""] absolute w-full h-full bg-white opacity-40 top-2/3`}
       transform: perspective(800px) rotateX(45deg) translateY(-50%);
     }
   `,
 ]);
 
 const AppIcon = styled.div((props: any) => [
-  tw`h-12 w-12 relative cursor-pointer`,
+  tw`h-16 w-16 relative cursor-pointer`,
   props.backdrop &&
     css`
       &:before {
         content: "";
         background-image: url("${props.backdrop}");
-        ${tw`absolute top-full h-full w-full bg-contain rotate-180 opacity-50`}
+        ${tw`absolute top-full h-full w-full bg-contain rotate-180 opacity-50 z-[-1]`}
       }
     `,
 ]);
 
+const AppLabel = styled.span(() => [
+  tw`block text-sm font-bold text-white`,
+  css`
+    text-shadow: 0px 4px 7px rgba(0, 0, 0, 0.56);
+  `,
+]);
+
 const AppWrapper = styled.div(() => [
   tw`flex flex-col items-center
-  justify-center gap-y-2 w-full h-full relative`,
+  justify-center gap-y-1 w-full h-full relative`,
 ]);
 
 const AppSlideWrapper = styled.div(() => [
   tw`flex-[1] grid grid-flow-row grid-cols-4 grid-rows-3 items-center justify-center gap-y-4`,
-  tw`lg:(grid-cols-4 grid-rows-4 gap-y-7)`,
+  tw`lg:(grid-cols-4 grid-rows-4 gap-y-5)`,
 ]);
 
 const TrayApps = [
   {
     path: "/images/icon_phone.png",
+    link: "/",
+    lable: "Phone",
   },
   {
     path: "/images/icon_safari.png",
+    link: "/",
+    lable: "Safari",
   },
   {
     path: "/images/icon_photos.png",
+    link: "/photos",
+    lable: "Photos",
   },
   {
     path: "/images/icon_mail.png",
+    link: "/",
+    lable: "Mail",
   },
 ];
 

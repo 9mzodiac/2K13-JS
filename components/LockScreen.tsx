@@ -9,6 +9,16 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const [notifications, setNotifications] = useState(Notifications);
+  const constraintsRef = useRef<any>(null);
+  const constraintsNotificationRef = useRef<any>(null);
+
+  const clearNotificationItem = (index: number) => {
+    let currentArr = [...notifications];
+    currentArr.splice(index, 1);
+    setNotifications(currentArr);
+  };
+
   useEffect(() => {
     lockSlider();
     renderDateTime();
@@ -64,7 +74,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       scale: 1.5,
       opacity: 0,
       transition: {
-        duration: 1,
+        duration: 0.5,
         type: "linear",
       },
     },
@@ -72,7 +82,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 1,
+        duration: 0.5,
         type: "linear",
       },
     },
@@ -80,11 +90,10 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       scale: 1.5,
       opacity: 0,
       transition: {
-        duration: 1,
+        duration: 0.5,
       },
     },
   };
-  const constraintsRef = useRef<any>(null);
   return (
     <motion.div
       css={tw`w-full h-full flex flex-col`}
@@ -104,19 +113,27 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
         <p css={tw`font-normal text-lg text-white`}>{date}</p>
       </UnlockTop>
       <UnlockSpacer>
-        <NotificationWrapper>
+        <NotificationWrapper layout ref={constraintsNotificationRef}>
           <div
             css={tw`absolute w-full h-full overflow-auto`}
             className="no-scrollbar"
           >
-            {Notifications.map((item, key) => (
+            {notifications.map((item, key) => (
               <NotificationItem
-                key={key}
+                // dragConstraints={constraintsNotificationRef}
+                key={`${item.title}${key}`}
                 drag="x"
                 dragElastic={0.1}
                 dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
                 dragSnapToOrigin
                 whileTap={{ cursor: "grabbing" }}
+                onDragEnd={(event: any, info: any) => {
+                  const refRect =
+                    constraintsNotificationRef.current?.getBoundingClientRect();
+                  if (info.point.x < refRect.left / 2) {
+                    clearNotificationItem(key);
+                  }
+                }}
               >
                 <div css={tw`flex gap-x-2`}>
                   <div css={tw`w-8 h-8 relative self-center`}>
@@ -205,7 +222,7 @@ const Slider = styled(motion.div)(() => [
   `,
 ]);
 
-const NotificationWrapper = styled.div(() => [tw`w-full flex-[1]`]);
+const NotificationWrapper = styled(motion.div)(() => [tw`w-full flex-[1]`]);
 
 const NotificationItem = styled(motion.div)(() => [
   tw`w-full flex bg-[#00000080] justify-between items-center text-left px-2 py-2`,
@@ -226,31 +243,31 @@ const Notifications = [
   },
   {
     icon: "/images/icon_instagram.png",
-    title: "Troy",
+    title: "Troy 2",
     subtitle: "Doesn't work bro.",
     time: "2:44 PM",
   },
   {
     icon: "/images/icon_instagram.png",
-    title: "Troy",
+    title: "Troy 3",
     subtitle: "Doesn't work bro.",
     time: "2:44 PM",
   },
   {
     icon: "/images/icon_instagram.png",
-    title: "Troy",
+    title: "Troy 4",
     subtitle: "Doesn't work bro.",
     time: "2:44 PM",
   },
   {
     icon: "/images/icon_instagram.png",
-    title: "Troy",
+    title: "Troy 5",
     subtitle: "Doesn't work bro.",
     time: "2:44 PM",
   },
   {
     icon: "/images/icon_instagram.png",
-    title: "Troy",
+    title: "Troy 6",
     subtitle: "Doesn't work bro.",
     time: "2:44 PM",
   },

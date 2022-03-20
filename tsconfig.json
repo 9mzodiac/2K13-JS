@@ -7,7 +7,8 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/elements/*": ["components/elements/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/lib/*": ["lib/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
