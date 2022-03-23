@@ -3,7 +3,7 @@ const pageVariants = {
     scale: 2,
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
       type: "linear",
     },
   },
@@ -11,14 +11,14 @@ const pageVariants = {
     scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
     },
   },
   exit: {
     scale: 2,
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
     },
   },
 };

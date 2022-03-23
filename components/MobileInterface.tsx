@@ -22,6 +22,10 @@ const MobileInterface: React.FC<any> = ({ children }: any) => {
             className="index-behind"
           />
           {children}
+          <div
+            css={tw`z-50 absolute top-0 left-0 w-full h-full`}
+            id="external-portal"
+          ></div>
         </IPhoneInside>
       </IphoneScreenContainer>
       <Link href="/">

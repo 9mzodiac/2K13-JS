@@ -8,7 +8,12 @@ module.exports = (phase, { defaultConfig }) => ({
   },
   reactStrictMode: false,
   images: {
-    domains: ["localhost", "unsplash.com"],
+    domains: [
+      "localhost",
+      "unsplash",
+      "c2.staticflickr.com",
+      "c4.staticflickr.com",
+    ],
   },
   webpack: (config, { isServer, webpack }) => {
     return config;

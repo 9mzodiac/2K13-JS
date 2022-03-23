@@ -11,7 +11,7 @@ module.exports = {
       sm: ["0.75rem", "0.875rem"],
       md: ["0.875rem", "1rem"],
       lg: ["1rem", "1.5rem"],
-      xl: ["1.25rem", "2rem"],
+      xl: ["1.5rem", "2rem"],
       "2xl": ["2.6rem", "2rem"],
     },
     extend: {

@@ -2,7 +2,28 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 
-const BackButton = styled.button(() => [
+const AppHeader = styled.div((props: any) => [
+  tw`py-5 w-full text-center relative z-20`,
+  css`
+    &:before {
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full opacity-90 z-[-1]`}
+      background-repeat: repeat-x;
+      background-position: 0;
+
+      background-image: -webkit-linear-gradient(
+        90deg,
+        ${props.c1} 0%,
+        ${props.c1} 50%,
+        ${props.c2} 60%,
+        ${props.c2} 100%
+      );
+    }
+  `,
+]);
+
+const AppHeadLabel = styled.h1(() => [tw`font-bold text-xl text-white`]);
+
+const BackButton = styled.button((props: any) => [
   tw`py-1 px-4 text-white font-bold absolute left-4 top-1/2 -translate-y-1/2`,
   css`
     width: auto;
@@ -90,8 +111,17 @@ const BackButton = styled.button(() => [
     }
   `,
   tw`transition-all duration-150 ease-in`,
-  tw`bg-[#00000070] before:(bg-[#00000070] transition-all duration-150 ease-in)`,
-  tw`hover:(bg-[#00000090] before:(bg-[#00000090]))`,
+  css`
+    &:before {
+      ${tw`transition-all duration-150 ease-in`}
+    }
+    &:hover {
+      background-color: ${props.hoverColor};
+      &:before {
+        background-color: ${props.hoverColor};
+      }
+    }
+  `,
 ]);
 
-export { BackButton };
+export { BackButton, AppHeader, AppHeadLabel };
