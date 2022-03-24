@@ -1,7 +1,8 @@
+import { ListContainer, ListWrapper } from "@/components/elements/common";
 import {
   AppHeader,
   AppHeadLabel,
-  BackButton,
+  IosButton,
 } from "@/components/elements/emotionHeader";
 import styled from "@emotion/styled";
 import { pageVariants } from "animations/variants";
@@ -19,17 +20,19 @@ const Notes: React.FC<any> = (props: any) => {
       variants={pageVariants}
     >
       <AppHeader c1="#442f2a" c2="#755548">
-        <AppHeadLabel css={tw`text-center`}>Notes (2)</AppHeadLabel>
+        <AppHeadLabel>Notes (2)</AppHeadLabel>
         <Link href="/">
           <a>
-            <BackButton hoverColor="#442f2a">back</BackButton>
+            <IosButton left hoverColor="#442f2a" color="#755548">
+              back
+            </IosButton>
           </a>
         </Link>
       </AppHeader>
-      <div css={tw`absolute overflow-auto h-full w-full pt-[4.4rem] z-10`}>
-        <NotesListWrapper>
+      <ListContainer>
+        <ListWrapper>
           {NOTES.map((item: any, key: number) => (
-            <Link href={`/notes/${item.slug}`} passHref>
+            <Link href={`/notes/${item.slug}`} passHref key={`notes-${key}`}>
               <a>
                 <div
                   css={tw`flex justify-between border-b-[#442f2a] border-b-[1px] px-4 py-3`}
@@ -44,15 +47,11 @@ const Notes: React.FC<any> = (props: any) => {
               </a>
             </Link>
           ))}
-        </NotesListWrapper>
-      </div>
+        </ListWrapper>
+      </ListContainer>
     </motion.div>
   );
 };
-
-const NotesListWrapper = styled.div(() => [
-  tw`h-[max-content] min-h-full w-full relative`,
-]);
 
 export default Notes;
 

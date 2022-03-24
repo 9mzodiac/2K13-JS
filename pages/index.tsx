@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         <SwiperSlide>
           <AppSlideWrapper>
             {Apps.map((item) => (
-              <Link href="/notes" passHref>
+              <Link href={item.link} passHref>
                 <a>
                   <AppWrapper>
                     <AppIcon>
@@ -158,29 +158,36 @@ const Apps = [
   {
     path: "/images/icon_appstore.png",
     lable: "App Store",
+    link: "/",
   },
   {
     path: "/images/icon_camera.png",
     lable: "Camera",
+    link: "/",
   },
   {
     path: "/images/icon_instagram.png",
     lable: "Instagram",
+    link: "/",
   },
   {
     path: "/images/icon_soundcloud.png",
     lable: "Soundcloud",
+    link: "/music",
   },
   {
     path: "/images/icon_notes.png",
     lable: "Notes",
+    link: "/notes",
   },
   {
     path: "/images/icon_weather.png",
     lable: "Weather",
+    link: "/",
   },
   {
     path: "/images/icon_youtube.png",
     lable: "YouTube",
+    link: "/",
   },
 ];

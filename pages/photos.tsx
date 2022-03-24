@@ -1,15 +1,15 @@
 import {
   AppHeader,
   AppHeadLabel,
-  BackButton,
+  IosButton,
 } from "@/components/elements/emotionHeader";
-import { API } from "@/lib/api";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
 import tw from "twin.macro";
 import Link from "next/link";
 import Gallery from "@/components/Gallery";
+import { ListContainer } from "@/components/elements/common";
 
 const Photos: React.FC<any> = ({ photos }: any) => {
   return (
@@ -23,14 +23,16 @@ const Photos: React.FC<any> = ({ photos }: any) => {
       <AppHeader c1="#000000" c2="#4d4d4d">
         <Link href="/">
           <a>
-            <BackButton hoverColor="black">back</BackButton>
+            <IosButton left hoverColor="black" color="#1c1c1c">
+              back
+            </IosButton>
           </a>
         </Link>
-        <AppHeadLabel css={tw`text-center`}>Photos</AppHeadLabel>
+        <AppHeadLabel>Photos</AppHeadLabel>
       </AppHeader>
-      <div css={tw`absolute overflow-auto h-full w-full pt-[4.4rem] z-10`}>
+      <ListContainer>
         <Gallery />
-      </div>
+      </ListContainer>
     </motion.div>
   );
 };

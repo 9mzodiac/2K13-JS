@@ -1,7 +1,7 @@
 import {
   AppHeader,
   AppHeadLabel,
-  BackButton,
+  IosButton,
 } from "@/components/elements/emotionHeader";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -20,10 +20,12 @@ const NotesDetail: React.FC<any> = (props: any) => {
       variants={pageVariants}
     >
       <AppHeader c1="#442f2a" c2="#755548">
-        <AppHeadLabel css={tw`text-center`}>Notes</AppHeadLabel>
+        <AppHeadLabel>Notes</AppHeadLabel>
         <Link href="/notes">
           <a>
-            <BackButton hoverColor="#442f2a">notes</BackButton>
+            <IosButton left hoverColor="#442f2a" color="#755548">
+              notes
+            </IosButton>
           </a>
         </Link>
       </AppHeader>
