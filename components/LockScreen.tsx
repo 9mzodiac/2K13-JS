@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import tw from "twin.macro";
+import {
+  Slider,
+  SlideToUnlock,
+  UnlockButton,
+  UnlockSliderWrapper,
+} from "./elements/slideToUnlock";
 
 const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
@@ -103,12 +109,6 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       variants={unlockVariants}
     >
       <UnlockTop>
-        <Image
-          src="/images/lock-top.png"
-          layout="fill"
-          objectFit="cover"
-          className="index-behind"
-        />
         <p css={tw`font-normal text-2xl text-white`}>{time}</p>
         <p css={tw`font-normal text-lg text-white`}>{date}</p>
       </UnlockTop>
@@ -154,18 +154,6 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       </UnlockSpacer>
       <div className="unlock-bottom-container">
         <UnlockButton>
-          <Image
-            src="/images/lock-bottom.png"
-            layout="fill"
-            objectFit="cover"
-          />
-          <SlideToUnlock>
-            <Image
-              src="/images/slide-to-unlock.gif"
-              layout="fill"
-              objectFit="cover"
-            />
-          </SlideToUnlock>
           <UnlockSliderWrapper ref={constraintsRef}>
             <Slider
               drag="x"
@@ -173,8 +161,9 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
               dragElastic={0.1}
               dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
               dragSnapToOrigin
-              whileDrag={{ scale: 1.1 }}
-              whileTap={{ cursor: "grabbing" }}
+              initial={{ translateY: "-50%" }}
+              whileDrag={{ translateY: "-50%" }}
+              whileTap={{ cursor: "grabbing", translateY: "-50%" }}
               onDragEnd={(event: any, info: any) => {
                 const refRect = constraintsRef.current?.getBoundingClientRect();
                 if (info.point.x > refRect.right) {
@@ -189,6 +178,9 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
                 className="slider-image"
               />
             </Slider>
+            <SlideToUnlock>
+              <span>Slide to Unlock</span>
+            </SlideToUnlock>
           </UnlockSliderWrapper>
         </UnlockButton>
       </div>
@@ -201,26 +193,19 @@ export default LockScreen;
 const UnlockTop = styled.div(() => [
   tw`relative h-20 w-full flex flex-col items-center justify-center`,
   tw`border-[#00000040] border-b-[1px]`,
-]);
-const UnlockButton = styled.div(() => [tw`w-full relative h-16`]);
-const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
-
-const SlideToUnlock = styled.div(() => [tw`absolute h-full w-full`]);
-
-const UnlockSliderWrapper = styled(motion.div)(() => [
-  tw`absolute w-[calc(100% - 2.2rem)] h-[calc(100% - 1.6rem)] 
-  left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2`,
-  tw`lg:(w-[calc(100% - 3rem)] h-[calc(100% - 1rem)] )`,
-]);
-
-const Slider = styled(motion.div)(() => [
-  tw`w-16 h-10 lg:(h-12) absolute cursor-pointer`,
   css`
-    .slider-image {
-      pointer-events: none;
-    }
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0, #3b3b3b80),
+      color-stop(1, #000000)
+    );
+    background-repeat: no-repeat;
   `,
 ]);
+
+const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
 
 const NotificationWrapper = styled(motion.div)(() => [tw`w-full flex-[1]`]);
 

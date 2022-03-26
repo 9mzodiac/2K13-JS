@@ -40,8 +40,9 @@ const Notes: React.FC<any> = (props: any) => {
                   <span css={tw`text-lg text-[#755548] font-bold`}>
                     {item.title}
                   </span>
-                  <span css={tw`text-md text-[#b7b079] font-bold`}>
+                  <span css={tw`text-md text-[#b7b079] font-bold flex items-center`}>
                     {item.date}
+                    <i className="icomoon icon-chevron-right"></i>
                   </span>
                 </div>
               </a>

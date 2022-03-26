@@ -37,7 +37,7 @@ const CircleControl: React.FC<any> = (props: any) => {
         />
       </CircleSvg>
       <CircleController onClick={PlaySong}>
-        <i className={`icomoon icon-${prog ? "pause" : "play"}`}></i>
+        <i className={`icomoon icon-controller-${prog ? "stop" : "play"}`}></i>
       </CircleController>
     </OuterContainer>
   );

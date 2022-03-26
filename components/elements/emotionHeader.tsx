@@ -7,21 +7,21 @@ const AppHeader = styled.div((props: any) => [
   css`
     &:before {
       ${tw`content-[""] absolute top-0 left-0 w-full h-full opacity-90 z-[-1]`}
-      background-repeat: repeat-x;
-      background-position: 0;
-
-      background-image: -webkit-linear-gradient(
-        90deg,
-        ${props.c1} 0%,
-        ${props.c1} 50%,
-        ${props.c2} 60%,
-        ${props.c2} 100%
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, ${props.c2}),
+        color-stop(1, ${props.c1})
       );
+      background-repeat: no-repeat;
     }
   `,
 ]);
 
-const AppHeadLabel = styled.h1(() => [tw`font-bold text-xl text-white truncate text-center max-w-[7rem]`]);
+const AppHeadLabel = styled.h1(() => [
+  tw`font-bold text-xl text-white truncate text-center max-w-[7rem]`,
+]);
 
 const IosButton = styled.button((props: any) => [
   tw`py-1 px-3 text-white font-bold absolute top-1/2 -translate-y-1/2 leading-3`,

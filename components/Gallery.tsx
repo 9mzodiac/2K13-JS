@@ -62,12 +62,12 @@ const Gallery: React.FC<any> = ({ images }: any) => {
                 </ImageContainerSwiper>
               </SwiperSlide>
             ))}
-            <span
-              css={tw`absolute top-20 z-20 right-4 h-4 w-4 bg-white rounded-full text-center text-sm cursor-pointer`}
+
+            <i
+              className="icomoon icon-circle-with-cross"
+              css={tw`absolute top-20 z-20 right-4 text-xl text-center text-white cursor-pointer hover:text-blue-400 transition-all duration-150 ease-in`}
               onClick={() => setOpenGallery(false)}
-            >
-              x
-            </span>
+            ></i>
           </Swiper>
         )}
       </ExternalPortal>

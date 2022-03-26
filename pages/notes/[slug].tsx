@@ -1,3 +1,4 @@
+import { ListContainer } from "@/components/elements/common";
 import {
   AppHeader,
   AppHeadLabel,
@@ -29,7 +30,7 @@ const NotesDetail: React.FC<any> = (props: any) => {
           </a>
         </Link>
       </AppHeader>
-      <div css={tw`absolute overflow-auto h-full w-full pt-[4.4rem] z-10`}>
+      <ListContainer>
         <NotesWrapper>
           <span
             css={tw`absolute top-0 left-8 h-full w-[1px] bg-[#4b4b4b]`}
@@ -43,7 +44,7 @@ const NotesDetail: React.FC<any> = (props: any) => {
             notes,This is test notes,This is test notes,This is test notes,
           </p>
         </NotesWrapper>
-      </div>
+      </ListContainer>
     </motion.div>
   );
 };
