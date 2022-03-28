@@ -1,5 +1,5 @@
 
-import CircleControl from "@/components/elements/circleControl";
+import CircleControl from "@/components/elements/CircleControl";
 import {
   ListContainer,
   ListWrapper,
