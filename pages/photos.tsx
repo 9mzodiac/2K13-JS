@@ -2,16 +2,16 @@ import {
   AppHeader,
   AppHeadLabel,
   IosButton,
-} from "@/components/elements/emotionHeader";
+} from "@/components/elements/styled/header";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import tw from "twin.macro";
 import Link from "next/link";
 import Gallery from "@/components/Gallery";
-import { ListContainer } from "@/components/elements/common";
+import { ListContainer } from "@/components/elements/styled/common";
 
-const Photos: React.FC<any> = ({ photos }: any) => {
+const Photos: NextPage = ({ photos }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}

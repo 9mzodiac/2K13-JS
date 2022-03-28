@@ -1,20 +1,25 @@
+
 import CircleControl from "@/components/elements/circleControl";
-import { ListContainer, ListWrapper } from "@/components/elements/common";
+import {
+  ListContainer,
+  ListWrapper,
+} from "@/components/elements/styled/common";
 import {
   AppHeader,
   AppHeadLabel,
   IosButton,
-} from "@/components/elements/emotionHeader";
+} from "@/components/elements/styled/header";
 import {
   SongsNavBarContainer,
   SongsNavItem,
-} from "@/components/elements/musicNavBar";
+} from "@/components/elements/styled/musicNavBar";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
+import { NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 
-const MusicPlayer: React.FC<any> = (props: any) => {
+const MusicPlayer: NextPage = (props: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}
@@ -54,13 +59,17 @@ const MusicPlayer: React.FC<any> = (props: any) => {
               key={`notes-${key}`}
             >
               <div css={tw`flex flex-col items-start`}>
-                <span css={tw`text-lg text-black font-bold truncate max-w-[14rem]`}>{item.title}</span>
+                <span
+                  css={tw`text-lg text-black font-bold truncate max-w-[14rem]`}
+                >
+                  {item.title}
+                </span>
                 <span css={tw`text-md text-[#00000050] font-bold`}>
                   {`${item.album} - ${item.artist}`}
                 </span>
               </div>
               <div>
-                <CircleControl/>
+                <CircleControl />
               </div>
             </div>
           ))}
@@ -76,15 +85,24 @@ const MusicPlayer: React.FC<any> = (props: any) => {
           <span>Artists</span>
         </SongsNavItem>
         <SongsNavItem active>
-          <i css={tw`text-xl text-black`} className="icomoon icon-music-note"></i>
+          <i
+            css={tw`text-xl text-black`}
+            className="icomoon icon-music-note"
+          ></i>
           <span>Songs</span>
         </SongsNavItem>
         <SongsNavItem>
-          <i css={tw`text-xl text-black`} className="icomoon icon-music-album"></i>
+          <i
+            css={tw`text-xl text-black`}
+            className="icomoon icon-music-album"
+          ></i>
           <span>Albums</span>
         </SongsNavItem>
         <SongsNavItem>
-          <i css={tw`text-xl text-black`} className="icomoon icon-more-dots"></i>
+          <i
+            css={tw`text-xl text-black`}
+            className="icomoon icon-more-dots"
+          ></i>
           <span>More</span>
         </SongsNavItem>
       </SongsNavBarContainer>

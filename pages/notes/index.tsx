@@ -1,16 +1,19 @@
-import { ListContainer, ListWrapper } from "@/components/elements/common";
+import {
+  ListContainer,
+  ListWrapper,
+} from "@/components/elements/styled/common";
 import {
   AppHeader,
   AppHeadLabel,
   IosButton,
-} from "@/components/elements/emotionHeader";
-import styled from "@emotion/styled";
+} from "@/components/elements/styled/header";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
+import { NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 
-const Notes: React.FC<any> = (props: any) => {
+const Notes: NextPage = (props: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -40,7 +43,9 @@ const Notes: React.FC<any> = (props: any) => {
                   <span css={tw`text-lg text-[#755548] font-bold`}>
                     {item.title}
                   </span>
-                  <span css={tw`text-md text-[#b7b079] font-bold flex items-center`}>
+                  <span
+                    css={tw`text-md text-[#b7b079] font-bold flex items-center`}
+                  >
                     {item.date}
                     <i className="icomoon icon-chevron-right"></i>
                   </span>

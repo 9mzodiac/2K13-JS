@@ -9,7 +9,7 @@ import {
   SlideToUnlock,
   UnlockButton,
   UnlockSliderWrapper,
-} from "./elements/slideToUnlock";
+} from "./elements/styled/slideToUnlock";
 
 const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");

@@ -168,7 +168,7 @@ const Apps = [
   {
     path: "/images/icon_instagram.png",
     lable: "Instagram",
-    link: "/",
+    link: "/instagram",
   },
   {
     path: "/images/icon_soundcloud.png",
