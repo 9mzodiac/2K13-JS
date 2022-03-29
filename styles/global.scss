@@ -1,0 +1,67 @@
+@import "~swiper/scss";
+@import "~swiper/scss/pagination";
+@import "https://fonts.googleapis.com/css?family=Roboto";
+@import "icomoon";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#__next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  .swiper-pagination {
+    bottom: 0;
+    .swiper-pagination-bullet {
+      &-active {
+        background-color: white;
+      }
+    }
+  }
+}
+
+#external-portal {
+  pointer-events: none;
+  &.active {
+    pointer-events: all;
+    background-color: #00000050;
+  }
+}
