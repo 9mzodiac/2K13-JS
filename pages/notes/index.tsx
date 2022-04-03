@@ -7,13 +7,15 @@ import {
   AppHeadLabel,
   IosButton,
 } from "@/components/elements/styled/header";
+import { ADMIN_DB } from "@/firebase/admin";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
+import dayjs from "dayjs";
 
-const Notes: NextPage = (props: any) => {
+const Notes: NextPage = ({ notes }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -23,7 +25,7 @@ const Notes: NextPage = (props: any) => {
       variants={pageVariants}
     >
       <AppHeader c1="#442f2a" c2="#755548">
-        <AppHeadLabel>Notes (2)</AppHeadLabel>
+        <AppHeadLabel>Notes ({notes.length})</AppHeadLabel>
         <Link href="/">
           <a>
             <IosButton left hoverColor="#442f2a" color="#755548">
@@ -34,25 +36,30 @@ const Notes: NextPage = (props: any) => {
       </AppHeader>
       <ListContainer>
         <ListWrapper>
-          {NOTES.map((item: any, key: number) => (
-            <Link href={`/notes/${item.slug}`} passHref key={`notes-${key}`}>
-              <a>
-                <div
-                  css={tw`flex justify-between border-b-[#442f2a] border-b-[1px] px-4 py-3`}
-                >
-                  <span css={tw`text-lg text-[#755548] font-bold`}>
-                    {item.title}
-                  </span>
-                  <span
-                    css={tw`text-md text-[#b7b079] font-bold flex items-center`}
+          {notes.length > 0 &&
+            notes.map((item: any) => (
+              <Link
+                href={`/notes/${item.id}`}
+                passHref
+                key={`notes-${item.id}`}
+              >
+                <a>
+                  <div
+                    css={tw`flex justify-between border-b-[#442f2a] border-b-[1px] px-4 py-3`}
                   >
-                    {item.date}
-                    <i className="icomoon icon-chevron-right"></i>
-                  </span>
-                </div>
-              </a>
-            </Link>
-          ))}
+                    <span css={tw`text-lg text-[#755548] font-bold`}>
+                      {item.title}
+                    </span>
+                    <span
+                      css={tw`text-md text-[#b7b079] font-bold flex items-center`}
+                    >
+                      {dayjs(item.date).format("MMM DD")}
+                      <i className="icomoon icon-chevron-right"></i>
+                    </span>
+                  </div>
+                </a>
+              </Link>
+            ))}
         </ListWrapper>
       </ListContainer>
     </motion.div>
@@ -61,20 +68,20 @@ const Notes: NextPage = (props: any) => {
 
 export default Notes;
 
-const NOTES = [
-  {
-    slug: 1,
-    title: "Test 1",
-    date: "Wednesday",
-  },
-  {
-    slug: 1,
-    title: "Test 1",
-    date: "Apr 1",
-  },
-  {
-    slug: 1,
-    title: "Test 1",
-    date: "Mar 27",
-  },
-];
+export const getStaticProps: GetStaticProps = async () => {
+  const notesCollection = await ADMIN_DB.collection("notes").get();
+
+  const notes = [];
+  for await (const note of notesCollection.docs) {
+    notes.push({
+      id: note.id,
+      ...note.data(),
+    });
+  }
+
+  return {
+    props: {
+      notes: JSON.parse(JSON.stringify(notes)),
+    },
+  };
+};

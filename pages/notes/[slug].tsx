@@ -4,15 +4,16 @@ import {
   AppHeadLabel,
   IosButton,
 } from "@/components/elements/styled/header";
+import { ADMIN_DB } from "@/firebase/admin";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 
-const NotesDetail: NextPage = (props: any) => {
+const NotesDetail: NextPage = ({ data }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -32,19 +33,17 @@ const NotesDetail: NextPage = (props: any) => {
         </Link>
       </AppHeader>
       <ListContainer>
-        <NotesWrapper>
-          <span
-            css={tw`absolute top-0 left-8 h-full w-[1px] bg-[#4b4b4b]`}
-          ></span>
-          <span
-            css={tw`absolute top-0 left-9 h-full w-[1px] bg-[#4b4b4b]`}
-          ></span>
-          <p css={tw`pl-10 pr-5 text-xl leading-[30px]`}>
-            This is test notes, This is test notes, This is test notes, This is
-            test notes, This is test notes,This is test notes,This is test
-            notes,This is test notes,This is test notes,This is test notes,
-          </p>
-        </NotesWrapper>
+        {data && (
+          <NotesWrapper>
+            <span
+              css={tw`absolute top-0 left-8 h-full w-[1px] bg-[#4b4b4b]`}
+            ></span>
+            <span
+              css={tw`absolute top-0 left-9 h-full w-[1px] bg-[#4b4b4b]`}
+            ></span>
+            <p css={tw`pl-10 pr-5 text-xl leading-[30px]`}>{data.content}</p>
+          </NotesWrapper>
+        )}
       </ListContainer>
     </motion.div>
   );
@@ -62,3 +61,35 @@ const NotesWrapper = styled.div(() => [
 ]);
 
 export default NotesDetail;
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //@ts-ignore
+  const slug: string = params?.slug;
+  let noteData;
+  if (slug) {
+    noteData = await ADMIN_DB.collection("notes").doc(slug).get();
+  }
+
+  return {
+    props: {
+      data: noteData && JSON.parse(JSON.stringify(noteData.data())),
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async (context) => {
+  const notesCollection = await ADMIN_DB.collection("notes").get();
+
+  const notes = [];
+  for await (const note of notesCollection.docs) {
+    notes.push({
+      params: {
+        slug: note.id,
+      },
+    });
+  }
+  return {
+    paths: notes,
+    fallback: true,
+  };
+};

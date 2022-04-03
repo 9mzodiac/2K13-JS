@@ -2,9 +2,32 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import tw from "twin.macro";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import updateLocale from "dayjs/plugin/updateLocale";
+dayjs.extend(updateLocale);
+dayjs.extend(relativeTime);
+dayjs.updateLocale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s ago",
+    s: "a few seconds",
+    m: "a minute",
+    mm: "%d minutes",
+    h: "an hour",
+    hh: "%d hours",
+    d: "a day",
+    dd: "%d days",
+    M: "a month",
+    MM: "%d months",
+    y: "a year",
+    yy: "%d years",
+  },
+});
 
 const InstagramPost: React.FC<any> = ({
   postImage,
+  caption,
   name,
   time,
   profile,
@@ -21,7 +44,11 @@ const InstagramPost: React.FC<any> = ({
         </PostProfileWrapper>
         <PostTimeWrapper>
           <i className="icomoon icon-clock"></i>
-          <span>13h</span>
+          <span>
+            {dayjs(
+              dayjs(dayjs.unix(time._seconds)).format("YYYY-MM-DD")
+            ).fromNow()}
+          </span>
         </PostTimeWrapper>
       </PostHeaderContainer>
       <PostImage>
@@ -29,9 +56,12 @@ const InstagramPost: React.FC<any> = ({
           src={postImage}
           layout="fill"
           className="post-image"
+          blurDataURL={postImage}
+          placeholder="blur"
         />
       </PostImage>
-      <div css={tw`flex gap-x-1 text-[#bfbfbf] px-3`}>
+      <PostCaption>{caption}</PostCaption>
+      <div css={tw`flex gap-x-1 text-[#bfbfbf] mx-3`}>
         <i className="icomoon icon-heart"></i>
         <PostProfileText>{likes} likes</PostProfileText>
       </div>
@@ -43,8 +73,12 @@ export default InstagramPost;
 
 const PostWrapper = styled.div(() => [tw`flex flex-col w-full mb-10`]);
 
+const PostCaption = styled.div(() => [
+  tw`font-normal text-md text-[#3F729B] mb-2 mx-3`,
+]);
+
 const PostHeaderContainer = styled.div(() => [
-  tw`flex justify-between items-center px-3`,
+  tw`flex justify-between items-center mx-3`,
 ]);
 
 const PostProfileWrapper = styled.div(() => [tw`flex items-center gap-x-2`]);

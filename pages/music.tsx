@@ -12,9 +12,10 @@ import {
   SongsNavBarContainer,
   SongsNavItem,
 } from "@/components/elements/styled/musicNavBar";
+import { ADMIN_BUCKET } from "@/firebase/admin";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 
@@ -157,3 +158,23 @@ const Songs = [
     artist: "Suyog Mishal",
   },
 ];
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const [files] = await ADMIN_BUCKET.getFiles({ directory: "songs" });
+
+  const urls = await Promise.all(
+    files.map((file) =>
+      file.getSignedUrl({
+        action: "read",
+        expires: "04-05-2042", // this is an arbitrary date
+      })
+    )
+  );
+  console.log(urls);
+
+  return {
+    props: {
+      songs: urls,
+    },
+  };
+};
