@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import { pageVariants } from "animations/variants";
@@ -18,8 +18,9 @@ import {
   ListWrapper,
 } from "@/components/elements/styled/common";
 import InstagramPost from "@/components/elements/InstagramPost";
+import { ADMIN_DB } from "@/firebase/admin";
 
-const Instagram: NextPage = (props: any) => {
+const Instagram: NextPage = ({ posts }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}
@@ -50,30 +51,18 @@ const Instagram: NextPage = (props: any) => {
 
       <ListContainer css={tw`pb-10`}>
         <ListWrapper>
-          <InstagramPost
-            postImage="/insta1.jpeg"
-            profile="https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg"
-            name="2K13Boyz"
-            likes="225"
-          />
-          <InstagramPost
-            postImage="/insta2.jpeg"
-            profile="https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg"
-            name="2K13Boyz"
-            likes="225"
-          />
-          <InstagramPost
-            postImage="/insta3.jpeg"
-            profile="https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg"
-            name="2K13Boyz"
-            likes="225"
-          />
-          <InstagramPost
-            postImage="/insta1.jpeg"
-            profile="https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg"
-            name="2K13Boyz"
-            likes="225"
-          />
+          {posts.length > 0 &&
+            posts.map((item: any) => (
+              <InstagramPost
+                key={`instapost-${item.id}`}
+                postImage={item.image}
+                profile={item.user.avatar}
+                name={item.user.username}
+                likes={item.likes}
+                time={item.createdDate}
+                caption={item.title}
+              />
+            ))}
         </ListWrapper>
       </ListContainer>
 
@@ -99,3 +88,22 @@ const Instagram: NextPage = (props: any) => {
 };
 
 export default Instagram;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const instagramCollection = await ADMIN_DB.collection("instagram").get();
+
+  const instaposts = [];
+  for await (const post of instagramCollection.docs) {
+    instaposts.push({
+      id: post.id,
+      ...post.data(),
+    });
+  }
+  console.log(instaposts);
+
+  return {
+    props: {
+      posts: JSON.parse(JSON.stringify(instaposts)),
+    },
+  };
+};

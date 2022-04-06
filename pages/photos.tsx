@@ -10,6 +10,7 @@ import tw from "twin.macro";
 import Link from "next/link";
 import Gallery from "@/components/Gallery";
 import { ListContainer } from "@/components/elements/styled/common";
+import { ADMIN_BUCKET, ADMIN_DB } from "@/firebase/admin";
 
 const Photos: NextPage = ({ photos }: any) => {
   return (
@@ -31,7 +32,7 @@ const Photos: NextPage = ({ photos }: any) => {
         <AppHeadLabel>Photos</AppHeadLabel>
       </AppHeader>
       <ListContainer>
-        <Gallery />
+        <Gallery images={photos} />
       </ListContainer>
     </motion.div>
   );
@@ -40,11 +41,20 @@ const Photos: NextPage = ({ photos }: any) => {
 export default Photos;
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const response = await API.get("/list?page=1&limit=20");
-  // const data = await response.json();
+  const [files] = await ADMIN_BUCKET.getFiles({ directory: "photos" });
+
+  const urls = await Promise.all(
+    files.map((file) =>
+      file.getSignedUrl({
+        action: "read",
+        expires: "04-05-2042", // this is an arbitrary date
+      })
+    )
+  );
+
   return {
     props: {
-      photos: [],
+      photos: urls,
     },
   };
 };

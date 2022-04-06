@@ -8,7 +8,10 @@
       "@/components/*": ["components/*"],
       "@/elements/*": ["components/elements/*"],
       "@/styles/*": ["styles/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/firebase/*": ["firebase/*"],
+      "@/config/*": ["config/*"],
+      "@/animations/*": ["animations/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

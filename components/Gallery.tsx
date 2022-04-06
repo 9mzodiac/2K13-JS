@@ -24,24 +24,23 @@ const Gallery: React.FC<any> = ({ images }: any) => {
   }, [swiperInstance, openGallery, selectedImage]);
   return (
     <GalleryContainer>
-      {IMAGES.map((item: any, key: number) => (
-        <GalleryItem
-          key={`gallery-item-${key}`}
-          onClick={() => {
-            console.log("COMES GAL");
-
-            setOpenGallery(true);
-            setSelectedImage(key);
-          }}
-        >
-          <Image
-            src={item.src}
-            layout="fill"
-            objectFit="cover"
-            alt={`gallery image - ${key}`}
-          />
-        </GalleryItem>
-      ))}
+      {images.length > 0 &&
+        images.map((item: any, key: number) => (
+          <GalleryItem
+            key={`gallery-item-${key}`}
+            onClick={() => {
+              setOpenGallery(true);
+              setSelectedImage(key);
+            }}
+          >
+            <Image
+              src={item[0]}
+              layout="fill"
+              objectFit="cover"
+              alt={`gallery image - ${key}`}
+            />
+          </GalleryItem>
+        ))}
       <ExternalPortal>
         {openGallery && (
           <Swiper
@@ -50,18 +49,19 @@ const Gallery: React.FC<any> = ({ images }: any) => {
             onSwiper={setSwiper}
             lazy={false}
           >
-            {IMAGES.map((item: any, key: number) => (
-              <SwiperSlide key={`gallery-image-${key}`}>
-                <ImageContainerSwiper>
-                  <Image
-                    src={item.src}
-                    layout="fill"
-                    objectFit="contain"
-                    alt={`gallery slide - ${key}`}
-                  />
-                </ImageContainerSwiper>
-              </SwiperSlide>
-            ))}
+            {images.length > 0 &&
+              images.map((item: any, key: number) => (
+                <SwiperSlide key={`gallery-image-${key}`}>
+                  <ImageContainerSwiper>
+                    <Image
+                      src={item[0]}
+                      layout="fill"
+                      objectFit="contain"
+                      alt={`gallery slide - ${key}`}
+                    />
+                  </ImageContainerSwiper>
+                </SwiperSlide>
+              ))}
 
             <i
               className="icomoon icon-circle-with-cross"
@@ -86,151 +86,3 @@ const GalleryItem = styled(motion.div)(() => [
 const ImageContainerSwiper = styled.div(() => [tw`h-full w-full relative`]);
 
 export default Gallery;
-
-const IMAGES = [
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-  },
-  {
-    src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-    thumbnail:
-      "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-  },
-
-  {
-    src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-    thumbnail:
-      "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-  },
-];

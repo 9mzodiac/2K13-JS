@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 
 module.exports = (phase, { defaultConfig }) =>
   withPWA({
@@ -8,6 +9,7 @@ module.exports = (phase, { defaultConfig }) =>
       dest: "public",
       register: true,
       skipWaiting: true,
+      buildExcludes: [/middleware-manifest.json$/],
       disable: process.env.NODE_ENV === "development",
     },
     env: {
@@ -19,9 +21,9 @@ module.exports = (phase, { defaultConfig }) =>
     images: {
       domains: [
         "localhost",
-        "unsplash",
-        "c2.staticflickr.com",
-        "c4.staticflickr.com",
+        "storage.googleapis.com",
+        "cdn.discordapp.com",
+        "firebasestorage.googleapis.com",
       ],
     },
     webpack: (config, { isServer, webpack }) => {
