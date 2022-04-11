@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import MobileInterface from "@/components/MobileInterface";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import Head from "next/head";
+import "react-tabs/style/react-tabs.css";
 
 const clientSideEmotionCache = createEmotionCache();
 

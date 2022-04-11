@@ -1,27 +1,26 @@
 import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
-import { pageVariants } from "animations/variants";
+import { pageVariants } from "@/animations/variants";
 import { AppHeader, IosButton } from "@/components/elements/styled/header";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  InstagramAppBar,
-  InstagramNavItem,
-} from "@/components/elements/styled/instagram";
-import {
   ListContainer,
   ListWrapper,
 } from "@/components/elements/styled/common";
-import InstagramPost from "@/components/elements/InstagramPost";
-import { ADMIN_DB } from "@/firebase/admin";
-import { useState } from "react";
+import {
+  InstagramAppBar,
+  InstagramNavItem,
+} from "@/components/elements/styled/instagram";
+import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
+import { ADMIN_BUCKET } from "@/firebase/admin";
+import Gallery from "@/components/Gallery";
 
-const Instagram: NextPage = ({ posts }: any) => {
-  const [tabIndex, setTabIndex] = useState(0);
+const Explore: NextPage = ({ photos }: any) => {
   const router = useRouter();
-  console.log(router.asPath);
+
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}
@@ -38,10 +37,10 @@ const Instagram: NextPage = ({ posts }: any) => {
             </IosButton>
           </a>
         </Link>
-        <Link href="/">
+        <Link href="/instagram">
           <a>
             <IosButton left hoverColor="#3F729B" color="#4d8cbf">
-              back
+              home
             </IosButton>
           </a>
         </Link>
@@ -51,24 +50,22 @@ const Instagram: NextPage = ({ posts }: any) => {
       </AppHeader>
 
       <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
-        <ListWrapper css={tw`pt-5`}>
-          {posts.length > 0 &&
-            posts.map((item: any) => (
-              <InstagramPost
-                key={`instapost-${item.id}`}
-                postImage={item.image}
-                profile={item.user.avatar}
-                name={item.user.username}
-                likes={item.likes}
-                time={item.createdDate}
-                caption={item.title}
-              />
-            ))}
+        <ListWrapper>
+          <div css={tw`bg-gray-400 p-2 flex`}>
+
+            <input
+              css={tw`w-full px-2 py-1 text-gray-300 rounded focus:(border-none outline-none)`}
+              placeholder="Search users and hashtags"
+            />
+          </div>
+          <div css={tw`p-2`}>
+            <Gallery images={photos} />
+          </div>
         </ListWrapper>
       </ListContainer>
       <InstagramAppBar>
         {InstagramTabs.map((item: any, index: number) => (
-          <Link href={item.link} key={`instapost-${index}`}>
+          <Link href={item.link}>
             <a>
               <InstagramNavItem active={router.asPath === item.link}>
                 <i className={`icomoon icon-${item.icon}`}></i>
@@ -81,45 +78,23 @@ const Instagram: NextPage = ({ posts }: any) => {
   );
 };
 
-export default Instagram;
+export default Explore;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const instagramCollection = await ADMIN_DB.collection("instagram").get();
+  const [files] = await ADMIN_BUCKET.getFiles({ directory: "instagram" });
 
-  const instaposts = [];
-  for await (const post of instagramCollection.docs) {
-    instaposts.push({
-      id: post.id,
-      ...post.data(),
-    });
-  }
+  const urls = await Promise.all(
+    files.map((file) =>
+      file.getSignedUrl({
+        action: "read",
+        expires: "04-05-2042", // this is an arbitrary date
+      })
+    )
+  );
 
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(instaposts)),
+      photos: urls,
     },
   };
 };
-
-export const InstagramTabs = [
-  {
-    icon: "home",
-    link: "/instagram",
-  },
-  {
-    icon: "compass",
-    link: "/instagram/explore",
-  },
-  {
-    icon: "insta-cam",
-    link: "/instagram/",
-  },
-  {
-    icon: "comment-love",
-    link: "/instagram/",
-  },
-  {
-    icon: "profile",
-    link: "/instagram/profile",
-  },
-];

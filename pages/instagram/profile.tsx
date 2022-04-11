@@ -1,0 +1,250 @@
+import { GetStaticProps, NextPage } from "next";
+import { motion } from "framer-motion";
+import tw from "twin.macro";
+import { pageVariants } from "@/animations/variants";
+import { AppHeader, IosButton } from "@/components/elements/styled/header";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ListContainer,
+  ListWrapper,
+} from "@/components/elements/styled/common";
+import {
+  InstagramAppBar,
+  InstagramNavItem,
+} from "@/components/elements/styled/instagram";
+import { InstagramTabs } from ".";
+import { useRouter } from "next/router";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useState } from "react";
+import Gallery from "@/components/Gallery";
+import { ADMIN_BUCKET } from "@/firebase/admin";
+
+const Profile: NextPage = ({ photos }: any) => {
+  const router = useRouter();
+  const [tabIndex, setTabIndex] = useState(0);
+
+  return (
+    <motion.div
+      css={tw`flex flex-col h-full bg-white`}
+      animate="animate"
+      initial="initial"
+      exit="exit"
+      variants={pageVariants}
+    >
+      <AppHeader c1="#3F729B" c2="#4d8cbf">
+        <Link href="/">
+          <a>
+            <IosButton css={tw`right-4`} hoverColor="#3F729B" color="#4d8cbf">
+              <i className="icomoon icon-rotate"></i>
+            </IosButton>
+          </a>
+        </Link>
+        <Link href="/instagram">
+          <a>
+            <IosButton left hoverColor="#3F729B" color="#4d8cbf">
+              home
+            </IosButton>
+          </a>
+        </Link>
+        <div css={tw`w-auto h-6`}>
+          <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
+        </div>
+      </AppHeader>
+
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
+        <ListWrapper css={tw`p-2 bg-gray-300`}>
+          <ProfileInfoContainer>
+            <div css={tw`grid grid-flow-col grid-rows-2 grid-cols-3 h-24`}>
+              <div
+                css={tw`w-full h-full relative row-span-2 p-2 border-[1px] border-l-0 border-t-0 border-b-0`}
+              >
+                <ProfileWrapper>
+                  <Image
+                    src="/images/michael-jackson.jpeg"
+                    layout="fill"
+                    objectFit="cover"
+                    className="profile-pic"
+                  />
+                </ProfileWrapper>
+              </div>
+              <ProfileStatContainer>
+                <ProfileStatItem>
+                  24
+                  <ProfileStatCaption>photos</ProfileStatCaption>
+                </ProfileStatItem>
+                <ProfileStatItem>
+                  0<ProfileStatCaption>followers</ProfileStatCaption>
+                </ProfileStatItem>
+                <ProfileStatItem>
+                  64
+                  <ProfileStatCaption>following</ProfileStatCaption>
+                </ProfileStatItem>
+              </ProfileStatContainer>
+              <div
+                css={tw`col-start-2 col-span-2 flex justify-between items-center px-4 text-lg font-bold cursor-pointer`}
+              >
+                Edit Your Profile
+                <i
+                  className="icomoon icon-chevron-right"
+                  css={tw`text-gray-400 text-xl`}
+                ></i>
+              </div>
+            </div>
+
+            <div
+              css={tw`flex flex-col justify-center items-start px-2 py-1 border-[1px] border-b-0 border-r-0 border-l-0`}
+            >
+              <h1 css={tw`text-lg font-bold`}>Jhon</h1>
+              <span css={tw`text-lg font-normal text-gray-400`}>
+                Here's to the crazy ones..
+              </span>
+            </div>
+          </ProfileInfoContainer>
+
+          <Tabs selectedIndex={tabIndex} css={tw`py-5`}>
+            <ProfileTabContainer>
+              <ProfileTab
+                onClick={() => setTabIndex(0)}
+                active={tabIndex === 0}
+                direction="bottom"
+              >
+                <i className="icomoon icon-circle-with-minus" />
+              </ProfileTab>
+              <ProfileTab
+                onClick={() => setTabIndex(1)}
+                active={tabIndex === 1}
+                direction="bottom"
+              >
+                <i className="icomoon icon-circle-with-minus" />
+              </ProfileTab>
+              <ProfileTab
+                onClick={() => setTabIndex(1)}
+                active={tabIndex === 2}
+                direction="bottom"
+              >
+                <i className="icomoon icon-circle-with-minus" />
+              </ProfileTab>
+              <ProfileTab
+                onClick={() => setTabIndex(1)}
+                active={tabIndex === 3}
+                direction="bottom"
+              >
+                <i className="icomoon icon-circle-with-minus" />
+              </ProfileTab>
+            </ProfileTabContainer>
+            <TabPanel>
+              <Gallery images={photos} />
+            </TabPanel>
+            <TabPanel>Panel 2</TabPanel>
+          </Tabs>
+        </ListWrapper>
+      </ListContainer>
+      <InstagramAppBar>
+        {InstagramTabs.map((item: any, index: number) => (
+          <Link href={item.link}>
+            <a>
+              <InstagramNavItem active={router.asPath === item.link}>
+                <i className={`icomoon icon-${item.icon}`}></i>
+              </InstagramNavItem>
+            </a>
+          </Link>
+        ))}
+      </InstagramAppBar>
+    </motion.div>
+  );
+};
+
+export default Profile;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const [files] = await ADMIN_BUCKET.getFiles({ directory: "instagram" });
+
+  const urls = await Promise.all(
+    files.map((file) =>
+      file.getSignedUrl({
+        action: "read",
+        expires: "04-05-2042", // this is an arbitrary date
+      })
+    )
+  );
+
+  return {
+    props: {
+      photos: urls,
+    },
+  };
+};
+
+const ProfileStatItem = styled.div(() => [
+  tw`flex flex-col justify-center items-center text-lg font-bold leading-4 border-[1px] border-l-0 border-t-0 last:border-r-0`,
+]);
+
+const ProfileStatCaption = styled.span(() => [
+  tw`items-center text-sm font-bold text-gray-400`,
+]);
+
+const ProfileWrapper = styled.div(() => [
+  tw`w-full h-full relative`,
+  css`
+    .profile-pic {
+      ${tw`rounded-md`}
+    }
+  `,
+]);
+
+const ProfileStatContainer = styled.div(() => [
+  tw`col-start-2 col-span-2 grid grid-flow-row grid-cols-3`,
+]);
+
+const ProfileInfoContainer = styled.div(() => [tw`bg-white shadow rounded-md`]);
+
+const ProfileTab = styled.div((props: any) => [
+  tw`flex justify-center items-center  p-5 w-full flex-grow border-r-[1px] border-gray-400 last:border-r-0`,
+  tw`relative text-gray-400`,
+  props.active && tw`text-[#3F729B]`,
+  tw`before:(contents[""] absolute h-1 w-1)`,
+
+  css`
+    &:before {
+      border: solid transparent;
+      border-color: rgba(136, 183, 213, 0);
+      border-width: 6px;
+    }
+  `,
+
+  props.active &&
+    props.direction == "bottom" && [
+      tw`before:(top-full left-1/2 -translate-x-1/2)`,
+      css`
+        &:before {
+          border-top-color: #fff;
+        }
+      `,
+    ],
+
+  props.active &&
+    props.direction == "right" && [
+      tw`before:(left-full top-1/2 -translate-y-1/2)`,
+      css`
+        &:before {
+          border-left-color: #fff;
+        }
+      `,
+    ],
+  props.active &&
+    props.direction == "left" && [
+      tw`before:(right-full top-1/2 -translate-y-1/2)`,
+      css`
+        &:before {
+          border-right-color: #393939;
+        }
+      `,
+    ],
+]);
+
+const ProfileTabContainer = styled.div(() => [
+  tw`flex w-full bg-white justify-between shadow rounded-md mb-5`,
+]);
