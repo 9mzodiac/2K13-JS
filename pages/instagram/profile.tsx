@@ -21,19 +21,14 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
 import { ADMIN_BUCKET } from "@/firebase/admin";
+import { getMainProfile, getMainProfilePosts } from "repository/instaProfile";
 
-const Profile: NextPage = ({ photos }: any) => {
+const Profile: NextPage = ({ photos, profile }: any) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <motion.div
-      css={tw`flex flex-col h-full bg-white`}
-      animate="animate"
-      initial="initial"
-      exit="exit"
-      variants={pageVariants}
-    >
+    <motion.div css={tw`flex flex-col h-full bg-white`}>
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
@@ -63,7 +58,7 @@ const Profile: NextPage = ({ photos }: any) => {
               >
                 <ProfileWrapper>
                   <Image
-                    src="/images/michael-jackson.jpeg"
+                    src={profile?.profilePic}
                     layout="fill"
                     objectFit="cover"
                     className="profile-pic"
@@ -72,14 +67,14 @@ const Profile: NextPage = ({ photos }: any) => {
               </div>
               <ProfileStatContainer>
                 <ProfileStatItem>
-                  24
+                  {photos.length}
                   <ProfileStatCaption>photos</ProfileStatCaption>
                 </ProfileStatItem>
                 <ProfileStatItem>
                   0<ProfileStatCaption>followers</ProfileStatCaption>
                 </ProfileStatItem>
                 <ProfileStatItem>
-                  64
+                  2000
                   <ProfileStatCaption>following</ProfileStatCaption>
                 </ProfileStatItem>
               </ProfileStatContainer>
@@ -95,56 +90,70 @@ const Profile: NextPage = ({ photos }: any) => {
             </div>
 
             <div
-              css={tw`flex flex-col justify-center items-start px-2 py-1 border-[1px] border-b-0 border-r-0 border-l-0`}
+              css={tw`flex flex-col justify-center items-start px-2 py-1 border-[1px] border-b-0 border-r-0 border-l-0 relative`}
             >
-              <h1 css={tw`text-lg font-bold`}>Jhon</h1>
-              <span css={tw`text-lg font-normal text-gray-400`}>
-                Here's to the crazy ones..
+              <h1 css={tw`text-lg font-bold capitalize`}>
+                {profile?.username}
+              </h1>
+              <span
+                css={tw`text-lg font-normal text-gray-400 truncate w-full block`}
+              >
+                {profile?.bio}
               </span>
             </div>
           </ProfileInfoContainer>
 
-          <Tabs selectedIndex={tabIndex} css={tw`py-5`}>
+          <Tabs
+            selectedIndex={tabIndex}
+            css={tw`py-5`}
+            onSelect={(index) => setTabIndex(index)}
+          >
             <ProfileTabContainer>
               <ProfileTab
                 onClick={() => setTabIndex(0)}
                 active={tabIndex === 0}
                 direction="bottom"
+                css={tw`text-[2.3rem]`}
               >
-                <i className="icomoon icon-circle-with-minus" />
+                <i className="icomoon icon-grid" />
               </ProfileTab>
               <ProfileTab
-                onClick={() => setTabIndex(1)}
+                // onClick={() => setTabIndex(1)}
                 active={tabIndex === 1}
                 direction="bottom"
+                css={tw`text-[1.5rem]`}
               >
-                <i className="icomoon icon-circle-with-minus" />
+                <i className="icomoon icon-list" />
               </ProfileTab>
               <ProfileTab
-                onClick={() => setTabIndex(1)}
+                // onClick={() => setTabIndex(2)}
                 active={tabIndex === 2}
                 direction="bottom"
+                css={tw`text-[1.4rem]`}
               >
-                <i className="icomoon icon-circle-with-minus" />
+                <i className="icomoon icon-location" />
               </ProfileTab>
               <ProfileTab
-                onClick={() => setTabIndex(1)}
+                // onClick={() => setTabIndex(3)}
                 active={tabIndex === 3}
                 direction="bottom"
+                css={tw`text-[1.3rem]`}
               >
-                <i className="icomoon icon-circle-with-minus" />
+                <i className="icomoon icon-user-solid-square" />
               </ProfileTab>
             </ProfileTabContainer>
             <TabPanel>
               <Gallery images={photos} />
             </TabPanel>
             <TabPanel>Panel 2</TabPanel>
+            <TabPanel>Panel 2</TabPanel>
+            <TabPanel>Panel 2</TabPanel>
           </Tabs>
         </ListWrapper>
       </ListContainer>
       <InstagramAppBar>
         {InstagramTabs.map((item: any, index: number) => (
-          <Link href={item.link}>
+          <Link href={item.link} key={`insta-app-nav-${index}`}>
             <a>
               <InstagramNavItem active={router.asPath === item.link}>
                 <i className={`icomoon icon-${item.icon}`}></i>
@@ -160,20 +169,17 @@ const Profile: NextPage = ({ photos }: any) => {
 export default Profile;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [files] = await ADMIN_BUCKET.getFiles({ directory: "instagram" });
-
-  const urls = await Promise.all(
-    files.map((file) =>
-      file.getSignedUrl({
-        action: "read",
-        expires: "04-05-2042", // this is an arbitrary date
-      })
-    )
-  );
+  const profile = await getMainProfile();
+  const posts = await getMainProfilePosts(profile.id);
+  const photos = [];
+  for await (let post of posts) {
+    photos.push(post.image);
+  }
 
   return {
     props: {
-      photos: urls,
+      photos: photos,
+      profile: profile,
     },
   };
 };
@@ -202,7 +208,7 @@ const ProfileStatContainer = styled.div(() => [
 const ProfileInfoContainer = styled.div(() => [tw`bg-white shadow rounded-md`]);
 
 const ProfileTab = styled.div((props: any) => [
-  tw`flex justify-center items-center  p-5 w-full flex-grow border-r-[1px] border-gray-400 last:border-r-0`,
+  tw`flex justify-center items-center py-2 px-5 w-full flex-grow border-r-[1px] border-gray-400 last:border-r-0`,
   tw`relative text-gray-400`,
   props.active && tw`text-[#3F729B]`,
   tw`before:(contents[""] absolute h-1 w-1)`,

@@ -30,6 +30,7 @@ module.exports = {
       fontStyle: ["hover", "focus"],
       fontWeight: ["hover", "focus"],
       animation: ["hover", "focus"],
+      textOverflow: ['hover', 'focus']
     },
   },
   plugins: [],

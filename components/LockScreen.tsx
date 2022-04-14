@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { clearNotification, getNotifications } from "repository/notification";
+import useSWR from "swr";
 import tw from "twin.macro";
 import {
   Slider,
@@ -15,14 +17,21 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
-  const [notifications, setNotifications] = useState(Notifications);
+  const { data } = useSWR("notifications", getNotifications);
+
+  const [notifications, setNotifications] = useState(data ? data : []);
   const constraintsRef = useRef<any>(null);
   const constraintsNotificationRef = useRef<any>(null);
 
-  const clearNotificationItem = (index: number) => {
+  useEffect(() => {
+    if (data) setNotifications(data);
+  }, [data]);
+
+  const clearNotificationItem = async (index: number, id: string) => {
     let currentArr = [...notifications];
     currentArr.splice(index, 1);
     setNotifications(currentArr);
+    await clearNotification(id);
   };
 
   useEffect(() => {
@@ -100,6 +109,13 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       },
     },
   };
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <motion.div
       css={tw`w-full h-full flex flex-col`}
@@ -118,37 +134,64 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
             css={tw`absolute w-full h-full overflow-auto`}
             className="no-scrollbar"
           >
-            {notifications.map((item, key) => (
-              <NotificationItem
-                // dragConstraints={constraintsNotificationRef}
-                key={`${item.title}${key}`}
-                drag="x"
-                dragElastic={0.1}
-                dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
-                dragSnapToOrigin
-                whileTap={{ cursor: "grabbing" }}
-                onDragEnd={(event: any, info: any) => {
-                  const refRect =
-                    constraintsNotificationRef.current?.getBoundingClientRect();
-                  if (info.point.x < refRect.left / 2) {
-                    clearNotificationItem(key);
-                  }
-                }}
-              >
-                <div css={tw`flex gap-x-2`}>
-                  <div css={tw`w-8 h-8 relative self-center`}>
-                    <Image src={item.icon} layout="fill" objectFit="contain" />
+            {notifications?.length > 0 &&
+              notifications.map((item: any, key: number) => (
+                <NotificationItem
+                  // dragConstraints={constraintsNotificationRef}
+                  custom={key}
+                  animate={mounted && "animate"}
+                  variants={{
+                    animate: (x) => {
+                      const delay = x * 0.1;
+                      return {
+                        scale: 1,
+                        opacity: 1,
+                        transition: {
+                          duration: 1,
+                          delay: delay,
+                        },
+                      };
+                    },
+                    initial: {
+                      scale: 0,
+                      opacity: 0,
+                    },
+                  }}
+                  key={`${item.title}${key}`}
+                  drag="x"
+                  dragElastic={0.1}
+                  dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
+                  dragSnapToOrigin
+                  whileTap={{ cursor: "grabbing" }}
+                  onDragEnd={(event: any, info: any) => {
+                    const refRect =
+                      constraintsNotificationRef.current?.getBoundingClientRect();
+
+                    if (info.point.x < refRect.left) {
+                      clearNotificationItem(key, item.id);
+                    }
+                  }}
+                >
+                  <div css={tw`flex gap-x-2`}>
+                    <div css={tw`w-8 h-8 relative self-center`}>
+                      <Image
+                        src={item.app.iconImage}
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    </div>
+                    <div css={tw`flex flex-col`}>
+                      <p css={tw`font-bold text-lg text-white`}>{item.title}</p>
+                      <span css={tw`font-normal text-md text-white`}>
+                        {item.description}
+                      </span>
+                    </div>
                   </div>
-                  <div css={tw`flex flex-col`}>
-                    <p css={tw`font-bold text-lg text-white`}>{item.title}</p>
-                    <span css={tw`font-normal text-md text-white`}>
-                      {item.subtitle}
-                    </span>
-                  </div>
-                </div>
-                <span css={tw`font-bold text-sm text-white`}>{item.time}</span>
-              </NotificationItem>
-            ))}
+                  <span css={tw`font-bold text-sm text-white`}>
+                    {item.time}
+                  </span>
+                </NotificationItem>
+              ))}
           </div>
         </NotificationWrapper>
       </UnlockSpacer>

@@ -2,9 +2,29 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getWallpaper } from "repository/wallpaper";
+import useSWR from "swr";
 import tw from "twin.macro";
 
-const MobileInterface: React.FC<any> = ({ children }: any) => {
+const MobileInterface: React.FC<any> = ({ children, state }: any) => {
+  const { data } = useSWR("wallpapers", getWallpaper);
+
+  const [lockscreen, setLockscreen] = useState(null);
+  const [homescreen, setHomescreen] = useState(null);
+
+  useEffect(() => {
+    if (data) {
+      if (state) {
+        const index = data?.findIndex((x: any) => x.type === "homescreen");
+        setHomescreen(data[index].imageURL);
+      } else {
+        const index = data?.findIndex((x: any) => x.type === "lockscreen");
+        setLockscreen(data[index].imageURL);
+      }
+    }
+  }, [state, data]);
+
   return (
     <IPhoneFrame>
       <Image
@@ -15,12 +35,24 @@ const MobileInterface: React.FC<any> = ({ children }: any) => {
       />
       <IphoneScreenContainer>
         <IPhoneInside>
-          <Image
-            src="/images/iphone-wallpaper.png"
-            layout="fill"
-            objectFit="cover"
-            className="index-behind"
-          />
+          {state
+            ? homescreen && (
+                <Image
+                  src={homescreen}
+                  layout="fill"
+                  objectFit="cover"
+                  className="index-behind"
+                />
+              )
+            : lockscreen && (
+                <Image
+                  src={lockscreen}
+                  layout="fill"
+                  objectFit="cover"
+                  className="index-behind"
+                />
+              )}
+
           {children}
           <div
             css={tw`z-50 absolute top-0 left-0 w-full h-full`}
@@ -45,7 +77,7 @@ const HomeButton = styled.div(() => [
 ]);
 
 const IPhoneFrame = styled.div(() => [
-  tw`mx-auto w-full h-screen flex flex-col relative`,
+  tw`mx-auto w-full h-screen flex flex-col relative select-none`,
   tw`max-w-none min-w-full min-h-full max-h-full`,
   tw`md:(max-w-[350px] min-w-[350px] min-h-[600px] max-h-[600px])`,
   tw`lg:(max-w-[400px] min-w-[400px] min-h-[700px] max-h-[700px])`,

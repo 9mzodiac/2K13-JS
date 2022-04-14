@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import tw from "twin.macro";
 
 const UnlockButton = styled.div(() => [
-  tw`w-full relative h-16 flex justify-center items-center px-5`,
+  tw`w-full relative h-20 flex justify-center items-center px-5`,
   css`
     background-image: -webkit-gradient(
       linear,

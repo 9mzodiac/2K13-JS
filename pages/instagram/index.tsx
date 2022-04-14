@@ -1,7 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
-import { pageVariants } from "animations/variants";
 import { AppHeader, IosButton } from "@/components/elements/styled/header";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,21 +14,13 @@ import {
 } from "@/components/elements/styled/common";
 import InstagramPost from "@/components/elements/InstagramPost";
 import { ADMIN_DB } from "@/firebase/admin";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 const Instagram: NextPage = ({ posts }: any) => {
-  const [tabIndex, setTabIndex] = useState(0);
   const router = useRouter();
-  console.log(router.asPath);
+
   return (
-    <motion.div
-      css={tw`flex flex-col h-full bg-white`}
-      animate="animate"
-      initial="initial"
-      exit="exit"
-      variants={pageVariants}
-    >
+    <motion.div css={tw`flex flex-col h-full bg-white`}>
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>

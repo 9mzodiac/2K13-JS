@@ -47,7 +47,7 @@ function MyApp({
           <meta name="theme-color" content="#0b0b0b" />
         </Head>
         <GlobalStyles />
-        <MobileInterface>
+        <MobileInterface state={unlocked}>
           <Hydrate state={pageProps.dehydratedState}>
             <AnimatePresence exitBeforeEnter>
               {unlocked ? (

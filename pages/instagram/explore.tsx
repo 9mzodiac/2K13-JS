@@ -17,18 +17,13 @@ import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
 import { ADMIN_BUCKET } from "@/firebase/admin";
 import Gallery from "@/components/Gallery";
+import { getExplorePost } from "repository/instaProfile";
 
 const Explore: NextPage = ({ photos }: any) => {
   const router = useRouter();
 
   return (
-    <motion.div
-      css={tw`flex flex-col h-full bg-white`}
-      animate="animate"
-      initial="initial"
-      exit="exit"
-      variants={pageVariants}
-    >
+    <motion.div css={tw`flex flex-col h-full bg-white`}>
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
@@ -52,7 +47,6 @@ const Explore: NextPage = ({ photos }: any) => {
       <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
         <ListWrapper>
           <div css={tw`bg-gray-400 p-2 flex`}>
-
             <input
               css={tw`w-full px-2 py-1 text-gray-300 rounded focus:(border-none outline-none)`}
               placeholder="Search users and hashtags"
@@ -65,7 +59,7 @@ const Explore: NextPage = ({ photos }: any) => {
       </ListContainer>
       <InstagramAppBar>
         {InstagramTabs.map((item: any, index: number) => (
-          <Link href={item.link}>
+          <Link href={item.link} key={`explore-post-${index}`}>
             <a>
               <InstagramNavItem active={router.asPath === item.link}>
                 <i className={`icomoon icon-${item.icon}`}></i>
@@ -81,20 +75,15 @@ const Explore: NextPage = ({ photos }: any) => {
 export default Explore;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [files] = await ADMIN_BUCKET.getFiles({ directory: "instagram" });
-
-  const urls = await Promise.all(
-    files.map((file) =>
-      file.getSignedUrl({
-        action: "read",
-        expires: "04-05-2042", // this is an arbitrary date
-      })
-    )
-  );
+  const posts = await getExplorePost();
+  const photos = [];
+  for await (let post of posts) {
+    photos.push(post.image);
+  }
 
   return {
     props: {
-      photos: urls,
+      photos: photos,
     },
   };
 };
