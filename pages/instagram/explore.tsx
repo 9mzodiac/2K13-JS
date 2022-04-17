@@ -1,22 +1,25 @@
 import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
+import { pageVariants } from "@/animations/variants";
 import { AppHeader, IosButton } from "@/components/elements/styled/header";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  InstagramAppBar,
-  InstagramNavItem,
-} from "@/components/elements/styled/instagram";
-import {
   ListContainer,
   ListWrapper,
 } from "@/components/elements/styled/common";
-import InstagramPost from "@/components/elements/InstagramPost";
-import { ADMIN_DB } from "@/firebase/admin";
+import {
+  InstagramAppBar,
+  InstagramNavItem,
+} from "@/components/elements/styled/instagram";
+import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
+import { ADMIN_BUCKET } from "@/firebase/admin";
+import Gallery from "@/components/Gallery";
+import { getExplorePost } from "repository/instaProfile";
 
-const Instagram: NextPage = ({ posts }: any) => {
+const Explore: NextPage = ({ photos }: any) => {
   const router = useRouter();
 
   return (
@@ -29,10 +32,10 @@ const Instagram: NextPage = ({ posts }: any) => {
             </IosButton>
           </a>
         </Link>
-        {/* <Link href="/">
+        {/* <Link href="/instagram">
           <a>
             <IosButton left hoverColor="#3F729B" color="#4d8cbf">
-              back
+              home
             </IosButton>
           </a>
         </Link> */}
@@ -42,27 +45,26 @@ const Instagram: NextPage = ({ posts }: any) => {
       </AppHeader>
 
       <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
-        <ListWrapper css={tw`pt-2`}>
-          {posts.length > 0 &&
-            posts.map((item: any) => (
-              <InstagramPost
-                key={`instapost-${item.id}`}
-                postImage={item.image}
-                profile={item.user.avatar}
-                name={item.user.username}
-                likes={item.likes}
-                time={item.createdDate}
-                caption={item.title}
-                location={item.location}
-              />
-            ))}
+        <ListWrapper>
+          <div css={tw`bg-gray-400 p-2 flex`}>
+            <input
+              css={tw`w-full px-2 py-1 text-gray-300 rounded focus:(border-none outline-none)`}
+              placeholder="Search users and hashtags"
+            />
+          </div>
+          <div css={tw`p-2`}>
+            <Gallery images={photos} />
+          </div>
         </ListWrapper>
       </ListContainer>
       <InstagramAppBar>
         {InstagramTabs.map((item: any, index: number) => (
-          <Link href={item.link} key={`instapost-${index}`}>
+          <Link href={item.link} key={`explore-post-${index}`}>
             <a>
-              <InstagramNavItem active={router.asPath === item.link} highlight={item.icon == "instalogo"}>
+              <InstagramNavItem
+                active={router.asPath === item.link}
+                highlight={item.icon == "instalogo"}
+              >
                 <i
                   className={`icomoon icon-${item.icon}`}
                   css={
@@ -80,47 +82,18 @@ const Instagram: NextPage = ({ posts }: any) => {
   );
 };
 
-export default Instagram;
+export default Explore;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const instagramCollection = await ADMIN_DB.collection("instagram")
-    .orderBy("createdDate", "desc")
-    .get();
-
-  const instaposts = [];
-  for await (const post of instagramCollection.docs) {
-    instaposts.push({
-      id: post.id,
-      ...post.data(),
-    });
+  const posts = await getExplorePost();
+  const photos = [];
+  for await (let post of posts) {
+    photos.push(post.image);
   }
 
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(instaposts)),
+      photos: photos,
     },
   };
 };
-
-export const InstagramTabs = [
-  {
-    icon: "instahome",
-    link: "/instagram",
-  },
-  {
-    icon: "instaexplore",
-    link: "/instagram/explore",
-  },
-  {
-    icon: "instalogo",
-    link: "/instagram/",
-  },
-  {
-    icon: "instaheart",
-    link: "/instagram/",
-  },
-  {
-    icon: "instaprofile",
-    link: "/instagram/profile",
-  },
-];

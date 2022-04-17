@@ -26,8 +26,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-clock:before {
-  content: "\e917";
+
+.icon-instaexplore:before {
+  content: "\e921";
+}
+.icon-instaheart:before {
+  content: "\e922";
+}
+.icon-instahome:before {
+  content: "\e923";
+}
+.icon-instalogo:before {
+  content: "\e924";
+}
+.icon-instaprofile:before {
+  content: "\e925";
 }
 .icon-insta-cam:before {
   content: "\e918";
@@ -59,8 +72,8 @@
 .icon-singer:before {
   content: "\e904";
 }
-.icon-rotate:before {
-  content: "\e91d";
+.icon-user-solid-square:before {
+  content: "\e91a";
 }
 .icon-chevron-down:before {
   content: "\e907";
@@ -104,9 +117,39 @@
 .icon-heart:before {
   content: "\e919";
 }
+.icon-message:before {
+  content: "\e920";
+}
 .icon-minus:before {
   content: "\e912";
 }
 .icon-plus:before {
   content: "\e913";
+}
+.icon-menu:before {
+  content: "\e91b";
+}
+.icon-list:before {
+  content: "\e91b";
+}
+.icon-options:before {
+  content: "\e91b";
+}
+.icon-lines:before {
+  content: "\e91b";
+}
+.icon-hamburger:before {
+  content: "\e91b";
+}
+.icon-location:before {
+  content: "\e91e";
+}
+.icon-clock:before {
+  content: "\e917";
+}
+.icon-grid:before {
+  content: "\e91f";
+}
+.icon-rotate:before {
+  content: "\e91d";
 }

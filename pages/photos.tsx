@@ -45,10 +45,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const urls = await Promise.all(
     files.map((file) =>
-      file.getSignedUrl({
-        action: "read",
-        expires: "04-05-2042", // this is an arbitrary date
-      })
+      file
+        .getSignedUrl({
+          action: "read",
+          expires: "04-05-2042", // this is an arbitrary date
+        })
+        .then((x) => x[0])
     )
   );
 

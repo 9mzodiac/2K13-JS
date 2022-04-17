@@ -34,7 +34,7 @@ const Gallery: React.FC<any> = ({ images }: any) => {
             }}
           >
             <Image
-              src={item[0]}
+              src={item}
               layout="fill"
               objectFit="cover"
               alt={`gallery image - ${key}`}
@@ -54,7 +54,7 @@ const Gallery: React.FC<any> = ({ images }: any) => {
                 <SwiperSlide key={`gallery-image-${key}`}>
                   <ImageContainerSwiper>
                     <Image
-                      src={item[0]}
+                      src={item}
                       layout="fill"
                       objectFit="contain"
                       alt={`gallery slide - ${key}`}

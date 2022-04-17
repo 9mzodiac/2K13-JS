@@ -20,7 +20,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Roboto", "sans-serif"],
+      sans: ["Helvetica", "sans-serif"],
     },
   },
   variants: {
@@ -30,6 +30,7 @@ module.exports = {
       fontStyle: ["hover", "focus"],
       fontWeight: ["hover", "focus"],
       animation: ["hover", "focus"],
+      textOverflow: ['hover', 'focus']
     },
   },
   plugins: [],

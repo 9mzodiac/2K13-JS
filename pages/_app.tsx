@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import MobileInterface from "@/components/MobileInterface";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import Head from "next/head";
+import "react-tabs/style/react-tabs.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -46,7 +47,7 @@ function MyApp({
           <meta name="theme-color" content="#0b0b0b" />
         </Head>
         <GlobalStyles />
-        <MobileInterface>
+        <MobileInterface state={unlocked}>
           <Hydrate state={pageProps.dehydratedState}>
             <AnimatePresence exitBeforeEnter>
               {unlocked ? (
