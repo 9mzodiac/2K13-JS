@@ -32,18 +32,18 @@ const Profile: NextPage = ({ photos, profile }: any) => {
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
-            <IosButton css={tw`right-4`} hoverColor="#3F729B" color="#4d8cbf">
+            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
               <i className="icomoon icon-rotate"></i>
             </IosButton>
           </a>
         </Link>
-        <Link href="/instagram">
+        {/* <Link href="/instagram">
           <a>
             <IosButton left hoverColor="#3F729B" color="#4d8cbf">
               home
             </IosButton>
           </a>
-        </Link>
+        </Link> */}
         <div css={tw`w-auto h-6`}>
           <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
         </div>
@@ -155,8 +155,18 @@ const Profile: NextPage = ({ photos, profile }: any) => {
         {InstagramTabs.map((item: any, index: number) => (
           <Link href={item.link} key={`insta-app-nav-${index}`}>
             <a>
-              <InstagramNavItem active={router.asPath === item.link}>
-                <i className={`icomoon icon-${item.icon}`}></i>
+              <InstagramNavItem
+                active={router.asPath === item.link}
+                highlight={item.icon == "instalogo"}
+              >
+                <i
+                  className={`icomoon icon-${item.icon}`}
+                  css={
+                    item.icon == "instaexplore" || item.icon == "instalogo"
+                      ? tw`text-[1.3rem]`
+                      : tw`text-[1.1rem]`
+                  }
+                ></i>
               </InstagramNavItem>
             </a>
           </Link>

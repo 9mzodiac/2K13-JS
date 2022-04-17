@@ -24,25 +24,25 @@ const Instagram: NextPage = ({ posts }: any) => {
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
-            <IosButton css={tw`right-4`} hoverColor="#3F729B" color="#4d8cbf">
+            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
               <i className="icomoon icon-rotate"></i>
             </IosButton>
           </a>
         </Link>
-        <Link href="/">
+        {/* <Link href="/">
           <a>
             <IosButton left hoverColor="#3F729B" color="#4d8cbf">
               back
             </IosButton>
           </a>
-        </Link>
+        </Link> */}
         <div css={tw`w-auto h-6`}>
           <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
         </div>
       </AppHeader>
 
       <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
-        <ListWrapper css={tw`pt-5`}>
+        <ListWrapper css={tw`pt-2`}>
           {posts.length > 0 &&
             posts.map((item: any) => (
               <InstagramPost
@@ -53,6 +53,7 @@ const Instagram: NextPage = ({ posts }: any) => {
                 likes={item.likes}
                 time={item.createdDate}
                 caption={item.title}
+                location={item.location}
               />
             ))}
         </ListWrapper>
@@ -61,8 +62,15 @@ const Instagram: NextPage = ({ posts }: any) => {
         {InstagramTabs.map((item: any, index: number) => (
           <Link href={item.link} key={`instapost-${index}`}>
             <a>
-              <InstagramNavItem active={router.asPath === item.link}>
-                <i className={`icomoon icon-${item.icon}`}></i>
+              <InstagramNavItem active={router.asPath === item.link} highlight={item.icon == "instalogo"}>
+                <i
+                  className={`icomoon icon-${item.icon}`}
+                  css={
+                    item.icon == "instaexplore" || item.icon == "instalogo"
+                      ? tw`text-[1.3rem]`
+                      : tw`text-[1.1rem]`
+                  }
+                ></i>
               </InstagramNavItem>
             </a>
           </Link>
@@ -75,7 +83,9 @@ const Instagram: NextPage = ({ posts }: any) => {
 export default Instagram;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const instagramCollection = await ADMIN_DB.collection("instagram").get();
+  const instagramCollection = await ADMIN_DB.collection("instagram")
+    .orderBy("createdDate", "desc")
+    .get();
 
   const instaposts = [];
   for await (const post of instagramCollection.docs) {
@@ -94,23 +104,23 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export const InstagramTabs = [
   {
-    icon: "home",
+    icon: "instahome",
     link: "/instagram",
   },
   {
-    icon: "compass",
+    icon: "instaexplore",
     link: "/instagram/explore",
   },
   {
-    icon: "insta-cam",
+    icon: "instalogo",
     link: "/instagram/",
   },
   {
-    icon: "comment-love",
+    icon: "instaheart",
     link: "/instagram/",
   },
   {
-    icon: "profile",
+    icon: "instaprofile",
     link: "/instagram/profile",
   },
 ];

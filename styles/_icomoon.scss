@@ -27,6 +27,51 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-instaexplore:before {
+  content: "\e921";
+}
+.icon-instaheart:before {
+  content: "\e922";
+}
+.icon-instahome:before {
+  content: "\e923";
+}
+.icon-instalogo:before {
+  content: "\e924";
+}
+.icon-instaprofile:before {
+  content: "\e925";
+}
+.icon-insta-cam:before {
+  content: "\e918";
+}
+.icon-comment-love:before {
+  content: "\e914";
+}
+.icon-compass:before {
+  content: "\e915";
+}
+.icon-home:before {
+  content: "\e916";
+}
+.icon-profile:before {
+  content: "\e91c";
+}
+.icon-more-dots:before {
+  content: "\e900";
+}
+.icon-music-album:before {
+  content: "\e901";
+}
+.icon-music-note:before {
+  content: "\e902";
+}
+.icon-playlist:before {
+  content: "\e903";
+}
+.icon-singer:before {
+  content: "\e904";
+}
 .icon-user-solid-square:before {
   content: "\e91a";
 }
@@ -72,6 +117,9 @@
 .icon-heart:before {
   content: "\e919";
 }
+.icon-message:before {
+  content: "\e920";
+}
 .icon-minus:before {
   content: "\e912";
 }
@@ -98,36 +146,6 @@
 }
 .icon-clock:before {
   content: "\e917";
-}
-.icon-insta-cam:before {
-  content: "\e918";
-}
-.icon-comment-love:before {
-  content: "\e914";
-}
-.icon-compass:before {
-  content: "\e915";
-}
-.icon-home:before {
-  content: "\e916";
-}
-.icon-profile:before {
-  content: "\e91c";
-}
-.icon-more-dots:before {
-  content: "\e900";
-}
-.icon-music-album:before {
-  content: "\e901";
-}
-.icon-music-note:before {
-  content: "\e902";
-}
-.icon-playlist:before {
-  content: "\e903";
-}
-.icon-singer:before {
-  content: "\e904";
 }
 .icon-grid:before {
   content: "\e91f";

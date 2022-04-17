@@ -25,7 +25,7 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
     }
   }, [state, data]);
 
-  return (
+  return lockscreen || homescreen ? (
     <IPhoneFrame>
       <Image
         src="/images/iphone-frame.png"
@@ -42,6 +42,9 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
                   layout="fill"
                   objectFit="cover"
                   className="index-behind"
+                  priority
+                  blurDataURL={homescreen}
+                  placeholder="blur"
                 />
               )
             : lockscreen && (
@@ -50,6 +53,9 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
                   layout="fill"
                   objectFit="cover"
                   className="index-behind"
+                  priority
+                  blurDataURL={lockscreen}
+                  placeholder="blur"
                 />
               )}
 
@@ -66,6 +72,8 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
         </a>
       </Link>
     </IPhoneFrame>
+  ) : (
+    <></>
   );
 };
 

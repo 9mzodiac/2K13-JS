@@ -13,6 +13,29 @@ import {
   UnlockSliderWrapper,
 } from "./elements/styled/slideToUnlock";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import updateLocale from "dayjs/plugin/updateLocale";
+dayjs.extend(updateLocale);
+dayjs.extend(relativeTime);
+dayjs.updateLocale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s",
+    s: "%s",
+    m: "a m",
+    mm: "%dm",
+    h: "an h",
+    hh: "%dh",
+    d: "a d",
+    dd: "%dd",
+    M: "a m",
+    MM: "%dm",
+    y: "a y",
+    yy: "%dy",
+  },
+});
+
 const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -81,7 +104,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       `${dayNames[currentDay]}, ${monthNames[currentMonth]} ${currentDate}`
     );
 
-    setTime(`${("0" + currentHour).slice(-2)}:${("0" + currentMin).slice(-2)}`);
+    setTime(`${(currentHour.toString()).slice(-2)}:${("0" + currentMin).slice(-2)}`);
   };
 
   const unlockVariants = {
@@ -125,8 +148,12 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       variants={unlockVariants}
     >
       <UnlockTop>
-        <p css={tw`font-normal text-2xl text-white`}>{time}</p>
-        <p css={tw`font-normal text-lg text-white`}>{date}</p>
+        <p
+          css={tw`font-thin text-[3.8rem] text-white leading-[3.5rem] tracking-tight`}
+        >
+          {time}
+        </p>
+        <p css={tw`font-thin text-lg text-white`}>{date}</p>
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper layout ref={constraintsNotificationRef}>
@@ -140,14 +167,15 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
                   // dragConstraints={constraintsNotificationRef}
                   custom={key}
                   animate={mounted && "animate"}
+                  initial="initial"
                   variants={{
                     animate: (x) => {
-                      const delay = x * 0.1;
+                      const delay = x * 0.05;
                       return {
                         scale: 1,
                         opacity: 1,
                         transition: {
-                          duration: 1,
+                          duration: 0.3,
                           delay: delay,
                         },
                       };
@@ -172,24 +200,32 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
                     }
                   }}
                 >
-                  <div css={tw`flex gap-x-2`}>
-                    <div css={tw`w-8 h-8 relative self-center`}>
+                  <div css={tw`flex gap-x-2 w-full`}>
+                    <div css={tw`w-10 h-10 relative self-center`}>
                       <Image
                         src={item.app.iconImage}
                         layout="fill"
                         objectFit="contain"
                       />
                     </div>
-                    <div css={tw`flex flex-col`}>
-                      <p css={tw`font-bold text-lg text-white`}>{item.title}</p>
-                      <span css={tw`font-normal text-md text-white`}>
+                    <div css={tw`flex flex-col w-full`}>
+                      <p
+                        css={tw`font-bold text-lg leading-4 text-white flex justify-between items-center`}
+                      >
+                        {item.title}
+
+                        <span css={tw`font-bold text-md text-white leading-5`}>
+                          {dayjs.unix(item.createdDate.seconds).format("h:mm")}{" "}
+                          <span css={tw`font-normal`}>
+                            {dayjs.unix(item.createdDate.seconds).format("A")}
+                          </span>
+                        </span>
+                      </p>
+                      <span css={tw`font-normal text-md text-white leading-5`}>
                         {item.description}
                       </span>
                     </div>
                   </div>
-                  <span css={tw`font-bold text-sm text-white`}>
-                    {item.time}
-                  </span>
                 </NotificationItem>
               ))}
           </div>
@@ -222,7 +258,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
               />
             </Slider>
             <SlideToUnlock>
-              <span>Slide to Unlock</span>
+              <span>slide to unlock</span>
             </SlideToUnlock>
           </UnlockSliderWrapper>
         </UnlockButton>
@@ -234,7 +270,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 export default LockScreen;
 
 const UnlockTop = styled.div(() => [
-  tw`relative h-20 w-full flex flex-col items-center justify-center`,
+  tw`relative h-24 w-full flex flex-col items-center justify-center`,
   tw`border-[#00000040] border-b-[1px]`,
   css`
     background-image: -webkit-gradient(
@@ -253,50 +289,6 @@ const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
 const NotificationWrapper = styled(motion.div)(() => [tw`w-full flex-[1]`]);
 
 const NotificationItem = styled(motion.div)(() => [
-  tw`w-full flex bg-[#00000080] justify-between items-center text-left px-2 py-2`,
+  tw`w-full flex bg-[#00000080] justify-start items-center text-left px-2 py-2`,
   tw`border-[#00000040] border-b-[2px]`,
 ]);
-const Notifications = [
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Docotor appointment",
-    subtitle: "",
-    time: "in 3m",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Meeting with Bob",
-    subtitle: "",
-    time: "in 3m",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Troy 2",
-    subtitle: "Doesn't work bro.",
-    time: "2:44 PM",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Troy 3",
-    subtitle: "Doesn't work bro.",
-    time: "2:44 PM",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Troy 4",
-    subtitle: "Doesn't work bro.",
-    time: "2:44 PM",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Troy 5",
-    subtitle: "Doesn't work bro.",
-    time: "2:44 PM",
-  },
-  {
-    icon: "/images/icon_instagram.png",
-    title: "Troy 6",
-    subtitle: "Doesn't work bro.",
-    time: "2:44 PM",
-  },
-];
