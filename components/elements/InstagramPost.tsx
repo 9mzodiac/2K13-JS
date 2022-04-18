@@ -33,6 +33,7 @@ const InstagramPost: React.FC<any> = ({
   time,
   profile,
   likes,
+  comments,
 }: any) => {
   return (
     <PostWrapper>
@@ -67,7 +68,9 @@ const InstagramPost: React.FC<any> = ({
         />
       </PostImage>
 
-      <div css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start pb-1`}>
+      <div
+        css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start pb-1`}
+      >
         <i className="icomoon icon-heart" css={tw`text-sm`}></i>
         <PostProfileText>{likes} likes</PostProfileText>
       </div>
@@ -78,9 +81,38 @@ const InstagramPost: React.FC<any> = ({
           <PostCaption>{caption}</PostCaption>
         </div>
       </div>
-      <div css={tw`text-md text-[#bfbfbf] font-bold mt-1 ml-4 cursor-pointer`}>
-        view all 51 comments
-      </div>
+      {comments.length > 0 &&
+        (comments.length <= 2 ? (
+          <div css={tw`mt-1 ml-4`}>
+            <span css={tw`text-md text-[#bfbfbf] font-bold cursor-pointer`}>
+              view all comments
+            </span>
+            {comments.map((comment: any) => (
+              <div
+                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate mb-1`}
+                key={comment.id}
+              >
+                <PostProfileText>{comment.user_handle}</PostProfileText>
+                <PostCaption>{comment.content}</PostCaption>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div css={tw`mt-1 ml-4`}>
+            <span css={tw`text-md text-[#bfbfbf] font-bold  cursor-pointer`}>
+              view all {comments.length} comments
+            </span>
+            {comments.map((comment: any) => (
+              <div
+                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate`}
+                key={comment.id}
+              >
+                <PostProfileText>{comment.user_handle}</PostProfileText>
+                <PostCaption>{comment.content}</PostCaption>
+              </div>
+            ))}
+          </div>
+        ))}
     </PostWrapper>
   );
 };

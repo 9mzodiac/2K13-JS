@@ -42,4 +42,14 @@ const getExplorePost = async () => {
   return JSON.parse(JSON.stringify(instaposts));
 };
 
-export { getMainProfile, getMainProfilePosts, getExplorePost };
+const getInstaPost = async (id: string) => {
+  const instagramPostsCollection = await ADMIN_DB.collection("instagram")
+    .doc(id)
+    .get();
+  return {
+    id: instagramPostsCollection.id,
+    ...instagramPostsCollection.data(),
+  };
+};
+
+export { getMainProfile, getMainProfilePosts, getExplorePost, getInstaPost };

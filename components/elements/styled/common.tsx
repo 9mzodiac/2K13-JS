@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 
@@ -6,5 +7,10 @@ const ListWrapper = styled.div(() => [
 ]);
 const ListContainer = styled.div(() => [
   tw`absolute overflow-auto h-full w-full pt-[3.1rem] z-10`,
+  css`
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
 ]);
 export { ListWrapper, ListContainer };

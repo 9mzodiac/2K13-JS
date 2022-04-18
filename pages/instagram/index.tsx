@@ -24,7 +24,11 @@ const Instagram: NextPage = ({ posts }: any) => {
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
               <i className="icomoon icon-rotate"></i>
             </IosButton>
           </a>
@@ -54,6 +58,7 @@ const Instagram: NextPage = ({ posts }: any) => {
                 time={item.createdDate}
                 caption={item.title}
                 location={item.location}
+                comments={item.comments}
               />
             ))}
         </ListWrapper>
@@ -62,7 +67,10 @@ const Instagram: NextPage = ({ posts }: any) => {
         {InstagramTabs.map((item: any, index: number) => (
           <Link href={item.link} key={`instapost-${index}`}>
             <a>
-              <InstagramNavItem active={router.asPath === item.link} highlight={item.icon == "instalogo"}>
+              <InstagramNavItem
+                active={router.asPath === item.link}
+                highlight={item.icon == "instalogo"}
+              >
                 <i
                   className={`icomoon icon-${item.icon}`}
                   css={
@@ -89,9 +97,25 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const instaposts = [];
   for await (const post of instagramCollection.docs) {
+    const commentsCollection = await ADMIN_DB.collection("instagram_comments")
+      .where("post_id", "==", post.id)
+      .limit(2)
+      .get();
+
+    const comments = [];
+    if (!commentsCollection.empty) {
+      for await (const comment of commentsCollection.docs) {
+        comments.push({
+          id: comment.id,
+          ...comment.data(),
+        });
+      }
+    }
+
     instaposts.push({
       id: post.id,
       ...post.data(),
+      comments: comments,
     });
   }
 
