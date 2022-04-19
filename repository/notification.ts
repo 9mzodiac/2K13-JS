@@ -2,7 +2,6 @@ import { db } from "@/firebase/client";
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
   orderBy,
   query,
@@ -17,7 +16,7 @@ const getNotifications = async () => {
     query(
       notificationCollection,
       where("cleared", "==", false),
-      // orderBy("createdDate", "desc")
+      orderBy("createdDate", "desc")
     )
   );
 

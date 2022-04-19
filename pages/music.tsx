@@ -18,8 +18,9 @@ import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
+import { CustomPage } from "types/pages";
 
-const MusicPlayer: NextPage = (props: any) => {
+const MusicPlayer: CustomPage = (props: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}
@@ -110,6 +111,7 @@ const MusicPlayer: NextPage = (props: any) => {
   );
 };
 
+MusicPlayer.inner = true;
 export default MusicPlayer;
 
 const Alpha = [

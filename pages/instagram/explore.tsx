@@ -15,11 +15,11 @@ import {
 } from "@/components/elements/styled/instagram";
 import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
-import { ADMIN_BUCKET } from "@/firebase/admin";
 import Gallery from "@/components/Gallery";
 import { getExplorePost } from "repository/instaProfile";
+import { CustomPage } from "types/pages";
 
-const Explore: NextPage = ({ photos }: any) => {
+const Explore: CustomPage = ({ photos }: any) => {
   const router = useRouter();
 
   return (
@@ -27,8 +27,12 @@ const Explore: NextPage = ({ photos }: any) => {
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
-              <i className="icomoon icon-rotate"></i>
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -82,6 +86,7 @@ const Explore: NextPage = ({ photos }: any) => {
   );
 };
 
+Explore.inner = true;
 export default Explore;
 
 export const getStaticProps: GetStaticProps = async () => {

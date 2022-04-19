@@ -1,7 +1,10 @@
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 
+export type CustomPage<P = {}, IP = P> = NextPage<P, IP> & {
+  inner?: boolean;
+};
 export type MyAppProps<P = {}> = AppProps<P> & {
-  Component: NextPage<P>;
+  Component: CustomPage<P>;
   emotionCache: any;
 };

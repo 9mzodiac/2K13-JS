@@ -40,6 +40,14 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const renderDateTime = () => {
+    let date = new Date();
+
+    setDate(dayjs(date).format("dddd, MMMM DD"));
+
+    setTime(dayjs(date).format("H:mm"));
+  };
+
   const { data } = useSWR("notifications", getNotifications);
 
   const [notifications, setNotifications] = useState(data ? data : []);
@@ -68,44 +76,6 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   }, []);
 
   const lockSlider = () => {};
-
-  const renderDateTime = () => {
-    let dayNames = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let date = new Date();
-    let currentDay = date.getDay();
-    let currentDate = date.getDate();
-    let currentMonth = date.getMonth();
-    let currentHour = date.getHours();
-    let currentMin = date.getMinutes();
-
-    setDate(
-      `${dayNames[currentDay]}, ${monthNames[currentMonth]} ${currentDate}`
-    );
-
-    setTime(`${(currentHour.toString()).slice(-2)}:${("0" + currentMin).slice(-2)}`);
-  };
 
   const unlockVariants = {
     initial: {

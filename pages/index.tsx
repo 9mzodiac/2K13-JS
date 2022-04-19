@@ -9,13 +9,14 @@ import { useState } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
+import { CustomPage } from "types/pages";
 
-const Home: NextPage = () => {
+const Home: CustomPage = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
 
   return (
     <motion.div
-      css={tw`flex flex-col justify-between h-full pt-4`}
+      css={tw`flex flex-col h-full pt-4`}
       animate="animate"
       initial="initial"
       exit="exit"
@@ -89,6 +90,8 @@ const Home: NextPage = () => {
   );
 };
 
+Home.inner = false;
+
 export default Home;
 
 const AppTrayWrapper = styled.div(() => [
@@ -127,8 +130,8 @@ const AppWrapper = styled.div(() => [
 ]);
 
 const AppSlideWrapper = styled.div(() => [
-  tw`flex-[1] grid grid-flow-row grid-cols-4 grid-rows-3 items-center justify-center gap-y-4`,
-  tw`lg:(grid-cols-4 grid-rows-4 gap-y-5)`,
+  tw`flex-[1] grid grid-flow-row grid-cols-4 grid-rows-none items-center justify-center gap-y-4`,
+  tw`lg:(grid-cols-4 gap-y-5)`,
 ]);
 
 const TrayApps = [

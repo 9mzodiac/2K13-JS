@@ -17,13 +17,14 @@ import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { TabPanel, Tabs } from "react-tabs";
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
-import { ADMIN_BUCKET } from "@/firebase/admin";
-import { getMainProfile, getMainProfilePosts } from "repository/instaProfile";
 
-const Profile: NextPage = ({ photos, profile }: any) => {
+import { getMainProfile, getMainProfilePosts } from "repository/instaProfile";
+import { CustomPage } from "types/pages";
+
+const Profile: CustomPage = ({ photos, profile }: any) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -32,8 +33,12 @@ const Profile: NextPage = ({ photos, profile }: any) => {
       <AppHeader c1="#3F729B" c2="#4d8cbf">
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
-              <i className="icomoon icon-rotate"></i>
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -175,6 +180,8 @@ const Profile: NextPage = ({ photos, profile }: any) => {
     </motion.div>
   );
 };
+
+Profile.inner = true;
 
 export default Profile;
 

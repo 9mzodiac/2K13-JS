@@ -15,8 +15,9 @@ import {
 import InstagramPost from "@/components/elements/InstagramPost";
 import { ADMIN_DB } from "@/firebase/admin";
 import { useRouter } from "next/router";
+import { CustomPage } from "types/pages";
 
-const Instagram: NextPage = ({ posts }: any) => {
+const Instagram: CustomPage = ({ posts }: any) => {
   const router = useRouter();
 
   return (
@@ -29,7 +30,7 @@ const Instagram: NextPage = ({ posts }: any) => {
               hoverColor="#3F729B"
               color="#4d8cbf"
             >
-              <i className="icomoon icon-rotate"></i>
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -87,6 +88,8 @@ const Instagram: NextPage = ({ posts }: any) => {
     </motion.div>
   );
 };
+
+Instagram.inner = true;
 
 export default Instagram;
 

@@ -5,22 +5,38 @@ import tw from "twin.macro";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
+
+var thresholds = [
+  { l: "s", r: 1 },
+  { l: "m", r: 1 },
+  { l: "ss", r: 59, d: "second" },
+  { l: "mm", r: 59, d: "minute" },
+  { l: "h", r: 1 },
+  { l: "hh", r: 23, d: "hour" },
+  { l: "d", r: 1 },
+  { l: "dd", r: 29, d: "day" },
+  { l: "M", r: 1 },
+  { l: "MM", r: 11, d: "month" },
+  { l: "y" },
+  { l: "yy", d: "year" },
+];
 dayjs.extend(updateLocale);
-dayjs.extend(relativeTime);
+dayjs.extend(relativeTime, { thresholds: thresholds, rounding: Math.floor });
 dayjs.updateLocale("en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
-    s: "a s",
-    m: "a m",
+    s: "1s",
+    ss: "%ds",
+    m: "1m",
     mm: "%dm",
-    h: "an h",
+    h: "1h",
     hh: "%dh",
-    d: "a d",
+    d: "1d",
     dd: "%dd",
-    M: "a m",
+    M: "1m",
     MM: "%dm",
-    y: "a y",
+    y: "1y",
     yy: "%dy",
   },
 });
