@@ -27,6 +27,10 @@ module.exports = (phase, { defaultConfig }) =>
       ],
     },
     webpack: (config, { isServer, webpack }) => {
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      });
       return config;
     },
   });

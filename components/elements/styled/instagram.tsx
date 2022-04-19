@@ -7,7 +7,7 @@ const InstagramAppBar = styled.div(() => [
 ]);
 
 const InstagramNavItem = styled.div((props: any) => [
-  tw`z-[-1] w-full h-full py-3 text-center cursor-pointer text-[1.5rem] flex justify-center items-center`,
+  tw`z-[-1] w-full h-full py-[.5rem] text-center cursor-pointer text-[1.5rem] flex justify-center items-center`,
   tw`border-[#2c2c2c] border-r-[1.5px]`,
   css`
     i {

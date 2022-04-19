@@ -45,7 +45,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 
     setDate(dayjs(date).format("dddd, MMMM DD"));
 
-    setTime(dayjs(date).format("H:mm"));
+    setTime(dayjs(date).format("h:mm"));
   };
 
   const { data } = useSWR("notifications", getNotifications);
@@ -118,12 +118,10 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       variants={unlockVariants}
     >
       <UnlockTop>
-        <p
-          css={tw`font-thin text-[3.8rem] text-white leading-[3.5rem] tracking-tight`}
-        >
+        <p css={tw`font-light text-[3.8rem] text-white leading-[4rem]`}>
           {time}
         </p>
-        <p css={tw`font-thin text-lg text-white`}>{date}</p>
+        <p css={tw`font-light text-lg text-white`}>{date}</p>
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper layout ref={constraintsNotificationRef}>
@@ -207,7 +205,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
             <Slider
               drag="x"
               dragConstraints={constraintsRef}
-              dragElastic={0.1}
+              dragElastic={0}
               dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
               dragSnapToOrigin
               initial={{ translateY: "-50%" }}
@@ -241,16 +239,19 @@ export default LockScreen;
 
 const UnlockTop = styled.div(() => [
   tw`relative h-24 w-full flex flex-col items-center justify-center`,
-  tw`border-[#00000040] border-b-[1px]`,
+  tw`border-[#00000080] border-b-[1px] bg-[#00000090]`,
   css`
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0, #3b3b3b80),
-      color-stop(1, #000000)
-    );
-    background-repeat: no-repeat;
+    &:before {
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full opacity-[45%] z-[-1]`}
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(.5, #ffffff),
+        color-stop(1, #000000)
+      );
+      background-repeat: no-repeat;
+    }
   `,
 ]);
 

@@ -24,7 +24,11 @@ const Explore: CustomPage = ({ photos }: any) => {
 
   return (
     <motion.div css={tw`flex flex-col h-full bg-white`}>
-      <AppHeader c1="#3F729B" c2="#4d8cbf">
+      <AppHeader
+        c1="#3F729B"
+        c2="#4d8cbf"
+        css={tw`py-[.15rem] before:opacity-100`}
+      >
         <Link href="/">
           <a>
             <IosButton
@@ -43,12 +47,16 @@ const Explore: CustomPage = ({ photos }: any) => {
             </IosButton>
           </a>
         </Link> */}
-        <div css={tw`w-auto h-6`}>
-          <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
+        <div css={tw`w-full h-10 relative`}>
+          <Image
+            src="/images/instagram_logo.png"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
       </AppHeader>
 
-      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
         <ListWrapper>
           <div css={tw`bg-gray-400 p-2 flex`}>
             <input
@@ -73,8 +81,12 @@ const Explore: CustomPage = ({ photos }: any) => {
                   className={`icomoon icon-${item.icon}`}
                   css={
                     item.icon == "instaexplore" || item.icon == "instalogo"
-                      ? tw`text-[1.3rem]`
-                      : tw`text-[1.1rem]`
+                      ? tw`text-[1.7rem]`
+                      : item.icon == "instaprofile"
+                      ? tw`text-[1rem]`
+                      : item.icon == "instaheart"
+                      ? tw`text-[1.35rem]`
+                      : tw`text-[1.2rem]`
                   }
                 ></i>
               </InstagramNavItem>
