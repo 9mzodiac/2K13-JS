@@ -55,7 +55,7 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
         </Link> */}
         <div css={tw`w-full h-10 relative`}>
           <Image
-            src="/images/instagram_logo.png"
+            src="/images/InstagramLogo.png"
             layout="fill"
             objectFit="contain"
           />
