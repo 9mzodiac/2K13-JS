@@ -50,26 +50,6 @@ const Home: CustomPage = () => {
             ))}
           </AppSlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
-          <AppSlideWrapper>
-            {Apps.map((item: any, key: number) => (
-              <Link href="/" passHref key={`tray-${key}`}>
-                <a>
-                  <AppWrapper>
-                    <AppIcon>
-                      <Image
-                        src={item.path}
-                        layout="fill"
-                        objectFit="contain"
-                      />
-                    </AppIcon>
-                    <AppLabel>{item.lable}</AppLabel>
-                  </AppWrapper>
-                </a>
-              </Link>
-            ))}
-          </AppSlideWrapper>
-        </SwiperSlide>
       </Swiper>
 
       <AppTrayWrapper>
