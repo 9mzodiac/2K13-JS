@@ -138,6 +138,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: JSON.parse(JSON.stringify(instaposts)),
     },
+    revalidate: 10,
   };
 };
 

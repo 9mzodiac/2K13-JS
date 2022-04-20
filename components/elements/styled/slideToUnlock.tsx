@@ -4,16 +4,13 @@ import { motion } from "framer-motion";
 import tw from "twin.macro";
 
 const UnlockButton = styled.div(() => [
-  tw`w-full relative h-[5.5rem] flex justify-center items-center px-5`,
+  tw`w-full relative h-[5.5rem] flex justify-center items-center px-5 bg-[rgba(0,0,0,.75)] shadow`,
   css`
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0, #3b3b3b),
-      color-stop(1, #000000)
-    );
-    background-repeat: no-repeat;
+    &:before {
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-90`}
+      background: linear-gradient(-180deg, rgba(255,255,255,.5), rgba(255,255,255,1) 50%, transparent 10%);
+      background-repeat: no-repeat;
+    }
   `,
 ]);
 

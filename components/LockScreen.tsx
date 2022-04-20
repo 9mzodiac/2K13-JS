@@ -239,17 +239,11 @@ export default LockScreen;
 
 const UnlockTop = styled.div(() => [
   tw`relative h-24 w-full flex flex-col items-center justify-center`,
-  tw`border-[#00000080] border-b-[1px] bg-[#00000090]`,
+  tw`border-[#00000080] border-b-[1px] bg-[rgba(0,0,0,.65)]`,
   css`
     &:before {
-      ${tw`content-[""] absolute top-0 left-0 w-full h-full opacity-[45%] z-[-1]`}
-      background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(.5, #ffffff),
-        color-stop(1, #000000)
-      );
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
+      background: linear-gradient(-180deg, rgba(255,255,255,.5), rgba(255,255,255,1) 50%, transparent 10%);
       background-repeat: no-repeat;
     }
   `,

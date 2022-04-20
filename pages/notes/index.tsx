@@ -85,5 +85,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       notes: JSON.parse(JSON.stringify(notes)),
     },
+    revalidate: 10,
   };
 };

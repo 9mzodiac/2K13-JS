@@ -7,9 +7,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 var thresholds = [
-  { l: "s", r: 1 },
-  { l: "m", r: 1 },
   { l: "ss", r: 59, d: "second" },
+  { l: "m", r: 1 },
   { l: "mm", r: 59, d: "minute" },
   { l: "h", r: 1 },
   { l: "hh", r: 23, d: "hour" },
@@ -26,7 +25,6 @@ dayjs.updateLocale("en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
-    s: "1s",
     ss: "%ds",
     m: "1m",
     mm: "%dm",

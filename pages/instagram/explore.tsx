@@ -112,5 +112,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       photos: photos,
     },
+    revalidate: 10,
   };
 };

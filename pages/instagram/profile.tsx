@@ -210,6 +210,7 @@ export const getStaticProps: GetStaticProps = async () => {
       photos: photos,
       profile: profile,
     },
+    revalidate: 10,
   };
 };
 

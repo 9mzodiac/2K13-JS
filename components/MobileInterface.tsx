@@ -55,7 +55,10 @@ const MobileInterface: React.FC<any> = ({
       />
       <IphoneScreenContainer>
         <IPhoneInside>
-          <NotificationTrayBar innerPage={innerPage ? 1 : 0}>
+          <NotificationTrayBar
+            innerPage={innerPage ? 1 : 0}
+            unlocked={unlocked}
+          >
             <div css={tw`flex gap-x-1 justify-self-start`}>
               <span>
                 <i className="icomoon icon-signal"></i>
@@ -154,7 +157,7 @@ const IPhoneInside = styled.div(() => [
   tw`w-full h-full relative flex flex-col justify-between overflow-hidden`,
 ]);
 
-const NotificationTrayBar = styled.div(({ innerPage }: any) => [
+const NotificationTrayBar = styled.div(({ innerPage, unlocked }: any) => [
   tw`w-full bg-[#00000080] relative grid grid-flow-row grid-cols-3 text-white text-sm items-center px-1 py-1`,
-  innerPage && tw`bg-[#000000]`,
+  innerPage && unlocked && tw`bg-[#000000]`,
 ]);
