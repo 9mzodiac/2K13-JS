@@ -20,7 +20,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      body: ["HelveticaNeueLT Pro 65 Md"],
+      sans: ["HelveticaNeue", "sans-serif"],
     },
   },
   variants: {
