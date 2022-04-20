@@ -17,23 +17,32 @@ import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { TabPanel, Tabs } from "react-tabs";
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
-import { ADMIN_BUCKET } from "@/firebase/admin";
-import { getMainProfile, getMainProfilePosts } from "repository/instaProfile";
 
-const Profile: NextPage = ({ photos, profile }: any) => {
+import { getMainProfile, getMainProfilePosts } from "repository/instaProfile";
+import { CustomPage } from "types/pages";
+
+const Profile: CustomPage = ({ photos, profile }: any) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <motion.div css={tw`flex flex-col h-full bg-white`}>
-      <AppHeader c1="#3F729B" c2="#4d8cbf">
+      <AppHeader
+        c1="#3F729B"
+        c2="#4d8cbf"
+        css={tw`py-[.15rem] before:opacity-100`}
+      >
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
-              <i className="icomoon icon-rotate"></i>
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -44,12 +53,16 @@ const Profile: NextPage = ({ photos, profile }: any) => {
             </IosButton>
           </a>
         </Link> */}
-        <div css={tw`w-auto h-6`}>
-          <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
+        <div css={tw`w-full h-10 relative`}>
+          <Image
+            src="/images/instagram_logo.png"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
       </AppHeader>
 
-      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
         <ListWrapper css={tw`p-2 bg-gray-300`}>
           <ProfileInfoContainer>
             <div css={tw`grid grid-flow-col grid-rows-2 grid-cols-3 h-24`}>
@@ -163,8 +176,12 @@ const Profile: NextPage = ({ photos, profile }: any) => {
                   className={`icomoon icon-${item.icon}`}
                   css={
                     item.icon == "instaexplore" || item.icon == "instalogo"
-                      ? tw`text-[1.3rem]`
-                      : tw`text-[1.1rem]`
+                      ? tw`text-[1.7rem]`
+                      : item.icon == "instaprofile"
+                      ? tw`text-[1rem]`
+                      : item.icon == "instaheart"
+                      ? tw`text-[1.35rem]`
+                      : tw`text-[1.2rem]`
                   }
                 ></i>
               </InstagramNavItem>
@@ -175,6 +192,8 @@ const Profile: NextPage = ({ photos, profile }: any) => {
     </motion.div>
   );
 };
+
+Profile.inner = true;
 
 export default Profile;
 
@@ -191,6 +210,7 @@ export const getStaticProps: GetStaticProps = async () => {
       photos: photos,
       profile: profile,
     },
+    revalidate: 10,
   };
 };
 

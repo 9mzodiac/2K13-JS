@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,15 +8,34 @@ import { getWallpaper } from "repository/wallpaper";
 import useSWR from "swr";
 import tw from "twin.macro";
 
-const MobileInterface: React.FC<any> = ({ children, state }: any) => {
+const MobileInterface: React.FC<any> = ({
+  children,
+  unlocked,
+  innerPage,
+}: any) => {
   const { data } = useSWR("wallpapers", getWallpaper);
 
   const [lockscreen, setLockscreen] = useState(null);
   const [homescreen, setHomescreen] = useState(null);
 
+  const [time, setTime] = useState("");
+
+  const renderTime = () => {
+    let date = new Date();
+    setTime(dayjs(date).format("h:mm A"));
+  };
+
+  useEffect(() => {
+    renderTime();
+    var timerID = setInterval(() => renderTime(), 60 * 1000);
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  }, []);
+
   useEffect(() => {
     if (data) {
-      if (state) {
+      if (unlocked) {
         const index = data?.findIndex((x: any) => x.type === "homescreen");
         setHomescreen(data[index].imageURL);
       } else {
@@ -23,7 +43,7 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
         setLockscreen(data[index].imageURL);
       }
     }
-  }, [state, data]);
+  }, [unlocked, data]);
 
   return lockscreen || homescreen ? (
     <IPhoneFrame>
@@ -35,7 +55,35 @@ const MobileInterface: React.FC<any> = ({ children, state }: any) => {
       />
       <IphoneScreenContainer>
         <IPhoneInside>
-          {state
+          <NotificationTrayBar
+            innerPage={innerPage ? 1 : 0}
+            unlocked={unlocked}
+          >
+            <div css={tw`flex gap-x-1 justify-self-start`}>
+              <span>
+                <i className="icomoon icon-signal"></i>
+              </span>
+              <p>
+                <strong>{"AT&T"}</strong>
+              </p>
+              <span>
+                <i className="icomoon icon-wifi"></i>
+              </span>
+            </div>
+            <span css={tw`justify-self-center`}>
+              {unlocked ? (
+                <span>
+                  <strong>{time}</strong>
+                </span>
+              ) : (
+                <i className="icomoon icon-lock"></i>
+              )}
+            </span>
+            <span css={tw`justify-self-end`}>
+              <i className="icomoon icon-battery"></i>
+            </span>
+          </NotificationTrayBar>
+          {unlocked
             ? homescreen && (
                 <Image
                   src={homescreen}
@@ -100,11 +148,16 @@ const IPhoneFrame = styled.div(() => [
 ]);
 
 const IphoneScreenContainer = styled.div(() => [
-  tw`container mx-auto flex`,
+  tw`container mx-auto flex flex-col`,
   tw`w-full h-full relative justify-center items-center px-0 pt-0 pb-0`,
-  tw`md:(px-[11%] pt-[34%] pb-[28%])`,
+  tw`md:(px-[11%] pt-[30%] pb-[28%])`,
 ]);
 
 const IPhoneInside = styled.div(() => [
   tw`w-full h-full relative flex flex-col justify-between overflow-hidden`,
+]);
+
+const NotificationTrayBar = styled.div(({ innerPage, unlocked }: any) => [
+  tw`w-full bg-[#00000080] relative grid grid-flow-row grid-cols-3 text-white text-sm items-center px-1 py-1`,
+  innerPage && unlocked && tw`bg-[#000000]`,
 ]);

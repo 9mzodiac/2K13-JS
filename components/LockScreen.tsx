@@ -40,6 +40,14 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const renderDateTime = () => {
+    let date = new Date();
+
+    setDate(dayjs(date).format("dddd, MMMM DD"));
+
+    setTime(dayjs(date).format("h:mm"));
+  };
+
   const { data } = useSWR("notifications", getNotifications);
 
   const [notifications, setNotifications] = useState(data ? data : []);
@@ -68,44 +76,6 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   }, []);
 
   const lockSlider = () => {};
-
-  const renderDateTime = () => {
-    let dayNames = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let date = new Date();
-    let currentDay = date.getDay();
-    let currentDate = date.getDate();
-    let currentMonth = date.getMonth();
-    let currentHour = date.getHours();
-    let currentMin = date.getMinutes();
-
-    setDate(
-      `${dayNames[currentDay]}, ${monthNames[currentMonth]} ${currentDate}`
-    );
-
-    setTime(`${(currentHour.toString()).slice(-2)}:${("0" + currentMin).slice(-2)}`);
-  };
 
   const unlockVariants = {
     initial: {
@@ -148,12 +118,10 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       variants={unlockVariants}
     >
       <UnlockTop>
-        <p
-          css={tw`font-thin text-[3.8rem] text-white leading-[3.5rem] tracking-tight`}
-        >
+        <p css={tw`font-light text-[3.8rem] text-white leading-[4rem]`}>
           {time}
         </p>
-        <p css={tw`font-thin text-lg text-white`}>{date}</p>
+        <p css={tw`font-light text-lg text-white`}>{date}</p>
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper layout ref={constraintsNotificationRef}>
@@ -237,7 +205,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
             <Slider
               drag="x"
               dragConstraints={constraintsRef}
-              dragElastic={0.1}
+              dragElastic={0}
               dragTransition={{ bounceStiffness: 100, bounceDamping: 15 }}
               dragSnapToOrigin
               initial={{ translateY: "-50%" }}
@@ -271,16 +239,13 @@ export default LockScreen;
 
 const UnlockTop = styled.div(() => [
   tw`relative h-24 w-full flex flex-col items-center justify-center`,
-  tw`border-[#00000040] border-b-[1px]`,
+  tw`border-[#00000080] border-b-[1px] bg-[rgba(0,0,0,.65)]`,
   css`
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0, #3b3b3b80),
-      color-stop(1, #000000)
-    );
-    background-repeat: no-repeat;
+    &:before {
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
+      background: linear-gradient(-180deg, rgba(255,255,255,.5), rgba(255,255,255,1) 50%, transparent 10%);
+      background-repeat: no-repeat;
+    }
   `,
 ]);
 

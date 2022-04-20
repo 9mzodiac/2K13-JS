@@ -12,8 +12,9 @@ import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
+import { CustomPage } from "types/pages";
 
-const NotesDetail: NextPage = ({ data }: any) => {
+const NotesDetail: CustomPage = ({ data }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -60,6 +61,8 @@ const NotesWrapper = styled.div(() => [
   `,
 ]);
 
+NotesDetail.inner = true;
+
 export default NotesDetail;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -74,6 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       data: noteData && JSON.parse(JSON.stringify(noteData.data())),
     },
+    revalidate: 10,
   };
 };
 

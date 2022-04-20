@@ -14,8 +14,9 @@ import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 import dayjs from "dayjs";
+import { CustomPage } from "types/pages";
 
-const Notes: NextPage = ({ notes }: any) => {
+const Notes: CustomPage = ({ notes }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -66,6 +67,7 @@ const Notes: NextPage = ({ notes }: any) => {
   );
 };
 
+Notes.inner = true;
 export default Notes;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -83,5 +85,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       notes: JSON.parse(JSON.stringify(notes)),
     },
+    revalidate: 10,
   };
 };

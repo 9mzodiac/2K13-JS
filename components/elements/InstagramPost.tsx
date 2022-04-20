@@ -5,22 +5,36 @@ import tw from "twin.macro";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
+
+var thresholds = [
+  { l: "ss", r: 59, d: "second" },
+  { l: "m", r: 1 },
+  { l: "mm", r: 59, d: "minute" },
+  { l: "h", r: 1 },
+  { l: "hh", r: 23, d: "hour" },
+  { l: "d", r: 1 },
+  { l: "dd", r: 29, d: "day" },
+  { l: "M", r: 1 },
+  { l: "MM", r: 11, d: "month" },
+  { l: "y" },
+  { l: "yy", d: "year" },
+];
 dayjs.extend(updateLocale);
-dayjs.extend(relativeTime);
+dayjs.extend(relativeTime, { thresholds: thresholds, rounding: Math.floor });
 dayjs.updateLocale("en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
-    s: "a s",
-    m: "a m",
+    ss: "%ds",
+    m: "1m",
     mm: "%dm",
-    h: "an h",
+    h: "1h",
     hh: "%dh",
-    d: "a d",
+    d: "1d",
     dd: "%dd",
-    M: "a m",
+    M: "1m",
     MM: "%dm",
-    y: "a y",
+    y: "1y",
     yy: "%dy",
   },
 });
@@ -33,6 +47,7 @@ const InstagramPost: React.FC<any> = ({
   time,
   profile,
   likes,
+  comments,
 }: any) => {
   return (
     <PostWrapper>
@@ -67,7 +82,9 @@ const InstagramPost: React.FC<any> = ({
         />
       </PostImage>
 
-      <div css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start pb-1`}>
+      <div
+        css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start pb-1`}
+      >
         <i className="icomoon icon-heart" css={tw`text-sm`}></i>
         <PostProfileText>{likes} likes</PostProfileText>
       </div>
@@ -78,9 +95,38 @@ const InstagramPost: React.FC<any> = ({
           <PostCaption>{caption}</PostCaption>
         </div>
       </div>
-      <div css={tw`text-md text-[#bfbfbf] font-bold mt-1 ml-4 cursor-pointer`}>
-        view all 51 comments
-      </div>
+      {comments.length > 0 &&
+        (comments.length <= 2 ? (
+          <div css={tw`mt-1 ml-4`}>
+            <span css={tw`text-md text-[#bfbfbf] font-bold cursor-pointer`}>
+              view all comments
+            </span>
+            {comments.map((comment: any) => (
+              <div
+                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate mb-1`}
+                key={comment.id}
+              >
+                <PostProfileText>{comment.user_handle}</PostProfileText>
+                <PostCaption>{comment.content}</PostCaption>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div css={tw`mt-1 ml-4`}>
+            <span css={tw`text-md text-[#bfbfbf] font-bold  cursor-pointer`}>
+              view all {comments.length} comments
+            </span>
+            {comments.map((comment: any) => (
+              <div
+                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate`}
+                key={comment.id}
+              >
+                <PostProfileText>{comment.user_handle}</PostProfileText>
+                <PostCaption>{comment.content}</PostCaption>
+              </div>
+            ))}
+          </div>
+        ))}
     </PostWrapper>
   );
 };

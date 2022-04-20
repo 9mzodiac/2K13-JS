@@ -11,8 +11,9 @@ import Link from "next/link";
 import Gallery from "@/components/Gallery";
 import { ListContainer } from "@/components/elements/styled/common";
 import { ADMIN_BUCKET, ADMIN_DB } from "@/firebase/admin";
+import { CustomPage } from "types/pages";
 
-const Photos: NextPage = ({ photos }: any) => {
+const Photos: CustomPage = ({ photos }: any) => {
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-white`}
@@ -38,6 +39,8 @@ const Photos: NextPage = ({ photos }: any) => {
   );
 };
 
+Photos.inner = true;
+
 export default Photos;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -58,5 +61,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       photos: urls,
     },
+    revalidate: 10,
   };
 };

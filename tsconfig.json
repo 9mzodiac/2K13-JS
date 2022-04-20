@@ -8,6 +8,7 @@
       "@/components/*": ["components/*"],
       "@/elements/*": ["components/elements/*"],
       "@/styles/*": ["styles/*"],
+      "@/svgs/*": ["svgs/*"],
       "@/lib/*": ["lib/*"],
       "@/firebase/*": ["firebase/*"],
       "@/config/*": ["config/*"],

@@ -20,7 +20,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Helvetica", "sans-serif"],
+      body: ["HelveticaNeueLT Pro 65 Md"],
     },
   },
   variants: {
@@ -30,7 +30,7 @@ module.exports = {
       fontStyle: ["hover", "focus"],
       fontWeight: ["hover", "focus"],
       animation: ["hover", "focus"],
-      textOverflow: ['hover', 'focus']
+      textOverflow: ["hover", "focus"],
     },
   },
   plugins: [],

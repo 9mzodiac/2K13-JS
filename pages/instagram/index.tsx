@@ -15,17 +15,26 @@ import {
 import InstagramPost from "@/components/elements/InstagramPost";
 import { ADMIN_DB } from "@/firebase/admin";
 import { useRouter } from "next/router";
+import { CustomPage } from "types/pages";
 
-const Instagram: NextPage = ({ posts }: any) => {
+const Instagram: CustomPage = ({ posts }: any) => {
   const router = useRouter();
 
   return (
     <motion.div css={tw`flex flex-col h-full bg-white`}>
-      <AppHeader c1="#3F729B" c2="#4d8cbf">
+      <AppHeader
+        c1="#3F729B"
+        c2="#4d8cbf"
+        css={tw`py-[.15rem] before:opacity-100`}
+      >
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
-              <i className="icomoon icon-rotate"></i>
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -36,12 +45,16 @@ const Instagram: NextPage = ({ posts }: any) => {
             </IosButton>
           </a>
         </Link> */}
-        <div css={tw`w-auto h-6`}>
-          <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
+        <div css={tw`w-full h-10 relative`}>
+          <Image
+            src="/images/instagram_logo.png"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
       </AppHeader>
 
-      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
         <ListWrapper css={tw`pt-2`}>
           {posts.length > 0 &&
             posts.map((item: any) => (
@@ -54,6 +67,7 @@ const Instagram: NextPage = ({ posts }: any) => {
                 time={item.createdDate}
                 caption={item.title}
                 location={item.location}
+                comments={item.comments}
               />
             ))}
         </ListWrapper>
@@ -62,13 +76,20 @@ const Instagram: NextPage = ({ posts }: any) => {
         {InstagramTabs.map((item: any, index: number) => (
           <Link href={item.link} key={`instapost-${index}`}>
             <a>
-              <InstagramNavItem active={router.asPath === item.link} highlight={item.icon == "instalogo"}>
+              <InstagramNavItem
+                active={router.asPath === item.link}
+                highlight={item.icon == "instalogo"}
+              >
                 <i
                   className={`icomoon icon-${item.icon}`}
                   css={
                     item.icon == "instaexplore" || item.icon == "instalogo"
-                      ? tw`text-[1.3rem]`
-                      : tw`text-[1.1rem]`
+                      ? tw`text-[1.7rem]`
+                      : item.icon == "instaprofile"
+                      ? tw`text-[1rem]`
+                      : item.icon == "instaheart"
+                      ? tw`text-[1.35rem]`
+                      : tw`text-[1.2rem]`
                   }
                 ></i>
               </InstagramNavItem>
@@ -80,6 +101,8 @@ const Instagram: NextPage = ({ posts }: any) => {
   );
 };
 
+Instagram.inner = true;
+
 export default Instagram;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -89,9 +112,25 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const instaposts = [];
   for await (const post of instagramCollection.docs) {
+    const commentsCollection = await ADMIN_DB.collection("instagram_comments")
+      .where("post_id", "==", post.id)
+      .limit(2)
+      .get();
+
+    const comments = [];
+    if (!commentsCollection.empty) {
+      for await (const comment of commentsCollection.docs) {
+        comments.push({
+          id: comment.id,
+          ...comment.data(),
+        });
+      }
+    }
+
     instaposts.push({
       id: post.id,
       ...post.data(),
+      comments: comments,
     });
   }
 
@@ -99,6 +138,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: JSON.parse(JSON.stringify(instaposts)),
     },
+    revalidate: 10,
   };
 };
 

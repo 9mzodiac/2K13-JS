@@ -15,20 +15,28 @@ import {
 } from "@/components/elements/styled/instagram";
 import { InstagramTabs } from ".";
 import { useRouter } from "next/router";
-import { ADMIN_BUCKET } from "@/firebase/admin";
 import Gallery from "@/components/Gallery";
 import { getExplorePost } from "repository/instaProfile";
+import { CustomPage } from "types/pages";
 
-const Explore: NextPage = ({ photos }: any) => {
+const Explore: CustomPage = ({ photos }: any) => {
   const router = useRouter();
 
   return (
     <motion.div css={tw`flex flex-col h-full bg-white`}>
-      <AppHeader c1="#3F729B" c2="#4d8cbf">
+      <AppHeader
+        c1="#3F729B"
+        c2="#4d8cbf"
+        css={tw`py-[.15rem] before:opacity-100`}
+      >
         <Link href="/">
           <a>
-            <IosButton css={tw`right-[.5rem] px-[.5rem]!`} hoverColor="#3F729B" color="#4d8cbf">
-              <i className="icomoon icon-rotate"></i>
+            <IosButton
+              css={tw`right-[.5rem] px-[.5rem]!`}
+              hoverColor="#3F729B"
+              color="#4d8cbf"
+            >
+              <i className="icomoon icon-reload_insta"></i>
             </IosButton>
           </a>
         </Link>
@@ -39,12 +47,16 @@ const Explore: NextPage = ({ photos }: any) => {
             </IosButton>
           </a>
         </Link> */}
-        <div css={tw`w-auto h-6`}>
-          <Image src="/instagram_logo.svg" layout="fill" objectFit="contain" />
+        <div css={tw`w-full h-10 relative`}>
+          <Image
+            src="/images/instagram_logo.png"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
       </AppHeader>
 
-      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
         <ListWrapper>
           <div css={tw`bg-gray-400 p-2 flex`}>
             <input
@@ -69,8 +81,12 @@ const Explore: NextPage = ({ photos }: any) => {
                   className={`icomoon icon-${item.icon}`}
                   css={
                     item.icon == "instaexplore" || item.icon == "instalogo"
-                      ? tw`text-[1.3rem]`
-                      : tw`text-[1.1rem]`
+                      ? tw`text-[1.7rem]`
+                      : item.icon == "instaprofile"
+                      ? tw`text-[1rem]`
+                      : item.icon == "instaheart"
+                      ? tw`text-[1.35rem]`
+                      : tw`text-[1.2rem]`
                   }
                 ></i>
               </InstagramNavItem>
@@ -82,6 +98,7 @@ const Explore: NextPage = ({ photos }: any) => {
   );
 };
 
+Explore.inner = true;
 export default Explore;
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -95,5 +112,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       photos: photos,
     },
+    revalidate: 10,
   };
 };

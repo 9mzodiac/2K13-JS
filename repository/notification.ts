@@ -2,8 +2,8 @@ import { db } from "@/firebase/client";
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
+  orderBy,
   query,
   updateDoc,
   where,
@@ -13,7 +13,11 @@ const getNotifications = async () => {
   const notificationCollection = collection(db, "notification");
 
   const querySnapshot = await getDocs(
-    query(notificationCollection, where("cleared", "==", false))
+    query(
+      notificationCollection,
+      where("cleared", "==", false),
+      orderBy("createdDate", "desc")
+    )
   );
 
   const notifications = [];
