@@ -107,25 +107,13 @@ const InstagramPost: React.FC<any> = ({
               view all comments
             </span>
             {comments.map((comment: any) => (
-              <div
-                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start  mb-1`}
-                key={comment.id}
-              >
-                <div
-                  css={tw`flex text-[#bfbfbf] items-start justify-start gap-x-1`}
-                >
-                  <div css={tw`flex justify-start items-center gap-x-1 `}>
-                    <PostProfileText>{comment.user_handle}</PostProfileText>
-                  </div>
-                  <div
-                    css={tw`flex gap-x-1 text-[#bfbfbf] items-start justify-start`}
-                  >
-                    <PostCaption>
-                      <TextWithHashtag content={comment.content} />
-                    </PostCaption>
-                  </div>
-                </div>
-              </div>
+              <PostCaption>
+                <PostProfileText css={tw`inline-block overflow-hidden text-md!`}>
+                  <span css={tw`inline-block`}>{comment.user_handle}</span>
+                </PostProfileText>
+                <span css={tw`inline-block`}>{"\u00A0"}</span>
+                <TextWithHashtag content={comment.content} />
+              </PostCaption>
             ))}
           </div>
         ) : (
@@ -134,15 +122,10 @@ const InstagramPost: React.FC<any> = ({
               view all {comments.length} comments
             </span>
             {comments.map((comment: any) => (
-              <div
-                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate`}
-                key={comment.id}
-              >
+              <PostCaption>
                 <PostProfileText>{comment.user_handle}</PostProfileText>
-                <PostCaption>
-                  <TextWithHashtag content={comment.content} />
-                </PostCaption>
-              </div>
+                <TextWithHashtag content={comment.content} />
+              </PostCaption>
             ))}
           </div>
         ))}
