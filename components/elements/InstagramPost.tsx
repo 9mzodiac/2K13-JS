@@ -5,6 +5,7 @@ import tw from "twin.macro";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
+import { useEffect, useState } from "react";
 
 var thresholds = [
   { l: "ss", r: 59, d: "second" },
@@ -88,11 +89,15 @@ const InstagramPost: React.FC<any> = ({
         <i className="icomoon icon-heart" css={tw`text-sm`}></i>
         <PostProfileText>{likes} likes</PostProfileText>
       </div>
-      <div css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start`}>
-        <i className="icomoon icon-message" css={tw`text-sm`}></i>
-        <div css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start`}>
+      <div css={tw`flex text-[#bfbfbf] items-start justify-start gap-x-1`}>
+        <div css={tw`flex justify-start items-center gap-x-1 `}>
+          <i className="icomoon icon-message" css={tw`text-sm`}></i>
           <PostProfileText>{name}</PostProfileText>
-          <PostCaption>{caption}</PostCaption>
+        </div>
+        <div css={tw`flex gap-x-1 text-[#bfbfbf] items-start justify-start`}>
+          <PostCaption>
+            <TextWithHashtag content={caption} />
+          </PostCaption>
         </div>
       </div>
       {comments.length > 0 &&
@@ -102,13 +107,13 @@ const InstagramPost: React.FC<any> = ({
               view all comments
             </span>
             {comments.map((comment: any) => (
-              <div
-                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate mb-1`}
-                key={comment.id}
-              >
-                <PostProfileText>{comment.user_handle}</PostProfileText>
-                <PostCaption>{comment.content}</PostCaption>
-              </div>
+              <PostCaption>
+                <PostProfileText css={tw`inline-block overflow-hidden text-md!`}>
+                  <span css={tw`inline-block`}>{comment.user_handle}</span>
+                </PostProfileText>
+                <span css={tw`inline-block`}>{"\u00A0"}</span>
+                <TextWithHashtag content={comment.content} />
+              </PostCaption>
             ))}
           </div>
         ) : (
@@ -117,13 +122,10 @@ const InstagramPost: React.FC<any> = ({
               view all {comments.length} comments
             </span>
             {comments.map((comment: any) => (
-              <div
-                css={tw`flex gap-x-1 text-[#bfbfbf] items-center justify-start truncate`}
-                key={comment.id}
-              >
+              <PostCaption>
                 <PostProfileText>{comment.user_handle}</PostProfileText>
-                <PostCaption>{comment.content}</PostCaption>
-              </div>
+                <TextWithHashtag content={comment.content} />
+              </PostCaption>
             ))}
           </div>
         ))}
@@ -132,6 +134,53 @@ const InstagramPost: React.FC<any> = ({
 };
 
 export default InstagramPost;
+
+const TextWithHashtag: React.FC<any> = ({ content }: any) => {
+  const [match, setMatches] = useState([]);
+  useEffect(() => {
+    setMatches(content.match(/(?:\s|^)?#[A-Za-z0-9\-\.\_]+(?:\s|$)/g));
+  }, [content]);
+
+  const splitWords = content.split(" ");
+
+  const words: any[] = [];
+
+  for (const [, item] of splitWords.entries()) {
+    words.push(item.split(" "));
+  }
+
+  words.map((word: string[], index: number) => {
+    return words.length - 1 != index && word.push("\u00A0");
+  });
+
+  const checkHastag = (element: string) => {
+    const matched = match.find((x: any) => x.trim() === element?.trim());
+    return matched ? (
+      <span css={tw`font-bold text-[#3F729B] inline-block`}>{matched}</span>
+    ) : (
+      <span css={tw`inline-block`}>{element}</span>
+    );
+  };
+  return (
+    <>
+      {words.map((word, index) =>
+        word
+          .flat()
+          .map((element: string, index: React.Key | null | undefined) => {
+            return (
+              <span css={tw`overflow-hidden inline-block text-md`} key={index}>
+                {match?.length > 0 ? (
+                  checkHastag(element)
+                ) : (
+                  <span css={tw`inline-block`}>{element}</span>
+                )}
+              </span>
+            );
+          })
+      )}
+    </>
+  );
+};
 
 const PostWrapper = styled.div(() => [tw`flex flex-col w-full mb-10 px-2`]);
 

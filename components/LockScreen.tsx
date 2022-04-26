@@ -45,7 +45,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 
     setDate(dayjs(date).format("dddd, MMMM DD"));
 
-    setTime(dayjs(date).format("h:mm"));
+    setTime(dayjs(date).format("h mm"));
   };
 
   const { data } = useSWR("notifications", getNotifications);
@@ -118,8 +118,19 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
       variants={unlockVariants}
     >
       <UnlockTop>
-        <p css={tw`font-light text-[3.8rem] text-white leading-[4rem]`}>
-          {time}
+        <p
+          css={tw`font-light text-[3.8rem] text-white flex items-center gap-x-1 leading-[4rem]`}
+        >
+          {time.split(" ")[0]}
+          <span css={tw`flex flex-col gap-y-4 mt-2`}>
+            <span
+              css={tw`leading-3 block w-[.3rem] h-[.3rem] relative bg-white`}
+            ></span>
+            <span
+              css={tw`leading-3 block w-[.3rem] h-[.3rem] relative bg-white`}
+            ></span>
+          </span>
+          {time.split(" ")[1]}
         </p>
         <p css={tw`font-light text-lg text-white`}>{date}</p>
       </UnlockTop>
