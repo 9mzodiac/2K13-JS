@@ -90,15 +90,16 @@ const InstagramPost: React.FC<any> = ({
         <PostProfileText>{likes} likes</PostProfileText>
       </div>
       <div css={tw`flex text-[#bfbfbf] items-start justify-start gap-x-1`}>
-        <div css={tw`flex justify-start items-center gap-x-1 `}>
-          <i className="icomoon icon-message" css={tw`text-sm`}></i>
+        <PostCaption>
+          <i
+            className="icomoon icon-message"
+            css={tw`text-sm text-[#bfbfbf]`}
+          ></i>
+          <span css={tw`inline-block`}>{"\u00A0"}</span>
           <PostProfileText>{name}</PostProfileText>
-        </div>
-        <div css={tw`flex gap-x-1 text-[#bfbfbf] items-start justify-start`}>
-          <PostCaption>
-            <TextWithHashtag content={caption} />
-          </PostCaption>
-        </div>
+          <span css={tw`inline-block`}>{"\u00A0"}</span>
+          <TextWithHashtag content={caption} />
+        </PostCaption>
       </div>
       {comments.length > 0 &&
         (comments.length <= 2 ? (
@@ -108,7 +109,7 @@ const InstagramPost: React.FC<any> = ({
             </span>
             {comments.map((comment: any) => (
               <PostCaption>
-                <PostProfileText css={tw`inline-block overflow-hidden text-md!`}>
+                <PostProfileText>
                   <span css={tw`inline-block`}>{comment.user_handle}</span>
                 </PostProfileText>
                 <span css={tw`inline-block`}>{"\u00A0"}</span>
@@ -123,7 +124,10 @@ const InstagramPost: React.FC<any> = ({
             </span>
             {comments.map((comment: any) => (
               <PostCaption>
-                <PostProfileText>{comment.user_handle}</PostProfileText>
+                <PostProfileText>
+                  <span css={tw`inline-block`}>{comment.user_handle}</span>
+                </PostProfileText>
+                <span css={tw`inline-block`}>{"\u00A0"}</span>
                 <TextWithHashtag content={comment.content} />
               </PostCaption>
             ))}
@@ -195,7 +199,7 @@ const PorfileImage = styled.span(() => [
   tw`h-10 w-10 relative overflow-hidden`,
 ]);
 const PostProfileText = styled.span(() => [
-  tw`font-bold text-md text-[#3F729B]`,
+  tw`font-bold text-md text-[#3F729B] inline-block overflow-hidden`,
 ]);
 
 const PostProfileLocation = styled.div(() => [
