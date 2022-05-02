@@ -15,7 +15,7 @@ import {
 import { ADMIN_BUCKET } from "@/firebase/admin";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
