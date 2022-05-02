@@ -154,13 +154,13 @@ const Apps = [
     link: "/instagram",
   },
   {
-    path: "/images/music_app.png",
+    path: "/images/icon_music.png",
     lable: "Music",
     link: "/music",
   },
   {
-    path: "/images/icon_soundcloud.png",
-    lable: "Soundcloud",
+    path: "/images/icon_settings.png",
+    lable: "Settings",
     link: "/",
   },
   {
