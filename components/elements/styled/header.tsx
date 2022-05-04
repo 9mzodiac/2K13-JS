@@ -4,23 +4,31 @@ import tw from "twin.macro";
 
 const AppHeader = styled.div((props: any) => [
   tw`py-2 w-full text-center relative z-20 flex justify-center items-center`,
-  css`
-    &:before {
-      ${tw`content-[""] absolute top-0 left-0 w-full h-full opacity-90 z-[-1]`}
-      background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, ${props.c2}),
-        color-stop(1, ${props.c1})
-      );
-      background-repeat: no-repeat;
-    }
-  `,
+  props.textureImage
+    ? css`
+        &:before {
+          ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1]`}
+          background-image: url('${props.textureImage}');
+          background-repeat: repeat;
+        }
+      `
+    : css`
+        &:before {
+          ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1]`}
+          background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, ${props.c2}),
+            color-stop(1, ${props.c1})
+          );
+          background-repeat: no-repeat;
+        }
+      `,
 ]);
 
 const AppHeadLabel = styled.h1(() => [
-  tw`font-bold text-xl text-white truncate text-center max-w-[7rem]`,
+  tw`font-bold text-[1.2rem] text-white truncate text-center max-w-[7rem]`,
 ]);
 
 const IosButton = styled.button((props: any) => [

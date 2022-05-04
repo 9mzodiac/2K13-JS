@@ -27,17 +27,13 @@ const Instagram: CustomPage = ({ posts }: any) => {
         c2="#4d8cbf"
         css={tw`py-[.15rem] before:opacity-100`}
       >
-        <Link href="/">
-          <a>
-            <IosButton
-              css={tw`right-[.5rem] px-[.5rem]!`}
-              hoverColor="#3F729B"
-              color="#4d8cbf"
-            >
-              <i className="icomoon icon-reload_insta"></i>
-            </IosButton>
-          </a>
-        </Link>
+        <IosButton
+          css={tw`right-[.5rem] px-[.8rem]!`}
+          hoverColor="#3F729B"
+          color="#4d8cbf"
+        >
+          <i className="icomoon icon-reload_insta"></i>
+        </IosButton>
         {/* <Link href="/">
           <a>
             <IosButton left hoverColor="#3F729B" color="#4d8cbf">

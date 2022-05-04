@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { pageVariants } from "animations/variants";
 import { motion } from "framer-motion";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
@@ -23,12 +23,19 @@ const NotesDetail: CustomPage = ({ data }: any) => {
       exit="exit"
       variants={pageVariants}
     >
-      <AppHeader c1="#442f2a" c2="#755548">
+      <AppHeader c1="#3c2d26" c2="#78584b">
         <AppHeadLabel>Notes</AppHeadLabel>
         <Link href="/notes">
           <a>
-            <IosButton left hoverColor="#442f2a" color="#755548">
+            <IosButton left hoverColor="#78584b" color="#3c2d26">
               notes
+            </IosButton>
+          </a>
+        </Link>
+        <Link href="/notes">
+          <a>
+            <IosButton css={tw`right-2`} hoverColor="#78584b" color="#3c2d26">
+              done
             </IosButton>
           </a>
         </Link>

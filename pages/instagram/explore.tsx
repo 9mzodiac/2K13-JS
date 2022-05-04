@@ -32,7 +32,7 @@ const Explore: CustomPage = ({ photos }: any) => {
         <Link href="/">
           <a>
             <IosButton
-              css={tw`right-[.5rem] px-[.5rem]!`}
+              css={tw`right-[.5rem] px-[.8rem]!`}
               hoverColor="#3F729B"
               color="#4d8cbf"
             >
@@ -47,17 +47,15 @@ const Explore: CustomPage = ({ photos }: any) => {
             </IosButton>
           </a>
         </Link> */}
-        <div css={tw`w-full h-10 relative`}>
-          <Image
-            src="/images/InstagramLogo.png"
-            layout="fill"
-            objectFit="contain"
-          />
+        <div css={tw`w-full h-10 relative flex items-center justify-center`}>
+          <span css={tw`font-bold uppercase text-white`}>
+            explore
+          </span>
         </div>
       </AppHeader>
 
       <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
-        <ListWrapper>
+        <ListWrapper css={tw`bg-[#cdcdcd]`}>
           <div css={tw`bg-gray-400 p-2 flex`}>
             <input
               css={tw`w-full px-2 py-1 text-gray-300 rounded focus:(border-none outline-none)`}
@@ -65,7 +63,7 @@ const Explore: CustomPage = ({ photos }: any) => {
             />
           </div>
           <div css={tw`p-2`}>
-            <Gallery images={photos} />
+            <Gallery images={photos} gridCols={3} />
           </div>
         </ListWrapper>
       </ListContainer>
