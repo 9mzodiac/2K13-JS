@@ -76,11 +76,21 @@ export default Home;
 
 const AppTrayWrapper = styled.div(() => [
   tw`w-full grid grid-flow-row grid-cols-4 
-  justify-items-center h-24 items-center relative`,
+  justify-items-center h-28 items-center relative`,
   css`
     &:before {
-      ${tw`content-[""] absolute w-full h-full bg-white opacity-40 top-2/3`}
+      ${tw`content-[""] absolute w-[104%] h-full top-2/3`}
       transform: perspective(800px) rotateX(45deg) translateY(-50%);
+      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.74);
+      -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.74);
+      -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.74);
+      background: linear-gradient(
+        -200deg,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.3) 20%
+      );
+      background-repeat: no-repeat;
     }
   `,
 ]);

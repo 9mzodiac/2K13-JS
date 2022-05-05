@@ -42,27 +42,19 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
               hoverColor="#3F729B"
               color="#4d8cbf"
             >
-              <i className="icomoon icon-reload_insta"></i>
+              <i css={tw`text-[1.4rem]`} className="icomoon icon-setting"></i>
             </IosButton>
           </a>
         </Link>
-        {/* <Link href="/instagram">
-          <a>
-            <IosButton left hoverColor="#3F729B" color="#4d8cbf">
-              home
-            </IosButton>
-          </a>
-        </Link> */}
-        <div css={tw`w-full h-10 relative`}>
-          <Image
-            src="/images/InstagramLogo.png"
-            layout="fill"
-            objectFit="contain"
-          />
+
+        <div css={tw`w-full h-10 relative flex items-center justify-center`}>
+          <span css={tw`font-bold uppercase text-white`}>
+            {profile?.username}
+          </span>
         </div>
       </AppHeader>
 
-      <ListContainer css={tw`pb-[3.2rem] pt-[2.8rem]`}>
+      <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
         <ListWrapper css={tw`p-2 bg-gray-300`}>
           <ProfileInfoContainer>
             <div css={tw`grid grid-flow-col grid-rows-2 grid-cols-3 h-24`}>
@@ -92,7 +84,7 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
                 </ProfileStatItem>
               </ProfileStatContainer>
               <div
-                css={tw`col-start-2 col-span-2 flex justify-between items-center px-4 text-lg font-bold cursor-pointer`}
+                css={tw`col-start-2 col-span-2 flex justify-between items-center px-4 text-md font-semibold cursor-pointer`}
               >
                 Edit Your Profile
                 <i
@@ -105,11 +97,11 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
             <div
               css={tw`flex flex-col justify-center items-start px-2 py-1 border-[1px] border-b-0 border-r-0 border-l-0 relative`}
             >
-              <h1 css={tw`text-lg font-bold capitalize`}>
+              <h1 css={tw`text-lg font-semibold capitalize`}>
                 {profile?.username}
               </h1>
               <span
-                css={tw`text-lg font-normal text-gray-400 truncate w-full block`}
+                css={tw`text-md font-medium text-gray-400 truncate w-full block`}
               >
                 {profile?.bio}
               </span>
@@ -118,7 +110,7 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
 
           <Tabs
             selectedIndex={tabIndex}
-            css={tw`py-5`}
+            css={tw`py-2`}
             onSelect={(index) => setTabIndex(index)}
           >
             <ProfileTabContainer>
@@ -144,21 +136,23 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
                 direction="bottom"
                 css={tw`text-[1.4rem]`}
               >
-                <i className="icomoon icon-location" />
-              </ProfileTab>
-              <ProfileTab
-                // onClick={() => setTabIndex(3)}
-                active={tabIndex === 3}
-                direction="bottom"
-                css={tw`text-[1.3rem]`}
-              >
-                <i className="icomoon icon-user-solid-square" />
+                <div css={tw`flex gap-x-2 items-center justify-start`}>
+                  <i className="icomoon icon-location" />
+                  <span
+                    css={tw`whitespace-nowrap text-md font-bold text-black`}
+                  >
+                    Photo Map
+                  </span>
+                  <i
+                    css={tw`text-xl`}
+                    className="icomoon icon-chevron-right"
+                  ></i>
+                </div>
               </ProfileTab>
             </ProfileTabContainer>
             <TabPanel>
-              <Gallery images={photos} />
+              <Gallery images={photos} gridCols={3} borderImage/>
             </TabPanel>
-            <TabPanel>Panel 2</TabPanel>
             <TabPanel>Panel 2</TabPanel>
             <TabPanel>Panel 2</TabPanel>
           </Tabs>
@@ -238,7 +232,7 @@ const ProfileStatContainer = styled.div(() => [
 const ProfileInfoContainer = styled.div(() => [tw`bg-white shadow rounded-md`]);
 
 const ProfileTab = styled.div((props: any) => [
-  tw`flex justify-center items-center py-2 px-5 w-full flex-grow border-r-[1px] border-gray-400 last:border-r-0`,
+  tw`flex justify-center items-center py-2 px-2 w-full flex-grow border-r-[1px] border-gray-400 last:border-r-0`,
   tw`relative text-gray-400`,
   props.active && tw`text-[#3F729B]`,
   tw`before:(contents[""] absolute h-1 w-1)`,
@@ -282,5 +276,5 @@ const ProfileTab = styled.div((props: any) => [
 ]);
 
 const ProfileTabContainer = styled.div(() => [
-  tw`flex w-full bg-white justify-between shadow rounded-md mb-5`,
+  tw`flex w-full bg-white justify-between shadow rounded-md mb-3`,
 ]);

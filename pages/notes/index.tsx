@@ -25,15 +25,11 @@ const Notes: CustomPage = ({ notes }: any) => {
       exit="exit"
       variants={pageVariants}
     >
-      <AppHeader c1="#442f2a" c2="#755548">
+      <AppHeader c1="#3c2d26" c2="#78584b">
         <AppHeadLabel>Notes ({notes.length})</AppHeadLabel>
-        <Link href="/">
-          <a>
-            <IosButton left hoverColor="#442f2a" color="#755548">
-              back
-            </IosButton>
-          </a>
-        </Link>
+        <IosButton hoverColor="#78584b" color="#3c2d26" css={tw`right-2`}>
+          <span css={tw`text-md`} className="icomoon icon-plus-thick"></span>
+        </IosButton>
       </AppHeader>
       <ListContainer>
         <ListWrapper>
@@ -52,10 +48,13 @@ const Notes: CustomPage = ({ notes }: any) => {
                       {item.title}
                     </span>
                     <span
-                      css={tw`text-md text-[#b7b079] font-bold flex items-center`}
+                      css={tw`text-md text-[#b7b079] font-bold flex items-center whitespace-nowrap`}
                     >
                       {dayjs(item.date).format("MMM DD")}
-                      <i className="icomoon icon-chevron-right"></i>
+                      <i
+                        css={tw`text-xl text-[#57533a]`}
+                        className="icomoon icon-chevron-right"
+                      ></i>
                     </span>
                   </div>
                 </a>

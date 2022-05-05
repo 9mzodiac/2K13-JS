@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import tw from "twin.macro";
 
 const SongsNavBarContainer = styled.div((props: any) => [
-  tw`absolute bottom-0 w-full h-auto grid grid-flow-row grid-cols-5 z-20 bg-black`,
+  tw`absolute bottom-0 w-full py-1 h-auto gap-x-2 px-2 grid grid-flow-row grid-cols-5 z-20 bg-black`,
   css`
     &:before {
       ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1]`}
@@ -22,7 +22,7 @@ const SongsNavBarContainer = styled.div((props: any) => [
 ]);
 
 const SongsNavItem = styled.div((props:any) => [
-  tw`w-full h-full py-2 text-center flex flex-col text-[#ffffff80] gap-y-1 cursor-pointer`,
+  tw`w-full h-full py-1 text-center flex flex-col rounded-md text-[#ffffff80] gap-y-1 cursor-pointer`,
   props.active && tw`bg-[#ffffff20]`,
   tw`transition-all duration-150 ease-in`,
   tw`hover:(bg-[#ffffff20])`,

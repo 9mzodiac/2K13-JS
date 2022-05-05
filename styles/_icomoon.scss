@@ -26,11 +26,50 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-wifi:before {
-  content: "\e92a";
+.icon-setting:before {
+  content: "\e92d";
 }
 .icon-signal:before {
   content: "\e927";
+}
+.icon-battery:before {
+  content: "\e928";
+}
+.icon-battery-4:before {
+  content: "\e928";
+}
+.icon-battery-full:before {
+  content: "\e928";
+}
+.icon-plus-thick:before {
+  content: "\e92c";
+}
+.icon-search:before {
+  content: "\e92b";
+}
+.icon-menu:before {
+  content: "\e91b";
+}
+.icon-list:before {
+  content: "\e91b";
+}
+.icon-options:before {
+  content: "\e91b";
+}
+.icon-lines:before {
+  content: "\e91b";
+}
+.icon-hamburger:before {
+  content: "\e91b";
+}
+.icon-location:before {
+  content: "\e91e";
+}
+.icon-clock:before {
+  content: "\e917";
+}
+.icon-wifi:before {
+  content: "\e92a";
 }
 .icon-battery:before {
   content: "\e928";
@@ -145,27 +184,6 @@
 }
 .icon-plus:before {
   content: "\e913";
-}
-.icon-menu:before {
-  content: "\e91b";
-}
-.icon-list:before {
-  content: "\e91b";
-}
-.icon-options:before {
-  content: "\e91b";
-}
-.icon-lines:before {
-  content: "\e91b";
-}
-.icon-hamburger:before {
-  content: "\e91b";
-}
-.icon-location:before {
-  content: "\e91e";
-}
-.icon-clock:before {
-  content: "\e917";
 }
 .icon-grid:before {
   content: "\e91f";
