@@ -21,9 +21,15 @@ const SongsNavBarContainer = styled.div((props: any) => [
   `,
 ]);
 
-const SongsNavItem = styled.div((props:any) => [
+const SongsNavItem = styled.div((props: any) => [
   tw`w-full h-full py-1 text-center flex flex-col rounded-md text-[#ffffff80] gap-y-1 cursor-pointer`,
   props.active && tw`bg-[#ffffff20]`,
+  props.active &&
+    css`
+      span {
+        ${tw`text-white`}
+      }
+    `,
   tw`transition-all duration-150 ease-in`,
   tw`hover:(bg-[#ffffff20])`,
   css`
@@ -31,8 +37,8 @@ const SongsNavItem = styled.div((props:any) => [
       ${tw`text-[#ffffff80]`}
       ${props.active && tw`text-[#52abff]`}
     }
-    span{
-        ${tw`font-bold text-sm`}
+    span {
+      ${tw`font-bold text-xs`}
     }
   `,
 ]);
