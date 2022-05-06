@@ -8,13 +8,22 @@ import { ADMIN_DB } from "@/firebase/admin";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { pageVariants } from "animations/variants";
+import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
+const LineLeft = styled.span(() => [
+  tw`absolute top-0 left-8 h-full w-[1px] bg-[#4b4b4b] z-50`,
+]);
+const LineLeftTwo = styled.span(() => [
+  tw`absolute top-0 left-9 h-full w-[1px] bg-[#4b4b4b] z-50`,
+]);
 const NotesDetail: CustomPage = ({ data }: any) => {
+  console.log(data);
+
   return (
     <motion.div
       css={tw`flex flex-col h-full bg-[#f7f19e]`}
@@ -24,7 +33,7 @@ const NotesDetail: CustomPage = ({ data }: any) => {
       variants={pageVariants}
     >
       <AppHeader c1="#3c2d26" c2="#78584b">
-        <AppHeadLabel>Notes</AppHeadLabel>
+        <AppHeadLabel>{data.title}</AppHeadLabel>
         <Link href="/notes">
           <a>
             <IosButton left hoverColor="#78584b" color="#3c2d26">
@@ -32,24 +41,28 @@ const NotesDetail: CustomPage = ({ data }: any) => {
             </IosButton>
           </a>
         </Link>
-        <Link href="/notes">
-          <a>
-            <IosButton css={tw`right-2`} hoverColor="#78584b" color="#3c2d26">
-              done
-            </IosButton>
-          </a>
-        </Link>
+        <IosButton hoverColor="#78584b" color="#3c2d26" css={tw`right-2`}>
+          <span css={tw`text-md`} className="icomoon icon-plus-thick"></span>
+        </IosButton>
       </AppHeader>
-      <ListContainer>
+      <ListContainer css={tw`pb-5 pt-[2.9rem]!`}>
+        <LineLeft />
+        <LineLeftTwo />
+        <div css={tw`w-full h-8 bg-[#ffffc2] pl-12 pr-2 flex justify-between text-[#78584b]`}>
+          <span css={tw`font-bold`}>
+            {dayjs(dayjs(dayjs.unix(data.createdDate._seconds))).fromNow()}
+            {/* {dayjs(data.createdDate._seconds).format("MMMM")} */}
+          </span>
+          <div css={tw`flex gap-x-3 font-medium`}>
+            <span>{dayjs(data.createdDate._seconds).format("MMM DD")}</span>
+            <span>{dayjs(data.createdDate._seconds).format("H:mm A")}</span>
+          </div>
+        </div>
         {data && (
           <NotesWrapper>
-            <span
-              css={tw`absolute top-0 left-8 h-full w-[1px] bg-[#4b4b4b]`}
-            ></span>
-            <span
-              css={tw`absolute top-0 left-9 h-full w-[1px] bg-[#4b4b4b]`}
-            ></span>
-            <p css={tw`pl-10 pr-5 text-xl leading-[30px]`}>{data.content}</p>
+            <LineLeft />
+            <LineLeftTwo />
+            <p css={tw`pl-12 pr-5 text-xl leading-[30px]`}>{data.content}</p>
           </NotesWrapper>
         )}
       </ListContainer>
@@ -58,7 +71,7 @@ const NotesDetail: CustomPage = ({ data }: any) => {
 };
 
 const NotesWrapper = styled.div(() => [
-  tw`h-[max-content] min-h-full w-full relative`,
+  tw`h-[max-content] min-h-full w-full relative pr-2`,
   css`
     background-image: repeating-linear-gradient(
       #ffffc2 0px,

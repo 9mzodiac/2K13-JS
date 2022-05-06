@@ -125,20 +125,20 @@ const MusicPlayer: CustomPage = (props: any) => {
           <span>Playlist</span>
         </SongsNavItem>
         <SongsNavItem>
-          <i css={tw`text-xl text-black`} className="icomoon icon-singer"></i>
+          <i css={tw`text-xl text-black`} className="icomoon icon-artist"></i>
           <span>Artists</span>
         </SongsNavItem>
         <SongsNavItem active>
           <i
             css={tw`text-xl text-black`}
-            className="icomoon icon-music-note"
+            className="icomoon icon-music"
           ></i>
           <span>Songs</span>
         </SongsNavItem>
         <SongsNavItem>
           <i
             css={tw`text-xl text-black`}
-            className="icomoon icon-music-album"
+            className="icomoon icon-albums"
           ></i>
           <span>Albums</span>
         </SongsNavItem>

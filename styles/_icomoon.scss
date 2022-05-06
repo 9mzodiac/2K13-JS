@@ -26,6 +26,55 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-albums:before {
+  content: "\e901";
+}
+.icon-artist:before {
+  content: "\e902";
+}
+.icon-music:before {
+  content: "\e903";
+}
+.icon-playlist:before {
+  content: "\e904";
+}
+.icon-reload_insta:before {
+  content: "\e926";
+}
+.icon-instaexplore:before {
+  content: "\e921";
+}
+.icon-instaheart:before {
+  content: "\e922";
+}
+.icon-instahome:before {
+  content: "\e923";
+}
+.icon-instalogo:before {
+  content: "\e924";
+}
+.icon-instaprofile:before {
+  content: "\e925";
+}
+.icon-insta-cam:before {
+  content: "\e918";
+}
+.icon-comment-love:before {
+  content: "\e914";
+}
+.icon-compass:before {
+  content: "\e915";
+}
+.icon-home:before {
+  content: "\e916";
+}
+.icon-profile:before {
+  content: "\e91c";
+}
+.icon-more-dots:before {
+  content: "\e900";
+}
 .icon-setting:before {
   content: "\e92d";
 }
@@ -70,63 +119,6 @@
 }
 .icon-wifi:before {
   content: "\e92a";
-}
-.icon-battery:before {
-  content: "\e928";
-}
-.icon-battery-4:before {
-  content: "\e928";
-}
-.icon-battery-full:before {
-  content: "\e928";
-}
-.icon-reload_insta:before {
-  content: "\e926";
-}
-.icon-instaexplore:before {
-  content: "\e921";
-}
-.icon-instaheart:before {
-  content: "\e922";
-}
-.icon-instahome:before {
-  content: "\e923";
-}
-.icon-instalogo:before {
-  content: "\e924";
-}
-.icon-instaprofile:before {
-  content: "\e925";
-}
-.icon-insta-cam:before {
-  content: "\e918";
-}
-.icon-comment-love:before {
-  content: "\e914";
-}
-.icon-compass:before {
-  content: "\e915";
-}
-.icon-home:before {
-  content: "\e916";
-}
-.icon-profile:before {
-  content: "\e91c";
-}
-.icon-more-dots:before {
-  content: "\e900";
-}
-.icon-music-album:before {
-  content: "\e901";
-}
-.icon-music-note:before {
-  content: "\e902";
-}
-.icon-playlist:before {
-  content: "\e903";
-}
-.icon-singer:before {
-  content: "\e904";
 }
 .icon-user-solid-square:before {
   content: "\e91a";

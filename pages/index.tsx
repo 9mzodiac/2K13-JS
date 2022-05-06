@@ -79,7 +79,7 @@ const AppTrayWrapper = styled.div(() => [
   justify-items-center h-28 items-center relative`,
   css`
     &:before {
-      ${tw`content-[""] absolute w-[104%] h-full top-2/3`}
+      ${tw`content-[""] absolute w-[104%] h-full top-[60%]`}
       transform: perspective(800px) rotateX(45deg) translateY(-50%);
       box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.74);
       -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.74);
@@ -102,7 +102,7 @@ const AppIcon = styled.div((props: any) => [
       &:before {
         content: "";
         background-image: url("${props.backdrop}");
-        ${tw`absolute top-full h-full w-full bg-contain rotate-180 opacity-50 z-[-1]`}
+        ${tw`absolute top-[95%] h-full w-full bg-contain rotate-180 opacity-70 z-[-1]`}
       }
     `,
 ]);
@@ -116,7 +116,7 @@ const AppLabel = styled.span(() => [
 
 const AppWrapper = styled.div(() => [
   tw`flex flex-col items-center
-  justify-center gap-y-1 w-full h-full relative`,
+  justify-center gap-y-0 w-full h-full relative`,
 ]);
 
 const AppSlideWrapper = styled.div(() => [
