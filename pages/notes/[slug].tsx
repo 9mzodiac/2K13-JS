@@ -37,7 +37,7 @@ const NotesDetail: CustomPage = ({ data }: any) => {
         <Link href="/notes">
           <a>
             <IosButton left hoverColor="#78584b" color="#3c2d26">
-              notes
+              Notes
             </IosButton>
           </a>
         </Link>

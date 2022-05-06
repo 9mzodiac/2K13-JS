@@ -84,7 +84,12 @@ function MyApp({
           <meta name="theme-color" content="#0b0b0b" />
         </Head>
         <GlobalStyles />
-        <MobileInterface unlocked={unlocked} innerPage={Component.inner}>
+        <MobileInterface
+          unlocked={unlocked}
+          innerPage={Component.inner}
+          statusBartextColor={Component.statusTextColor}
+          statusBarbgColor={Component.statusBgColor}
+        >
           <Hydrate state={pageProps.dehydratedState}>
             <AnimatePresence exitBeforeEnter>
               {unlocked ? (
