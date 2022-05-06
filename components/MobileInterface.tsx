@@ -12,6 +12,8 @@ const MobileInterface: React.FC<any> = ({
   children,
   unlocked,
   innerPage,
+  statusBartextColor,
+  statusBarbgColor,
 }: any) => {
   const { data } = useSWR("wallpapers", getWallpaper);
 
@@ -57,6 +59,8 @@ const MobileInterface: React.FC<any> = ({
         <IPhoneInside>
           <NotificationTrayBar
             innerPage={innerPage ? 1 : 0}
+            statusBartextColor={statusBartextColor}
+            statusBarbgColor={statusBarbgColor}
             unlocked={unlocked}
           >
             <div css={tw`flex gap-x-1 justify-self-start`}>
@@ -157,7 +161,19 @@ const IPhoneInside = styled.div(() => [
   tw`w-full h-full relative flex flex-col justify-between overflow-hidden`,
 ]);
 
-const NotificationTrayBar = styled.div(({ innerPage, unlocked }: any) => [
-  tw`w-full bg-[#00000080] relative grid grid-flow-row grid-cols-3 text-white text-sm items-center px-1 py-1`,
-  innerPage && unlocked && tw`bg-[#000000]`,
-]);
+const NotificationTrayBar = styled.div(
+  ({ innerPage, unlocked, statusBarbgColor, statusBartextColor }: any) => [
+    tw`w-full bg-[#00000080] relative grid grid-flow-row grid-cols-3 text-white text-sm items-center px-1 py-1 shadow z-50`,
+    innerPage && unlocked && tw`bg-[#000000]`,
+    statusBarbgColor &&
+      unlocked &&
+      css`
+        background: ${statusBarbgColor};
+      `,
+    statusBartextColor &&
+      unlocked &&
+      css`
+        color: ${statusBartextColor};
+      `,
+  ]
+);

@@ -32,7 +32,7 @@ const AppHeadLabel = styled.h1(() => [
 ]);
 
 const IosButton = styled.button((props: any) => [
-  tw`py-1 px-3 text-white font-bold absolute top-1/2 -translate-y-1/2 leading-3`,
+  tw`py-1 px-3 text-white font-medium absolute top-1/2 -translate-y-1/2 leading-3`,
   tw`cursor-pointer block z-[1] absolute w-auto text-white`,
   css`
     height: 30px;

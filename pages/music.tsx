@@ -83,7 +83,10 @@ const MusicPlayer: CustomPage = (props: any) => {
       >
         <div css={tw`flex flex-col justify-start items-center mb-16`}>
           <span>
-            <i css={tw`text-xs block leading-3`} className="icomoon icon-search"></i>
+            <i
+              css={tw`text-xs block leading-3`}
+              className="icomoon icon-search"
+            ></i>
           </span>
           {Alpha.map((num) => (
             <span
@@ -129,17 +132,11 @@ const MusicPlayer: CustomPage = (props: any) => {
           <span>Artists</span>
         </SongsNavItem>
         <SongsNavItem active>
-          <i
-            css={tw`text-xl text-black`}
-            className="icomoon icon-music"
-          ></i>
+          <i css={tw`text-xl text-black`} className="icomoon icon-music"></i>
           <span>Songs</span>
         </SongsNavItem>
         <SongsNavItem>
-          <i
-            css={tw`text-xl text-black`}
-            className="icomoon icon-albums"
-          ></i>
+          <i css={tw`text-xl text-black`} className="icomoon icon-albums"></i>
           <span>Albums</span>
         </SongsNavItem>
         <SongsNavItem>
@@ -155,9 +152,14 @@ const MusicPlayer: CustomPage = (props: any) => {
 };
 
 MusicPlayer.inner = true;
+MusicPlayer.statusBgColor = "#8eabd4";
+MusicPlayer.statusTextColor = "#000";
+
 export default MusicPlayer;
 
-const Alpha = `A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#`.split(",");
+const Alpha = `A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#`.split(
+  ","
+);
 
 const Songs = [
   {
