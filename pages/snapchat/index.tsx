@@ -15,8 +15,12 @@ import SnapFeed, {
   SnapFeedType,
 } from "@/components/elements/Snapchat/SnapsFeed";
 import Link from "next/link";
+import { GetStaticProps } from "next";
+import { ADMIN_DB } from "@/firebase/admin";
 
-const Snapchat: CustomPage = (props: any) => {
+const Snapchat: CustomPage = ({notes}: any) => {
+  console.log(notes);
+  
   return (
     <motion.div css={tw`flex flex-col h-full bg-white font-roboto`}>
       <AppHeader
@@ -116,3 +120,22 @@ const SnapchatBackground = styled.div(() => [
     );
   `,
 ]);
+
+export const getStaticProps: GetStaticProps = async () => {
+  const notesCollection = await ADMIN_DB.collection("notes").get();
+
+  const notes = [];
+  for await (const note of notesCollection.docs) {
+    notes.push({
+      id: note.id,
+      ...note.data(),
+    });
+  }
+
+  return {
+    props: {
+      notes: JSON.parse(JSON.stringify(notes)),
+    },
+    revalidate: 10,
+  };
+};

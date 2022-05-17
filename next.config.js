@@ -24,6 +24,8 @@ module.exports = (phase, { defaultConfig }) =>
         "storage.googleapis.com",
         "cdn.discordapp.com",
         "firebasestorage.googleapis.com",
+        "icons.veryicon.com",
+        "2k13boyz.vercel.app"
       ],
     },
     webpack: (config, { isServer, webpack }) => {
