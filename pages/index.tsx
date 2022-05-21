@@ -169,11 +169,6 @@ const Apps = [
     link: "/",
   },
   {
-    path: "/images/icon_instagram.png",
-    lable: "Instagram",
-    link: "/instagram",
-  },
-  {
     path: "/images/icon_music.png",
     lable: "Music",
     link: "/music",
@@ -189,14 +184,14 @@ const Apps = [
     link: "/notes",
   },
   {
-    path: "/images/icon_weather.png",
-    lable: "Weather",
-    link: "/",
-  },
-  {
     path: "/images/icon_youtube.png",
     lable: "YouTube",
     link: "/",
+  },
+  {
+    path: "/images/icon_instagram.png",
+    lable: "Instagram",
+    link: "/instagram",
   },
   {
     path: "/images/icon_snapchat.png",
