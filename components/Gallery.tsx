@@ -88,6 +88,7 @@ const GalleryContainer = styled.div((props: any) => [
 
 const GalleryItem = styled(motion.div)((props: any) => [
   tw`relative h-full w-full cursor-pointer shadow`,
+    props.borderImage && tw`border-4 border-transparent`,
   css`
     aspect-ratio: 1/1;
   `,
