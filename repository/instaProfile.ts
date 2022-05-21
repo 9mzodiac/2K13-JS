@@ -17,7 +17,7 @@ const getMainProfile = async () => {
 const getMainProfilePosts = async (id: string) => {
   const instagramPostsCollection = await ADMIN_DB.collection("instagram")
     .where("user.id", "==", id)
-    .orderBy("createdDate")
+    .orderBy("createdDate", "desc")
     .get();
   const instaposts = [];
   for await (const post of instagramPostsCollection.docs) {
