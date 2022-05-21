@@ -1,7 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
-import { pageVariants } from "@/animations/variants";
 import { AppHeader, IosButton } from "@/components/elements/styled/header";
 import Link from "next/link";
 import Image from "next/image";

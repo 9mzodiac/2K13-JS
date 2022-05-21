@@ -7,10 +7,16 @@ import {
 } from "@/components/elements/styled/snapchat";
 import Image from "next/image";
 import { SnapFeedMessageType, SnapFeedState } from "../../SnapsFeed";
+import { customDayjs } from "../customDays";
 
 const ImagePath = "/snapchat/";
 
-const SnapFeedImage: React.FC<any> = ({ messageType, state }: any) => {
+const SnapFeedImage: React.FC<any> = ({
+  messageType,
+  state,
+  title,
+  time,
+}: any) => {
   const RenderImageReceived = (type: SnapFeedState) =>
     ({
       opened: `${ImagePath}feed_item_opened.png`,
@@ -59,9 +65,12 @@ const SnapFeedImage: React.FC<any> = ({ messageType, state }: any) => {
             />
           </SnapFeedStateWrapper>
           <SnapFeedDetailWrapper>
-            <SnapFeedTitle type={messageType}>Sara Miller</SnapFeedTitle>
+            <SnapFeedTitle type={messageType}>{title}</SnapFeedTitle>
             <SnapFeedDetails>
-              3 minutes ago {GetStateMessageReceived(state)}
+              {customDayjs(
+                customDayjs(customDayjs.unix(time._seconds))
+              ).fromNow()}{" "}
+              {GetStateMessageReceived(state)}
             </SnapFeedDetails>
           </SnapFeedDetailWrapper>
         </>
@@ -76,9 +85,12 @@ const SnapFeedImage: React.FC<any> = ({ messageType, state }: any) => {
             />
           </SnapFeedStateWrapper>
           <SnapFeedDetailWrapper>
-            <SnapFeedTitle type={messageType}>Sara Miller</SnapFeedTitle>
+            <SnapFeedTitle type={messageType}>{title}</SnapFeedTitle>
             <SnapFeedDetails>
-              3 minutes ago {GetStateMessageSent(state)}
+              {customDayjs(
+                customDayjs(customDayjs.unix(time._seconds))
+              ).fromNow()}{" "}
+              {GetStateMessageSent(state)}
             </SnapFeedDetails>
           </SnapFeedDetailWrapper>
         </>

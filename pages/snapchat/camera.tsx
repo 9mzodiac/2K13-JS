@@ -25,19 +25,18 @@ const SnapCamera: CustomPage = (props: any) => {
       <SnapTray>
         <SnapFeedNotification>
           <SnapFeedCount>3</SnapFeedCount>
+          <Link href="/snapchat">
+            <a
+              css={tw`justify-self-center items-end absolute top-0 left-0 right-0 bottom-0`}
+            ></a>
+          </Link>
         </SnapFeedNotification>
         <SnapCameraButton></SnapCameraButton>
 
         <CameraMenu
           path={`${ImagePath}camera_menu_btn.png`}
           pressedPath={`${ImagePath}camera_menu_btn_pressed.png`}
-        >
-          <Link href="/snapchat">
-            <a
-              css={tw`justify-self-center items-end absolute top-0 left-0 right-0 bottom-0`}
-            ></a>
-          </Link>
-        </CameraMenu>
+        ></CameraMenu>
       </SnapTray>
     </motion.div>
   );
@@ -57,7 +56,7 @@ const SnapCameraButton = styled.div(() => [
 ]);
 
 const SnapFeedNotification = styled.div(() => [
-  tw`h-10 w-10 bg-[#fb3662] rounded-lg border-2 border-white justify-self-start self-end relative`,
+  tw`cursor-pointer h-10 w-10 bg-[#fb3662] rounded-lg border-2 border-white justify-self-start self-end relative`,
   css`
     box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.34);
   `,

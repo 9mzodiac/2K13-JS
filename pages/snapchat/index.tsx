@@ -18,9 +18,9 @@ import Link from "next/link";
 import { GetStaticProps } from "next";
 import { ADMIN_DB } from "@/firebase/admin";
 
-const Snapchat: CustomPage = ({notes}: any) => {
+const Snapchat: CustomPage = ({ notes }: any) => {
   console.log(notes);
-  
+
   return (
     <motion.div css={tw`flex flex-col h-full bg-white font-roboto`}>
       <AppHeader
@@ -75,26 +75,51 @@ const Snapchat: CustomPage = ({notes}: any) => {
             type={SnapFeedType.IMAGE}
             messageType={SnapFeedMessageType.RECEIVED}
             state={SnapFeedState.UNOPENED}
+            title="Sara Miller"
+            time={{
+              _nanoseconds: 250000000,
+              _seconds: 1651284569,
+            }}
           />
           <SnapFeed
             type={SnapFeedType.VIDEO}
             messageType={SnapFeedMessageType.SENT}
             state={SnapFeedState.OPENED}
+            title="Sara Miller"
+            time={{
+              _nanoseconds: 250000000,
+              _seconds: 1651284569,
+            }}
           />
           <SnapFeed
             type={SnapFeedType.VIDEO}
             messageType={SnapFeedMessageType.SENT}
             state={SnapFeedState.SCREEN_SHOT}
+            title="Sara Miller"
+            time={{
+              _nanoseconds: 250000000,
+              _seconds: 1651284569,
+            }}
           />
           <SnapFeed
             type={SnapFeedType.VIDEO}
             messageType={SnapFeedMessageType.RECEIVED}
             state={SnapFeedState.SENT}
+            title="Sara Miller"
+            time={{
+              _nanoseconds: 250000000,
+              _seconds: 1651284569,
+            }}
           />
           <SnapFeed
             type={SnapFeedType.IMAGE}
             messageType={SnapFeedMessageType.RECEIVED}
             state={SnapFeedState.OPENED}
+            title="Sara Miller"
+            time={{
+              _nanoseconds: 250000000,
+              _seconds: 1651284569,
+            }}
           />
         </ListWrapper>
       </ListContainer>
