@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import ExternalPortal from "portal/external";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
 import { motion } from "framer-motion";

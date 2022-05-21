@@ -1,4 +1,4 @@
-import CircleControl from "@/components/elements/CircleControls";
+import CircleControl from "@/components/elements/Music/CircleControls";
 import {
   ListContainer,
   ListWrapper,

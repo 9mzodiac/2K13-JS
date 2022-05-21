@@ -21,6 +21,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ["HelveticaNeue", "sans-serif"],
+      roboto: ["Roboto"],
     },
   },
   variants: {

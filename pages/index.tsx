@@ -188,4 +188,9 @@ const Apps = [
     lable: "YouTube",
     link: "/",
   },
+  {
+    path: "/images/icon_snapchat.png",
+    lable: "Snapchat",
+    link: "/snapchat",
+  },
 ];

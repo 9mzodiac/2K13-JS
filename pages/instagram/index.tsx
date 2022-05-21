@@ -12,7 +12,7 @@ import {
   ListContainer,
   ListWrapper,
 } from "@/components/elements/styled/common";
-import InstagramPost from "@/components/elements/InstagramPost";
+import InstagramPost from "@/components/elements/Instagram/InstagramPost";
 import { ADMIN_DB } from "@/firebase/admin";
 import { useRouter } from "next/router";
 import { CustomPage } from "types/pages";
