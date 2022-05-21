@@ -149,6 +149,16 @@ const TrayApps = [
 
 const Apps = [
   {
+    path: "/images/icon_imessage.png",
+    lable: "iMessage",
+    link: "/iMessage",
+  },
+  {
+    path: "/images/icon_contacts.png",
+    lable: "Contacts",
+    link: "/contacts",
+  },
+  {
     path: "/images/icon_appstore.png",
     lable: "App Store",
     link: "/",
@@ -192,5 +202,5 @@ const Apps = [
     path: "/images/icon_snapchat.png",
     lable: "Snapchat",
     link: "/snapchat",
-  },
+  }
 ];
