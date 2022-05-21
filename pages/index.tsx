@@ -202,5 +202,10 @@ const Apps = [
     path: "/images/icon_snapchat.png",
     lable: "Snapchat",
     link: "/snapchat",
+  },
+  {
+    path: "/images/icon_kik.png",
+    lable: "Kik",
+    link: "/kik",
   }
 ];
