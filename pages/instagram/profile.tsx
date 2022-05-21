@@ -151,7 +151,7 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
               </ProfileTab>
             </ProfileTabContainer>
             <TabPanel>
-              <Gallery images={photos} gridCols={3} borderImage/>
+              <Gallery images={photos} gridCols={3}/>
             </TabPanel>
             <TabPanel>Panel 2</TabPanel>
             <TabPanel>Panel 2</TabPanel>

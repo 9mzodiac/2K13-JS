@@ -78,7 +78,7 @@ const Gallery: React.FC<any> = ({ images, gridCols, borderImage }: any) => {
 };
 
 const GalleryContainer = styled.div((props: any) => [
-  tw`grid grid-flow-row gap-1`,
+  tw`grid grid-flow-row gap-2`,
   props.gridCols
     ? css`
         grid-template-columns: repeat(${props.gridCols}, minmax(0, 1fr));
