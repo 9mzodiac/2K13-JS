@@ -24,7 +24,8 @@ const MobileInterface: React.FC<any> = ({
 
   const renderTime = () => {
     let date = new Date();
-    setTime(dayjs(date).format("h:mm A"));
+    setTime("9:00 PM");
+    //setTime(dayjs(date).format("h:mm A"));
   };
 
   useEffect(() => {
