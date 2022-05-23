@@ -65,6 +65,7 @@ const SnapView: CustomPage = ({ data }: any) => {
   );
 };
 
+SnapView.inner = true;
 export default SnapView;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

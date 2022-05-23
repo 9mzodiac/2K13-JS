@@ -26,7 +26,66 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-camera:before {
+  content: "\e92e";
+}
+.icon-user-solid-square:before {
+  content: "\e91a";
+}
+.icon-chevron-down:before {
+  content: "\e907";
+}
+.icon-chevron-left:before {
+  content: "\e908";
+}
+.icon-chevron-right:before {
+  content: "\e909";
+}
+.icon-controller-jump-to-start:before {
+  content: "\e90a";
+}
+.icon-controller-next:before {
+  content: "\e90b";
+}
+.icon-controller-pause:before {
+  content: "\e90c";
+}
+.icon-controller-play:before {
+  content: "\e90d";
+}
+.icon-controller-record:before {
+  content: "\e90e";
+}
+.icon-controller-stop:before {
+  content: "\e90f";
+}
+.icon-dots-three-vertical:before {
+  content: "\e910";
+}
+.icon-circle-with-cross:before {
+  content: "\e905";
+}
+.icon-circle-with-minus:before {
+  content: "\e906";
+}
+.icon-circle-with-plus:before {
+  content: "\e911";
+}
+.icon-heart:before {
+  content: "\e919";
+}
+.icon-lock:before {
+  content: "\e929";
+}
+.icon-message:before {
+  content: "\e920";
+}
+.icon-minus:before {
+  content: "\e912";
+}
+.icon-plus:before {
+  content: "\e913";
+}
 .icon-albums:before {
   content: "\e901";
 }
@@ -90,6 +149,12 @@
 .icon-battery-full:before {
   content: "\e928";
 }
+.icon-location:before {
+  content: "\e91e";
+}
+.icon-clock:before {
+  content: "\e917";
+}
 .icon-plus-thick:before {
   content: "\e92c";
 }
@@ -120,9 +185,6 @@
 .icon-wifi:before {
   content: "\e92a";
 }
-.icon-user-solid-square:before {
-  content: "\e91a";
-}
 .icon-chevron-down:before {
   content: "\e907";
 }
@@ -134,48 +196,6 @@
 }
 .icon-controller-jump-to-start:before {
   content: "\e90a";
-}
-.icon-controller-next:before {
-  content: "\e90b";
-}
-.icon-controller-pause:before {
-  content: "\e90c";
-}
-.icon-controller-play:before {
-  content: "\e90d";
-}
-.icon-controller-record:before {
-  content: "\e90e";
-}
-.icon-controller-stop:before {
-  content: "\e90f";
-}
-.icon-dots-three-vertical:before {
-  content: "\e910";
-}
-.icon-circle-with-cross:before {
-  content: "\e905";
-}
-.icon-circle-with-minus:before {
-  content: "\e906";
-}
-.icon-circle-with-plus:before {
-  content: "\e911";
-}
-.icon-heart:before {
-  content: "\e919";
-}
-.icon-lock:before {
-  content: "\e929";
-}
-.icon-message:before {
-  content: "\e920";
-}
-.icon-minus:before {
-  content: "\e912";
-}
-.icon-plus:before {
-  content: "\e913";
 }
 .icon-grid:before {
   content: "\e91f";

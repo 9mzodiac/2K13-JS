@@ -16,7 +16,7 @@ enum CameraSwitchType {
   FRONT = "front_camera",
   BACK = "back_camera",
 }
-const SnapCamera: CustomPage = ({ cameraImages }: any) => {
+const SnapCamera: CustomPage = ({ cameraImages, snapsCount }: any) => {
   const [cameraSwitchType, setCameraSwitchType] = useState(
     CameraSwitchType.FRONT
   );
@@ -72,12 +72,21 @@ const SnapCamera: CustomPage = ({ cameraImages }: any) => {
       </div>
       <SnapTray>
         <SnapFeedNotification>
-          <SnapFeedCount>3</SnapFeedCount>
+          <SnapFeedCount>{snapsCount}</SnapFeedCount>
           <Link href="/snapchat">
             <a
               css={tw`justify-self-center items-end absolute top-0 left-0 right-0 bottom-0`}
             ></a>
           </Link>
+          <div css={tw`h-6 w-6 relative pointer-events-none`}>
+            <Image
+              src="/snapchat/snap_feed_white.png"
+              layout="fill"
+              objectFit="contain"
+              blurDataURL="/snapchat/snap_feed_white.png"
+              placeholder="blur"
+            />
+          </div>
         </SnapFeedNotification>
         <SnapCameraButton></SnapCameraButton>
 
@@ -97,6 +106,8 @@ export const getStaticProps: GetStaticProps = async () => {
     "snapchat_camera"
   ).get();
 
+  const snapchatCollection = await ADMIN_DB.collection("snapchat").get();
+
   const cameraImages = [];
   for await (const image of sanpCameraCollection.docs) {
     cameraImages.push({
@@ -108,6 +119,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       cameraImages: JSON.parse(JSON.stringify(cameraImages)),
+      snapsCount: snapchatCollection.size,
     },
     revalidate: 10,
   };
@@ -125,6 +137,7 @@ const SnapCameraButton = styled.div(() => [
 ]);
 
 const SnapFeedNotification = styled.div(() => [
+  tw`flex justify-center items-center mb-2`,
   tw`cursor-pointer h-10 w-10 bg-[#fb3662] rounded-lg border-2 border-white justify-self-start self-end relative`,
   css`
     box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.34);

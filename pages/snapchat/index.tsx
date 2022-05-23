@@ -30,13 +30,10 @@ const Snapchat: CustomPage = ({ snaps }: any) => {
               hoverColor="#4fab86"
               color="#8bc9a3"
             >
-              <div css={tw`relative w-9 h-9`}>
-                <Image
-                  src="/snapchat/camera_menu_btn.png"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
+              <i
+                css={tw`text-white text-xl pl-1 pr-2`}
+                className="icomoon icon-camera"
+              ></i>
             </IosButton>
           </a>
         </Link>
