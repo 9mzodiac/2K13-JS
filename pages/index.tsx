@@ -149,6 +149,16 @@ const TrayApps = [
 
 const Apps = [
   {
+    path: "/images/icon_imessage.png",
+    lable: "iMessage",
+    link: "/iMessage",
+  },
+  {
+    path: "/images/icon_contacts.png",
+    lable: "Contacts",
+    link: "/contacts",
+  },
+  {
     path: "/images/icon_appstore.png",
     lable: "App Store",
     link: "/",
@@ -157,11 +167,6 @@ const Apps = [
     path: "/images/icon_camera.png",
     lable: "Camera",
     link: "/",
-  },
-  {
-    path: "/images/icon_instagram.png",
-    lable: "Instagram",
-    link: "/instagram",
   },
   {
     path: "/images/icon_music.png",
@@ -179,18 +184,23 @@ const Apps = [
     link: "/notes",
   },
   {
-    path: "/images/icon_weather.png",
-    lable: "Weather",
-    link: "/",
-  },
-  {
     path: "/images/icon_youtube.png",
     lable: "YouTube",
     link: "/",
+  },
+  {
+    path: "/images/icon_instagram.png",
+    lable: "Instagram",
+    link: "/instagram",
   },
   {
     path: "/images/icon_snapchat.png",
     lable: "Snapchat",
     link: "/snapchat",
   },
+  {
+    path: "/images/icon_kik.png",
+    lable: "Kik",
+    link: "/kik",
+  }
 ];

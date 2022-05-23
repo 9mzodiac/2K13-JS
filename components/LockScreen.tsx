@@ -44,8 +44,8 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
     let date = new Date();
 
     setDate(dayjs(date).format("dddd, MMMM DD"));
-
-    setTime(dayjs(date).format("h mm"));
+    setTime("9 00");
+//     setTime(dayjs(date).format("h mm"));
   };
 
   const { data } = useSWR("notifications", getNotifications);
