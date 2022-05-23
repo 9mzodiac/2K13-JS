@@ -6,18 +6,66 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import Link from "next/link";
+import { GetStaticProps } from "next";
+import { ADMIN_DB } from "@/firebase/admin";
+import { useEffect, useState } from "react";
 
 const ImagePath = "/snapchat/";
-const SnapCamera: CustomPage = (props: any) => {
+
+enum CameraSwitchType {
+  FRONT = "front_camera",
+  BACK = "back_camera",
+}
+const SnapCamera: CustomPage = ({ cameraImages }: any) => {
+  const [cameraSwitchType, setCameraSwitchType] = useState(
+    CameraSwitchType.FRONT
+  );
+
+  const toggleSwitch = () => {
+    cameraSwitchType === CameraSwitchType.FRONT &&
+      setCameraSwitchType(CameraSwitchType.BACK);
+
+    cameraSwitchType === CameraSwitchType.BACK &&
+      setCameraSwitchType(CameraSwitchType.FRONT);
+  };
+
+  const frontCameraBG = cameraImages.find(
+    (image: any) => image.type == CameraSwitchType.FRONT
+  ).imageURL;
+
+  const backCameraBG = cameraImages.find(
+    (image: any) => image.type == CameraSwitchType.BACK
+  ).imageURL;
+
   return (
     <motion.div
       css={tw`flex flex-col justify-between h-full bg-white font-roboto`}
     >
-      <SnapCameraBackground>
-        <Image src="/snap-camera.jpeg" layout="fill" objectFit="cover" />
-      </SnapCameraBackground>
+      {cameraSwitchType === CameraSwitchType.FRONT && (
+        <SnapCameraBackground>
+          <Image
+            src={frontCameraBG}
+            layout="fill"
+            objectFit="cover"
+            blurDataURL={backCameraBG}
+            placeholder="blur"
+          />
+        </SnapCameraBackground>
+      )}
+      {cameraSwitchType === CameraSwitchType.BACK && (
+        <SnapCameraBackground>
+          <Image
+            src={backCameraBG}
+            layout="fill"
+            objectFit="cover"
+            blurDataURL={backCameraBG}
+            placeholder="blur"
+          />
+        </SnapCameraBackground>
+      )}
       <div css={tw`flex justify-end`}>
         <CameraSwitch
+          onClick={toggleSwitch}
           path={`${ImagePath}camera_switch_btn.png`}
           pressedPath={`${ImagePath}camera_switch_btn_pressed.png`}
         />
@@ -43,6 +91,27 @@ const SnapCamera: CustomPage = (props: any) => {
 };
 SnapCamera.inner = true;
 export default SnapCamera;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const sanpCameraCollection = await ADMIN_DB.collection(
+    "snapchat_camera"
+  ).get();
+
+  const cameraImages = [];
+  for await (const image of sanpCameraCollection.docs) {
+    cameraImages.push({
+      id: image.id,
+      ...image.data(),
+    });
+  }
+
+  return {
+    props: {
+      cameraImages: JSON.parse(JSON.stringify(cameraImages)),
+    },
+    revalidate: 10,
+  };
+};
 
 const SnapCameraButton = styled.div(() => [
   tw`h-20 w-20 rounded-full justify-self-center items-end border-2 border-white`,
