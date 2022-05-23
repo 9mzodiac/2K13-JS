@@ -11,9 +11,8 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 
-const customDayjs = dayjs;
-
 var thresholds = [
+  { l: "s", r: 1, d: "second" },
   { l: "ss", r: 59, d: "second" },
   { l: "m", r: 1 },
   { l: "mm", r: 59, d: "minute" },
@@ -26,15 +25,16 @@ var thresholds = [
   { l: "y" },
   { l: "yy", d: "year" },
 ];
-customDayjs.extend(updateLocale);
-customDayjs.extend(relativeTime, {
+dayjs.extend(updateLocale);
+dayjs.extend(relativeTime, {
   thresholds: thresholds,
   rounding: Math.floor,
 });
-customDayjs.updateLocale("en", {
+dayjs.updateLocale("en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
+    s: "1 second ago",
     ss: "%d seconds ago",
     m: "1 minute ago",
     mm: "%d minutes ago",
@@ -107,9 +107,7 @@ const SnapFeedImage: React.FC<any> = ({
           <SnapFeedDetailWrapper>
             <SnapFeedTitle type={messageType}>{title}</SnapFeedTitle>
             <SnapFeedDetails>
-              {customDayjs(
-                customDayjs(customDayjs.unix(time._seconds))
-              )?.fromNow()}{" "}
+              {dayjs(dayjs(dayjs.unix(time._seconds)))?.fromNow()}{" "}
               {GetStateMessageReceived(state)}
             </SnapFeedDetails>
           </SnapFeedDetailWrapper>
@@ -127,9 +125,7 @@ const SnapFeedImage: React.FC<any> = ({
           <SnapFeedDetailWrapper>
             <SnapFeedTitle type={messageType}>{title}</SnapFeedTitle>
             <SnapFeedDetails>
-              {customDayjs(
-                customDayjs(customDayjs.unix(time._seconds))
-              ).fromNow()}{" "}
+              {dayjs(dayjs(dayjs.unix(time._seconds))).fromNow()}{" "}
               {GetStateMessageSent(state)}
             </SnapFeedDetails>
           </SnapFeedDetailWrapper>

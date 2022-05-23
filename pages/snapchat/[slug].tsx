@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { SnapFeedType } from "@/components/elements/Snapchat/SnapsFeed";
 
 const ImagePath = "/snapchat/";
 
@@ -34,7 +35,10 @@ const SnapView: CustomPage = ({ data }: any) => {
       css={tw`flex flex-col justify-between h-full bg-white font-roboto`}
     >
       <SnapCameraBackground>
-        <Image src={data.media} layout="fill" objectFit="cover" />
+        {data.type === SnapFeedType.IMAGE && (
+          <Image src={data.media} layout="fill" objectFit="cover" />
+        )}
+        {data.type === SnapFeedType.VIDEO && <video css={tw`object-cover h-full w-full`} autoPlay src={data.media} />}
       </SnapCameraBackground>
       {data.caption && (
         <SnapCaptionBar position={SnapCaptionType.CENTER}>
