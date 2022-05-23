@@ -9,18 +9,12 @@ import {
 } from "@/components/elements/styled/common";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import SnapFeed, {
-  SnapFeedMessageType,
-  SnapFeedState,
-  SnapFeedType,
-} from "@/components/elements/Snapchat/SnapsFeed";
+import SnapFeed from "@/components/elements/Snapchat/SnapsFeed";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { ADMIN_DB } from "@/firebase/admin";
 
-const Snapchat: CustomPage = ({ notes }: any) => {
-  console.log(notes);
-
+const Snapchat: CustomPage = ({ snaps }: any) => {
   return (
     <motion.div css={tw`flex flex-col h-full bg-white font-roboto`}>
       <AppHeader
@@ -71,56 +65,20 @@ const Snapchat: CustomPage = ({ notes }: any) => {
       </SnapchatBackground>
       <ListContainer css={tw`pb-[3.2rem] pt-[2.5rem]`}>
         <ListWrapper>
-          <SnapFeed
-            type={SnapFeedType.IMAGE}
-            messageType={SnapFeedMessageType.RECEIVED}
-            state={SnapFeedState.UNOPENED}
-            title="Sara Miller"
-            time={{
-              _nanoseconds: 250000000,
-              _seconds: 1651284569,
-            }}
-          />
-          <SnapFeed
-            type={SnapFeedType.VIDEO}
-            messageType={SnapFeedMessageType.SENT}
-            state={SnapFeedState.OPENED}
-            title="Sara Miller"
-            time={{
-              _nanoseconds: 250000000,
-              _seconds: 1651284569,
-            }}
-          />
-          <SnapFeed
-            type={SnapFeedType.VIDEO}
-            messageType={SnapFeedMessageType.SENT}
-            state={SnapFeedState.SCREEN_SHOT}
-            title="Sara Miller"
-            time={{
-              _nanoseconds: 250000000,
-              _seconds: 1651284569,
-            }}
-          />
-          <SnapFeed
-            type={SnapFeedType.VIDEO}
-            messageType={SnapFeedMessageType.RECEIVED}
-            state={SnapFeedState.SENT}
-            title="Sara Miller"
-            time={{
-              _nanoseconds: 250000000,
-              _seconds: 1651284569,
-            }}
-          />
-          <SnapFeed
-            type={SnapFeedType.IMAGE}
-            messageType={SnapFeedMessageType.RECEIVED}
-            state={SnapFeedState.OPENED}
-            title="Sara Miller"
-            time={{
-              _nanoseconds: 250000000,
-              _seconds: 1651284569,
-            }}
-          />
+          {snaps.length > 0 &&
+            snaps.map((snap: any) => (
+              <Link href={`/snapchat/${snap.id}`} key={snap.id}>
+                <a>
+                  <SnapFeed
+                    type={snap.type}
+                    messageType={snap.messageType}
+                    state={snap.state}
+                    title={snap.user.username}
+                    time={snap.createdDate}
+                  />
+                </a>
+              </Link>
+            ))}
         </ListWrapper>
       </ListContainer>
     </motion.div>
@@ -147,19 +105,19 @@ const SnapchatBackground = styled.div(() => [
 ]);
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notesCollection = await ADMIN_DB.collection("notes").get();
+  const snapchatCollection = await ADMIN_DB.collection("snapchat").get();
 
-  const notes = [];
-  for await (const note of notesCollection.docs) {
-    notes.push({
-      id: note.id,
-      ...note.data(),
+  const snaps = [];
+  for await (const snap of snapchatCollection.docs) {
+    snaps.push({
+      id: snap.id,
+      ...snap.data(),
     });
   }
 
   return {
     props: {
-      notes: JSON.parse(JSON.stringify(notes)),
+      snaps: JSON.parse(JSON.stringify(snaps)),
     },
     revalidate: 10,
   };

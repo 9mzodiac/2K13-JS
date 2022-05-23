@@ -12,43 +12,6 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import Head from "next/head";
 import "react-tabs/style/react-tabs.css";
 
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import updateLocale from "dayjs/plugin/updateLocale";
-
-var thresholds = [
-  { l: "ss", r: 59, d: "second" },
-  { l: "m", r: 1 },
-  { l: "mm", r: 59, d: "minute" },
-  { l: "h", r: 1 },
-  { l: "hh", r: 23, d: "hour" },
-  { l: "d", r: 1 },
-  { l: "dd", r: 29, d: "day" },
-  { l: "M", r: 1 },
-  { l: "MM", r: 11, d: "month" },
-  { l: "y" },
-  { l: "yy", d: "year" },
-];
-dayjs.extend(updateLocale);
-dayjs.extend(relativeTime, { thresholds: thresholds, rounding: Math.floor });
-dayjs.updateLocale("en", {
-  relativeTime: {
-    future: "in %s",
-    past: "%s",
-    ss: "%ds",
-    m: "1m",
-    mm: "%dm",
-    h: "1h",
-    hh: "%dh",
-    d: "1d",
-    dd: "%dd",
-    M: "1m",
-    MM: "%dm",
-    y: "1y",
-    yy: "%dy",
-  },
-});
-
 const clientSideEmotionCache = createEmotionCache();
 
 function MyApp({

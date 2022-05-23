@@ -16,15 +16,17 @@ import { useRouter } from "next/router";
 
 const ImagePath = "/snapchat/";
 
-const SnapView: CustomPage = (props: any) => {
-  const [counter, setCounter] = useState(10);
+const SnapView: CustomPage = ({ data }: any) => {
+  const [counter, setCounter] = useState(parseInt(data.duration));
 
   const router = useRouter();
 
   useEffect(() => {
+    let counterInstance: any;
     counter > 0
-      ? setTimeout(() => setCounter(counter - 1), 1000)
+      ? (counterInstance = setTimeout(() => setCounter(counter - 1), 1000))
       : router.replace("/snapchat");
+    return () => clearTimeout(counterInstance);
   }, [counter]);
 
   return (
@@ -32,11 +34,14 @@ const SnapView: CustomPage = (props: any) => {
       css={tw`flex flex-col justify-between h-full bg-white font-roboto`}
     >
       <SnapCameraBackground>
-        <Image src="/snap-camera.jpeg" layout="fill" objectFit="cover" />
+        <Image src={data.media} layout="fill" objectFit="cover" />
       </SnapCameraBackground>
-      <SnapCaptionBar position={SnapCaptionType.CENTER}>
-        Woo crazy night!!!!
-      </SnapCaptionBar>
+      {data.caption && (
+        <SnapCaptionBar position={SnapCaptionType.CENTER}>
+          {data.caption}
+        </SnapCaptionBar>
+      )}
+
       <div css={tw`flex justify-between`}>
         <SnapActionButton
           path={`${ImagePath}camera_x_btn.png`}
@@ -65,33 +70,33 @@ export default SnapView;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   //@ts-ignore
   const slug: string = params?.slug;
-  let noteData;
+  let snapData;
   if (slug) {
-    noteData = await ADMIN_DB.collection("notes").doc(slug).get();
+    snapData = await ADMIN_DB.collection("snapchat").doc(slug).get();
   }
 
   return {
     props: {
-      data: noteData && JSON.parse(JSON.stringify(noteData.data())),
+      data: snapData && JSON.parse(JSON.stringify(snapData.data())),
     },
     revalidate: 10,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const notesCollection = await ADMIN_DB.collection("notes").get();
-  const notes = [];
+  const snapCollection = await ADMIN_DB.collection("snapchat").get();
+  const snaps = [];
 
-  for await (const note of notesCollection.docs) {
-    notes.push({
+  for await (const snap of snapCollection.docs) {
+    snaps.push({
       params: {
-        slug: note.id,
+        slug: snap.id,
       },
     });
   }
 
   return {
-    paths: notes,
+    paths: snaps,
     fallback: true,
   };
 };
