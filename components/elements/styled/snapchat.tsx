@@ -4,25 +4,25 @@ import tw from "twin.macro";
 import { SnapFeedMessageType } from "../Snapchat/SnapsFeed";
 
 const SnapFeedItemContainer = styled.div(() => [
-  tw`bg-white flex border-b-[.5px] border-[#bfbfbf] items-center justify-start p-3 gap-x-4 font-sans`,
+  tw`bg-white flex border-b-[.5px] border-[#bfbfbf] items-center justify-start px-3 py-4 gap-x-4 font-sans`,
   tw`cursor-pointer hover:(bg-[#f5f3f2]) transition-all duration-100 ease-in`,
   tw`last:shadow`,
 ]);
 
 const SnapFeedStateWrapper = styled.div(() => [
-  tw`relative h-8 w-8`,
+  tw`relative h-7 w-7`,
   css`
     aspect-ratio: 1/1;
   `,
 ]);
 
 const SnapFeedTitle = styled.h2(({ type }: { type: SnapFeedMessageType }) => [
-  tw`text-[1.2rem] leading-5`,
+  tw`text-[1.3rem] leading-4 capitalize`,
   { received: [tw`font-medium`], sent: [tw`font-normal`] }[type],
 ]);
 
 const SnapFeedDetails = styled.span(({ type }: any) => [
-  tw`text-sm font-medium text-[#bfbfbf] leading-3`,
+  tw`text-[.85rem] font-medium text-[#bfbfbf] leading-3 tracking-tighter`,
 ]);
 
 const SnapFeedDetailWrapper = styled.div(() => [

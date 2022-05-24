@@ -31,14 +31,25 @@ const SnapView: CustomPage = ({ data }: any) => {
   }, [counter]);
 
   return (
-    <motion.div
-      css={tw`flex flex-col justify-between h-full bg-white font-roboto`}
-    >
+    <motion.div css={tw`flex flex-col justify-between h-full bg-white`}>
       <SnapCameraBackground>
         {data.type === SnapFeedType.IMAGE && (
-          <Image src={data.media} layout="fill" objectFit="cover" />
+          <Image
+            src={data.media}
+            layout="fill"
+            objectFit="cover"
+            placeholder="blur"
+            blurDataURL={data.media}
+          />
         )}
-        {data.type === SnapFeedType.VIDEO && <video css={tw`object-cover h-full w-full`} autoPlay src={data.media} />}
+        {data.type === SnapFeedType.VIDEO && (
+          <video
+            preload="true"
+            css={tw`object-cover h-full w-full`}
+            autoPlay
+            src={data.media}
+          />
+        )}
       </SnapCameraBackground>
       {data.caption && (
         <SnapCaptionBar position={SnapCaptionType.CENTER}>
