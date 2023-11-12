@@ -40,6 +40,18 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  componentDidMount() {
+    var divElement7 = document.getElementsByTagName("div")[7];
+    divElement7.style.background = "rgb(46, 190, 255, 0.65)";
+
+    var divElement12 = document.getElementsByTagName("div")[12];
+    divElement12.style.background = "0";
+
+    var divElement13 = document.getElementsByTagName("div")[13];
+    divElement13.style.background = "-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(112, 205, 255)), to(rgb(255, 165, 247)))";
+    divElement13.style.border = "2px solid rgb(255, 255, 255)";
+  }
+  
   const renderDateTime = () => {
     let date = new Date();
 
