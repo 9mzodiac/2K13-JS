@@ -75,7 +75,6 @@ const InstagramPost: React.FC<any> = ({
         <Image
           src={postImage}
           layout="fill"
-          objectFit="cover"
           className="post-image"
           blurDataURL={postImage}
           placeholder="blur"
