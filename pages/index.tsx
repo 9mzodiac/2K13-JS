@@ -56,7 +56,7 @@ const Home: CustomPage = () => {
       <AppTrayWrapper>
         {TrayApps.map((item, key) => (
           <Link href={item.link} passHref key={`tray-${key}`}>
-            <a onClick={() =>  if (link === "/") { alert("COMING SOON"); }}>
+            <a>
               <AppWrapper>
                 <AppIcon backdrop={item.path}>
                   <Image src={item.path} layout="fill" objectFit="contain" />
