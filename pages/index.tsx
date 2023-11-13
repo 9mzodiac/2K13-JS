@@ -204,7 +204,7 @@ const Apps = [
     link: "/kik",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-42ae5643-4170-470b-aae8-756142917dc7.png?alt=media",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
     lable: "Buy $BASIC",
     link: "https://www.dextools.io/",
   },
