@@ -11,10 +11,6 @@ import {
 
 const getNotifications = async () => {
   const notificationCollection = collection(db, "notification");
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  // Introduce a delay of 3 seconds before fetching notifications
-  await sleep(3000);
   
   const querySnapshot = await getDocs(
     query(
