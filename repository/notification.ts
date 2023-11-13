@@ -22,10 +22,12 @@ const getNotifications = async () => {
 
   const notifications = [];
   for await (const notification of querySnapshot.docs) {
-    notifications.push({
-      id: notification.id,
-      ...notification.data(),
-    });
+    setTimeout(()=>{
+      notifications.push({
+        id: notification.id,
+        ...notification.data(),
+      });
+    }, 2000)
   }
 
   return notifications;
