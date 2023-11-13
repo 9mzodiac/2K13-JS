@@ -11,11 +11,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
-const handleLinkClick = (link) => {
-  if (link === "/") {
-    alert("COMING SOON");
-  }
-};
 
 const Home: CustomPage = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
@@ -61,7 +56,7 @@ const Home: CustomPage = () => {
       <AppTrayWrapper>
         {TrayApps.map((item, key) => (
           <Link href={item.link} passHref key={`tray-${key}`}>
-            <a onClick={() => handleLinkClick(item.link)}>
+            <a onClick={() =>  if (link === "/") { alert("COMING SOON"); }}>
               <AppWrapper>
                 <AppIcon backdrop={item.path}>
                   <Image src={item.path} layout="fill" objectFit="contain" />
