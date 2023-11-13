@@ -75,10 +75,10 @@ const Profile: CustomPage = ({ photos, profile }: any) => {
                   <ProfileStatCaption>photos</ProfileStatCaption>
                 </ProfileStatItem>
                 <ProfileStatItem>
-                  0<ProfileStatCaption>followers</ProfileStatCaption>
+                  2013<ProfileStatCaption>followers</ProfileStatCaption>
                 </ProfileStatItem>
                 <ProfileStatItem>
-                  2000
+                  13
                   <ProfileStatCaption>following</ProfileStatCaption>
                 </ProfileStatItem>
               </ProfileStatContainer>
