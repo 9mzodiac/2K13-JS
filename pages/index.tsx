@@ -209,7 +209,7 @@ const Apps = [
     link: "https://www.dextools.io/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-21305059-3c4b-4985-9056-f69f2f3446e9.png?alt=media",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
     lable: "@bwbcoin",
     link: "https://twitter.com/bwbcoin",
   },{
