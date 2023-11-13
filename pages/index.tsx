@@ -11,6 +11,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
+const handleLinkClick = (link) => {
+  if (link === "/") {
+    alert("COMING SOON");
+  }
+};
+
 const Home: CustomPage = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
 
@@ -55,7 +61,7 @@ const Home: CustomPage = () => {
       <AppTrayWrapper>
         {TrayApps.map((item, key) => (
           <Link href={item.link} passHref key={`tray-${key}`}>
-            <a>
+            <a onClick={() => handleLinkClick(item.link)}>
               <AppWrapper>
                 <AppIcon backdrop={item.path}>
                   <Image src={item.path} layout="fill" objectFit="contain" />
@@ -151,7 +157,7 @@ const Apps = [
   {
     path: "/images/icon_imessage.png",
     lable: "iMessage",
-    link: "/iMessage",
+    link: "/",
   },
   // {
   //   path: "/images/icon_contacts.png",
@@ -201,7 +207,7 @@ const Apps = [
   {
     path: "/images/icon_kik.png",
     lable: "Kik",
-    link: "/kik",
+    link: "/",
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
