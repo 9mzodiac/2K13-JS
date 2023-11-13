@@ -153,11 +153,11 @@ const Apps = [
     lable: "iMessage",
     link: "/iMessage",
   },
-  {
-    path: "/images/icon_contacts.png",
-    lable: "Contacts",
-    link: "/contacts",
-  },
+  // {
+  //   path: "/images/icon_contacts.png",
+  //   lable: "Contacts",
+  //   link: "/contacts",
+  // },
   {
     path: "/images/icon_appstore.png",
     lable: "App Store",
@@ -204,8 +204,22 @@ const Apps = [
     link: "/kik",
   },
   {
-    path: "/images/icon_flipagram.png",
-    lable: "Flipagram",
-    link: "/flipagram",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-42ae5643-4170-470b-aae8-756142917dc7.png?alt=media",
+    lable: "Buy $BASIC",
+    link: "https://www.dextools.io/",
+  },
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-21305059-3c4b-4985-9056-f69f2f3446e9.png?alt=media",
+    lable: "@bwbcoin",
+    link: "https://twitter.com/bwbcoin",
+  },{
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
+    lable: "Telegram",
+    link: "https://twitter.com/bwbcoin",
   }
+  // {
+  //   path: "/images/icon_flipagram.png",
+  //   lable: "Flipagram",
+  //   link: "/flipagram",
+  // }
 ];
