@@ -48,24 +48,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 //     setTime(dayjs(date).format("h mm"));
   };
 
-  const { data } = useSWR("notifications", getNotifications, {
-    initialData: undefined,
-  });
-
-  // Introduce a delay of 3 seconds for the initial data fetch
-  // You can adjust the delay time as needed
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  useEffect(() => {
-    const fetchDataWithDelay = async () => {
-      await sleep(3000);
-      mutate("notifications"); // Manually trigger a re-fetch after the delay
-    };
-
-    if (!data) {
-      fetchDataWithDelay();
-    }
-  }, [data]);
+  const { data } = useSWR("notifications", getNotifications)
 
   const [notifications, setNotifications] = useState(data ? data : []);
   const constraintsRef = useRef<any>(null);
