@@ -158,26 +158,26 @@ const Apps = [
   //   lable: "Contacts",
   //   link: "/contacts",
   // },
-  {
-    path: "/images/icon_appstore.png",
-    lable: "App Store",
-    link: "/",
-  },
-  {
-    path: "/images/icon_camera.png",
-    lable: "Camera",
-    link: "/",
-  },
+  // {
+  //   path: "/images/icon_appstore.png",
+  //   lable: "App Store",
+  //   link: "/",
+  // },
+  // {
+  //   path: "/images/icon_camera.png",
+  //   lable: "Camera",
+  //   link: "/",
+  // },
   {
     path: "/images/icon_music.png",
     lable: "Music",
     link: "/music",
   },
-  {
-    path: "/images/icon_settings.png",
-    lable: "Settings",
-    link: "/",
-  },
+  // {
+  //   path: "/images/icon_settings.png",
+  //   lable: "Settings",
+  //   link: "/",
+  // },
   {
     path: "/images/icon_notes.png",
     lable: "Notes",
