@@ -163,45 +163,40 @@ const Alpha = `A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#`.split(
 
 const Songs = [
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "A Thousand Miles",
+    album: "Be Not Nobody",
+    artist: "Vanessa Carlton",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "Party In The U.S.A.",
+    album: "The Time Of Our Lives",
+    artist: "Miley Cyrus",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "Skater Boi",
+    album: "Let It Go",
+    artist: "Avril Lavigne",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "Raise Your Glass",
+    album: "Greatest Hits... So Far!!!",
+    artist: "P!nk",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "Baby",
+    album: "My World 2.0",
+    artist: "Justin Bieber",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
+    title: "Call Me Maybe",
+    album: "Kiss",
+    artist: "Carly Rae Jepson",
   },
   {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
-  },
-  {
-    title: "Somebody that I used to know",
-    album: "Making Mirrors",
-    artist: "Suyog Mishal",
-  },
+    title: "TiK ToK",
+    album: "TiK ToK",
+    artist: "Kesha",
+  }
 ];
 
 export const getServerSideProps: GetServerSideProps = async () => {
