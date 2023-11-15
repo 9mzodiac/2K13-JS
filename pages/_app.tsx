@@ -39,7 +39,7 @@ function MyApp({
           />
           <meta name="description" content="Iphone App" />
           <meta name="keywords" content="Keywords" />
-          <title>BASIC WHITE BITCH <3</title>
+          <title>BASIC WHITE BITCH</title>
           <link rel="manifest" href="/manifest.json" />
           <link href="/favicon.ico" rel="icon" type="image/png" sizes="16x16" />
           <link href="/favicon.ico" rel="icon" type="image/png" sizes="32x32" />
