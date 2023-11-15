@@ -190,7 +190,7 @@ const Apps = [
     link: "/",
   },
   {
-    path: "/images/icon_instagram.png",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-7a598071-42fa-4e30-afc2-b0351f4310d9.gif?alt=media",
     lable: "Instagram",
     link: "/instagram",
   },
