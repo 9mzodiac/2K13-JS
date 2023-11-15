@@ -11,7 +11,7 @@ import {
 
 const getNotifications = async () => {
   const notificationCollection = collection(db, "notification");
-
+  
   const querySnapshot = await getDocs(
     query(
       notificationCollection,

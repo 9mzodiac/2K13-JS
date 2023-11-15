@@ -48,7 +48,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 //     setTime(dayjs(date).format("h mm"));
   };
 
-  const { data } = useSWR("notifications", getNotifications);
+  const { data } = useSWR("notifications", getNotifications)
 
   const [notifications, setNotifications] = useState(data ? data : []);
   const constraintsRef = useRef<any>(null);
