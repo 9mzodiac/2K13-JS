@@ -33,7 +33,7 @@ const getNotifications = async () => {
 
 const clearNotification = async (id: string) => {
   await updateDoc(doc(db, "notification", id), {
-    cleared: true,
+    // cleared: true,
   });
 };
 
