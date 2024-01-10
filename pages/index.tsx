@@ -216,7 +216,7 @@ const Apps = [
   },{
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
     lable: "Telegram",
-    link: "https://twitter.com/bwbcoin",
+    link: "https://t.me/basicbitchtoken",
   }
   // {
   //   path: "/images/icon_flipagram.png",
