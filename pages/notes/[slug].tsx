@@ -62,7 +62,7 @@ const NotesDetail: CustomPage = ({ data }: any) => {
           <NotesWrapper>
             <LineLeft />
             <LineLeftTwo />
-            <div css={tw`pl-12 pr-5 text-xl leading-[30px]`}>{data.content}</div>
+            <div contentEditable="true" css={tw`pl-12 pr-5 text-xl leading-[30px]`}>{data.content}</div>
           </NotesWrapper>
         )}
       </ListContainer>
