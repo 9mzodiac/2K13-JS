@@ -181,7 +181,7 @@ const Apps = [
   // },
   {
     path: "/images/icon_notes.png",
-    lable: "Notes",
+    lable: "LP Burn",
     link: "/notes",
   },
   {
@@ -206,7 +206,7 @@ const Apps = [
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
-    lable: "Buy $BASIC",
+    lable: "Dexscreener",
     link: "https://www.dextools.io/",
   },
   {
