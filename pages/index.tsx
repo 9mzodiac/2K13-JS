@@ -182,7 +182,7 @@ const Apps = [
   {
     path: "/images/icon_notes.png",
     lable: "LP Burn",
-    link: "/notes",
+    link: "/notes/jBl29VJlsRiYdyfKjBlg",
   },
   {
     path: "/images/icon_youtube.png",
