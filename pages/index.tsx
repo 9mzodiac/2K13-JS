@@ -142,9 +142,9 @@ const TrayApps = [
     lable: "Photos",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_maestro.png?alt=media&token=101d7c01-f4b1-4788-9743-fae0de4e32b6",
+    path: "/images/icon_mail.png",
     link: "/",
-    lable: "Maestro",
+    lable: "Mail",
   },
 ];
 
@@ -181,7 +181,7 @@ const Apps = [
   // },
   {
     path: "/images/icon_notes.png",
-    lable: "Token Details",
+    lable: "Notes",
     link: "/notes/jBl29VJlsRiYdyfKjBlg",
   },
   {
