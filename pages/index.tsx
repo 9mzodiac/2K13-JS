@@ -133,7 +133,7 @@ const TrayApps = [
   },
   {
     path: "/images/icon_safari.png",
-    link: "/",
+    link: "https://www.dextools.io/app/en/ether/pair-explorer/0x780faa810bda4f82ca9da5ec84743c804ed92416",
     lable: "Dextools",
   },
   {
@@ -207,7 +207,7 @@ const Apps = [
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
     lable: "Uniswap",
-    link: "https://app.uniswap.org/",
+    link: "https://app.uniswap.org/tokens/ethereum/0xf170eb4553ca743ef403b3c2b8c1ad38fb5cb5c8",
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
