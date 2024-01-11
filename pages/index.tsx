@@ -134,7 +134,7 @@ const TrayApps = [
   {
     path: "/images/icon_safari.png",
     link: "/",
-    lable: "Safari",
+    lable: "Dextools",
   },
   {
     path: "/images/icon_photos.png",
@@ -142,9 +142,9 @@ const TrayApps = [
     lable: "Photos",
   },
   {
-    path: "/images/icon_mail.png",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_maestro.png?alt=media&token=101d7c01-f4b1-4788-9743-fae0de4e32b6",
     link: "/",
-    lable: "Mail",
+    lable: "Maestro",
   },
 ];
 
@@ -217,6 +217,16 @@ const Apps = [
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
     lable: "Telegram",
     link: "https://t.me/basicbitchtoken",
+  },
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
+    lable: "Banana",
+    link: "/",
+  },
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_unibot.png?alt=media&token=40cb55b3-7f2f-4c16-bbed-91d428517d13",
+    lable: "Unibot",
+    link: "/",
   }
   // {
   //   path: "/images/icon_flipagram.png",
