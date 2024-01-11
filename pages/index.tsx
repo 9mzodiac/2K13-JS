@@ -181,7 +181,7 @@ const Apps = [
   // },
   {
     path: "/images/icon_notes.png",
-    lable: "LP Burn",
+    lable: "Token Details",
     link: "/notes/jBl29VJlsRiYdyfKjBlg",
   },
   {
