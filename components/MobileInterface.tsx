@@ -51,7 +51,7 @@ const MobileInterface: React.FC<any> = ({
   return lockscreen || homescreen ? (
     <IPhoneFrame>
       <Image
-        src="https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fiphone4.png?alt=media&token=e0b4f1a1-4728-4567-9a07-4783ad211f0b"
+        src="https://2k13boyz.vercel.app/_next/image?url=%2Fimages%2Fiphone-frame.png&w=3840&q=75"
         layout="fill"
         objectFit="contain"
         className="index-behind iphone-frame"
