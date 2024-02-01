@@ -39,10 +39,10 @@ function MyApp({
           />
           <meta name="description" content="$BASIC" />
           <meta name="keywords" content="Keywords" />
-          <title>BASIC WHITE BITCH</title>
+          <title>iOS 5 On Solana</title>
           <link rel="manifest" href="/manifest.json" />
-          <link href="/favicon.png" rel="icon" type="image/png" sizes="16x16" />
-          <link href="/favicon.png" rel="icon" type="image/png" sizes="32x32" />
+          <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="16x16" />
+          <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="32x32" />
           <link rel="apple-touch-icon" href="/icon-192x192.png"></link>
           <meta name="theme-color" content="#0b0b0b" />
         </Head>
