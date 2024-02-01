@@ -190,7 +190,7 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-7a598071-42fa-4e30-afc2-b0351f4310d9.gif?alt=media",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficons-d13b5e83-9623-433a-bc89-87d68bfa8e0d.png?alt=media&token=ee3bc7e1-5133-4eb0-997e-928045f343a5",
     lable: "Instagram",
     link: "/instagram",
   },
@@ -205,14 +205,14 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
-    lable: "Uniswap",
-    link: "https://app.uniswap.org/tokens/ethereum/0xf170eb4553ca743ef403b3c2b8c1ad38fb5cb5c8",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
+    lable: "DexScreener",
+    link: "https://dexscreener.com/solana/",
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
-    lable: "@bwbcoin",
-    link: "https://twitter.com/bwbcoin",
+    lable: "@ios5Solana",
+    link: "https://twitter.com/ios5Solana",
   },{
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
     lable: "Telegram",
