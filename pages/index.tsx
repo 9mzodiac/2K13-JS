@@ -207,7 +207,7 @@ const Apps = [
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2F999.png?alt=media&token=b81fb70d-a92f-4a61-b28c-35aa4effe0f5",
     lable: "SolScan",
-    link: "https://birdeye.so/token/CONTRACT_ADDRESS?chain=solana",
+    link: "https://birdeye.so/token/7q5A9cF7mBNpRCWYYuQoAe9Nh79M5wKPva9sHtaLcU7j?chain=solana",
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
