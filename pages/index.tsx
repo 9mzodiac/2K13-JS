@@ -182,7 +182,7 @@ const Apps = [
   {
     path: "/images/icon_notes.png",
     lable: "Tokenomics",
-    link: "/notes/jBl29VJlsRiYdyfKjBlg",
+    link: "/notes/k43Nex3rpTn8ygypkXu2",
   },
   {
     path: "/images/icon_youtube.png",
@@ -197,7 +197,7 @@ const Apps = [
   {
     path: "/images/icon_snapchat.png",
     lable: "Snapchat",
-    link: "/",
+    link: "/snapchat",
   },
   {
     path: "/images/icon_kik.png",
