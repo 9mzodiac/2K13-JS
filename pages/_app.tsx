@@ -37,7 +37,7 @@ function MyApp({
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           />
-          <meta name="description" content="$BASIC" />
+          <meta name="description" content="iOS 5 On Solana" />
           <meta name="keywords" content="Keywords" />
           <title>iOS 5 On Solana</title>
           <link rel="manifest" href="/manifest.json" />
