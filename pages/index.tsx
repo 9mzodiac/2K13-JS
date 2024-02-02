@@ -192,7 +192,7 @@ const Apps = [
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficons-d13b5e83-9623-433a-bc89-87d68bfa8e0d.png?alt=media&token=ee3bc7e1-5133-4eb0-997e-928045f343a5",
     lable: "Instagram",
-    link: "/instagram",
+    link: "/",
   },
   {
     path: "/images/icon_snapchat.png",
