@@ -205,7 +205,7 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fsolscan.png?alt=media&token=b2656809-c47c-4bfa-b449-eaa4d71d9ed0",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2F999.png?alt=media&token=b81fb70d-a92f-4a61-b28c-35aa4effe0f5",
     lable: "SolScan",
     link: "https://birdeye.so/token/CONTRACT_ADDRESS?chain=solana",
   },
@@ -216,7 +216,7 @@ const Apps = [
   },{
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
     lable: "Telegram",
-    link: "https://t.me/basicbitchtoken",
+    link: "https://t.me/ios5_portal",
   },
   // {
   //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
