@@ -204,7 +204,16 @@ const Apps = [
     lable: "Kik",
     link: "/",
   },
- 
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fspheart3.png?alt=media&token=31ec87f9-9650-4346-b9e8-3446076bb205",
+    lable: "Merch",
+    link: "https://sophiepowers.com",
+  },
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fspheart2.png?alt=media&token=31ec87f9-9650-4346-b9e8-3446076bb205",
+    lable: "Tour",
+    link: "https://sophiepowers.com",
+  },
   // {
   //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
   //   lable: "Banana",
