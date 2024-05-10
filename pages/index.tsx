@@ -209,15 +209,6 @@ const Apps = [
     lable: "SolScan",
     link: "https://birdeye.so/token/7q5A9cF7mBNpRCWYYuQoAe9Nh79M5wKPva9sHtaLcU7j?chain=solana",
   },
-  {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
-    lable: "@ios5Solana",
-    link: "https://twitter.com/ios5Solana",
-  },{
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
-    lable: "Telegram",
-    link: "https://t.me/ios5_portal",
-  },
   // {
   //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
   //   lable: "Banana",
