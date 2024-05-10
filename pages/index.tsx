@@ -181,7 +181,7 @@ const Apps = [
   // },
   {
     path: "/images/icon_notes.png",
-    lable: "Tokenomics",
+    lable: "Notes",
     link: "/notes/k43Nex3rpTn8ygypkXu2",
   },
   {
