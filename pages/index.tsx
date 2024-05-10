@@ -204,11 +204,7 @@ const Apps = [
     lable: "Kik",
     link: "/",
   },
-  {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2F999.png?alt=media&token=b81fb70d-a92f-4a61-b28c-35aa4effe0f5",
-    lable: "SolScan",
-    link: "https://birdeye.so/token/7q5A9cF7mBNpRCWYYuQoAe9Nh79M5wKPva9sHtaLcU7j?chain=solana",
-  },
+ 
   // {
   //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
   //   lable: "Banana",
