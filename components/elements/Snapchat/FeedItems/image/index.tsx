@@ -9,6 +9,7 @@ import Image from "next/image";
 import { getTime } from "utils/time";
 import { SnapFeedMessageType, SnapFeedState } from "../../SnapsFeed";
 
+
 const ImagePath = "/snapchat/";
 
 const SnapFeedImage: React.FC<any> = ({
