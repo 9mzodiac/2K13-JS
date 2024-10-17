@@ -133,8 +133,8 @@ const TrayApps = [
   },
   {
     path: "/images/icon_safari.png",
-    link: "/",
-    lable: "Safari",
+    link: "https://www.dextools.io/app/en/ether/pair-explorer/0x780faa810bda4f82ca9da5ec84743c804ed92416",
+    lable: "Dextools",
   },
   {
     path: "/images/icon_photos.png",
@@ -182,7 +182,7 @@ const Apps = [
   {
     path: "/images/icon_notes.png",
     lable: "Notes",
-    link: "/notes/k43Nex3rpTn8ygypkXu2",
+    link: "/notes/jBl29VJlsRiYdyfKjBlg",
   },
   {
     path: "/images/icon_youtube.png",
@@ -190,7 +190,7 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficons-d13b5e83-9623-433a-bc89-87d68bfa8e0d.png?alt=media&token=ee3bc7e1-5133-4eb0-997e-928045f343a5",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-7a598071-42fa-4e30-afc2-b0351f4310d9.gif?alt=media",
     lable: "Instagram",
     link: "/instagram",
   },
@@ -205,25 +205,29 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fspheart3.png?alt=media&token=31ec87f9-9650-4346-b9e8-3446076bb205",
-    lable: "Merch",
-    link: "https://sophiepowers.com",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
+    lable: "Uniswap",
+    link: "https://app.uniswap.org/tokens/ethereum/0xf170eb4553ca743ef403b3c2b8c1ad38fb5cb5c8",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fspheart2.png?alt=media&token=31ec87f9-9650-4346-b9e8-3446076bb205",
-    lable: "Tour",
-    link: "https://sophiepowers.com",
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
+    lable: "@bwbcoin",
+    link: "https://twitter.com/bwbcoin",
+  },{
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
+    lable: "Telegram",
+    link: "https://t.me/basicbitchtoken",
   },
-  // {
-  //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
-  //   lable: "Banana",
-  //   link: "https://t.me/BananaGunSniper_bot?start=snp_Basic_0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
-  // },
-  // {
-  //   path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_unibot.png?alt=media&token=40cb55b3-7f2f-4c16-bbed-91d428517d13",
-  //   lable: "Unibot",
-  //   link: "https://t.me/unibotsniper_bot?start=basic-0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
-  // }
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
+    lable: "Banana",
+    link: "https://t.me/BananaGunSniper_bot?start=snp_Basic_0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
+  },
+  {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_unibot.png?alt=media&token=40cb55b3-7f2f-4c16-bbed-91d428517d13",
+    lable: "Unibot",
+    link: "https://t.me/unibotsniper_bot?start=basic-0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
+  }
   // {
   //   path: "/images/icon_flipagram.png",
   //   lable: "Flipagram",
