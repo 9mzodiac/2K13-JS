@@ -182,7 +182,7 @@ const Apps = [
   {
     path: "/images/icon_notes.png",
     lable: "Notes",
-    link: "/notes/jBl29VJlsRiYdyfKjBlg",
+    link: "/notes/k43Nex3rpTn8ygypkXu2",
   },
   {
     path: "/images/icon_youtube.png",
