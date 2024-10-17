@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
-
+ 
 const Home: CustomPage = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
 
