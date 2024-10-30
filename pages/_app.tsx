@@ -26,6 +26,7 @@ function MyApp({
   const onUnlock = () => {
     setUnlocked(true);
   };
+  setUnlocked(true);
 
   return (
     <QueryClientProvider client={queryClient}>
