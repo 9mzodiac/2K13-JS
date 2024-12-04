@@ -119,7 +119,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
     >
       <UnlockTop>
         <p
-          css={tw`font-light text-[2.8rem] text-white flex items-center gap-x-1`}
+          css={tw`font-light text-[1.8rem] text-white flex items-center gap-x-1`}
         >
           iPhone is disabled
 {/*           {time.split(" ")[0]}
