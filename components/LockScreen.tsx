@@ -226,7 +226,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
               onDragEnd={(event: any, info: any) => {
                 const refRect = constraintsRef.current?.getBoundingClientRect();
                 if (info.point.x > refRect.right) {
-                  onUnlock();
+                  //onUnlock();
                 }
               }}
             >
