@@ -121,7 +121,8 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
         <p
           css={tw`font-light text-[3.8rem] text-white flex items-center gap-x-1 leading-[4rem]`}
         >
-          {time.split(" ")[0]}
+          iPhone is disabled
+{/*           {time.split(" ")[0]}
           <span css={tw`flex flex-col gap-y-4 mt-2`}>
             <span
               css={tw`leading-3 block w-[.3rem] h-[.3rem] relative bg-white`}
@@ -130,9 +131,9 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
               css={tw`leading-3 block w-[.3rem] h-[.3rem] relative bg-white`}
             ></span>
           </span>
-          {time.split(" ")[1]}
+          {time.split(" ")[1]} */}
         </p>
-        <p css={tw`font-light text-lg text-white`}>{date}</p>
+        <p css={tw`font-light text-lg text-white`}>waiting for command to unlock...</p>
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper layout ref={constraintsNotificationRef}>
