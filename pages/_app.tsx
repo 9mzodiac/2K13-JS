@@ -40,7 +40,7 @@ function MyApp({
           />
           <meta name="description" content="BASIC WHITE BITCH ♡" />
           <meta name="keywords" content="Keywords" />
-          <title>BASIC WHITE BITCH $BWB</title>
+          <title>PHONE IN MICROWAVE $WAVE</title>
           <link rel="manifest" href="/manifest.json" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="16x16" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="32x32" />
