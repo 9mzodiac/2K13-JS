@@ -121,7 +121,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
         <p
           css={tw`font-light text-[1.8rem] text-white flex items-center gap-x-1`}
         >
-          iPhone is disabled
+          Overheated
 {/*           {time.split(" ")[0]}
           <span css={tw`flex flex-col gap-y-4 mt-2`}>
             <span
@@ -133,7 +133,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
           </span>
           {time.split(" ")[1]} */}
         </p>
-        <p css={tw`font-light text-lg text-white`}>waiting for command to unlock...</p>
+        <p css={tw`font-light text-lg text-white`}>iPhone needs to cool down before you use it.</p>
       </UnlockTop>
       <UnlockSpacer>
         <NotificationWrapper layout ref={constraintsNotificationRef}>
