@@ -251,15 +251,12 @@ export default LockScreen;
 
 const UnlockTop = styled.div(() => [
   tw`relative h-24 w-full flex flex-col items-center justify-center`,
-  tw`border-[#00000080] border-b-[1px] bg-[rgba(0,0,0,.65)]`,
+  tw`border-[#00000080] border-b-[1px]`,
   css`
-    &:before {
-      ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
-      background-color: rgb(255 0 0 / 65%)
-      background-repeat: no-repeat;
-    }
+    background-color: rgba(255, 0, 0, 0.65);
   `,
 ]);
+
 
 const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
 
