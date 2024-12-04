@@ -119,7 +119,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
     >
       <UnlockTop>
         <p
-          css={tw`font-light text-[2.8rem] text-white flex items-center gap-x-1 leading-[4rem]`}
+          css={tw`font-light text-[2.8rem] text-white flex items-center gap-x-1`}
         >
           iPhone is disabled
 {/*           {time.split(" ")[0]}
@@ -249,13 +249,20 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
 
 export default LockScreen;
 
+
 const UnlockTop = styled.div(() => [
   tw`relative h-24 w-full flex flex-col items-center justify-center`,
   tw`border-[#00000080] border-b-[1px]`,
   css`
     background-color: rgba(255, 0, 0, 0.65);
+    &:before {
+      ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
+      background: linear-gradient(-180deg, rgba(255,255,255,.5), rgba(255,255,255,1) 50%, transparent 10%);
+      background-repeat: no-repeat;
+    }
   `,
 ]);
+
 
 
 const UnlockSpacer = styled.div(() => [tw`w-full relative flex flex-grow-[1]`]);
