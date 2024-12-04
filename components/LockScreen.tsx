@@ -254,7 +254,7 @@ const UnlockTop = styled.div(() => [
   css`
     &:before {
       ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
-      background: linear-gradient(-180deg, rgba(255,255,255,.5), rgba(255,255,255,1) 50%, transparent 10%);
+      background: linear-gradient(-180deg, rgb(255 7 7 / 65%), rgba(255,255,255,1) 50%, transparent 10%);
       background-repeat: no-repeat;
     }
   `,
