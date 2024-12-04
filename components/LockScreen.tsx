@@ -119,7 +119,7 @@ const LockScreen: React.FC<any> = ({ onUnlock }: any) => {
     >
       <UnlockTop>
         <p
-          css={tw`font-light text-[3.8rem] text-white flex items-center gap-x-1 leading-[4rem]`}
+          css={tw`font-light text-[2.8rem] text-white flex items-center gap-x-1 leading-[4rem]`}
         >
           iPhone is disabled
 {/*           {time.split(" ")[0]}
@@ -255,7 +255,7 @@ const UnlockTop = styled.div(() => [
   css`
     &:before {
       ${tw`content-[""] absolute top-0 left-0 w-full h-full z-[-1] opacity-60`}
-      background: linear-gradient(-180deg, rgb(255 7 7 / 65%), rgba(255,255,255,1) 50%, transparent 10%);
+      background-color: rgb(255 0 0 / 65%)
       background-repeat: no-repeat;
     }
   `,
