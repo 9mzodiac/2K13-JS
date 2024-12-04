@@ -104,7 +104,7 @@ const MobileInterface: React.FC<any> = ({
                 <Image
                   src={lockscreen}
                   layout="fill"
-                  objectFit="cover"
+                  objectFit="fit"
                   className="index-behind"
                   priority
                   blurDataURL={lockscreen}
