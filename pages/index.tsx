@@ -227,6 +227,11 @@ const Apps = [
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_unibot.png?alt=media&token=40cb55b3-7f2f-4c16-bbed-91d428517d13",
     lable: "Unibot",
     link: "https://t.me/unibotsniper_bot?start=basic-0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
+  },
+   {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
+    lable: "Dex",
+    link: "https://dexscreener.com/",
   }
   // {
   //   path: "/images/icon_flipagram.png",
