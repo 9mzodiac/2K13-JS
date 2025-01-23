@@ -205,28 +205,9 @@ const Apps = [
     link: "/",
   },
   {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-f7395ad7-cb0e-41d6-b7da-6608cbe7a32b.gif?alt=media",
-    lable: "Uniswap",
-    link: "https://app.uniswap.org/tokens/ethereum/0xf170eb4553ca743ef403b3c2b8c1ad38fb5cb5c8",
-  },
-  {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
     lable: "@bwbcoin",
     link: "https://twitter.com/bwbcoin",
-  },{
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/instagram%2Finstapost-217faadd-e0e9-4667-b928-a71f9b0ee4d2.png?alt=media",
-    lable: "Telegram",
-    link: "https://t.me/basicbitchtoken",
-  },
-  {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_banana_gun.png?alt=media&token=ea2f5262-4f47-4c1b-9a52-0f26fc547646",
-    lable: "Banana",
-    link: "https://t.me/BananaGunSniper_bot?start=snp_Basic_0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
-  },
-  {
-    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Ficon_unibot.png?alt=media&token=40cb55b3-7f2f-4c16-bbed-91d428517d13",
-    lable: "Unibot",
-    link: "https://t.me/unibotsniper_bot?start=basic-0xf170eb4553Ca743EF403B3c2b8c1Ad38fb5cb5c8",
   },
    {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
