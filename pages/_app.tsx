@@ -39,7 +39,7 @@ function MyApp({
           />
           <meta name="description" content="The Years Still 2013 ♡" />
           <meta name="keywords" content="Keywords" />
-          <title>2K13 AI</title>
+          <title>BASIC WHITE BITCH <3</title>
           <link rel="manifest" href="/manifest.json" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="16x16" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="32x32" />
