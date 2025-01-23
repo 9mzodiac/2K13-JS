@@ -37,9 +37,9 @@ function MyApp({
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           />
-          <meta name="description" content="BASIC WHITE BITCH ♡" />
+          <meta name="description" content="The Years Still 2013 ♡" />
           <meta name="keywords" content="Keywords" />
-          <title>BASIC WHITE BITCH $BWB</title>
+          <title>2K13 AI</title>
           <link rel="manifest" href="/manifest.json" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="16x16" />
           <link href="https://i.ibb.co/fdWZhZV/icon.png" rel="icon" type="image/png" sizes="32x32" />
