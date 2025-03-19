@@ -211,8 +211,13 @@ const Apps = [
   },
    {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
-    lable: "Dex",
-    link: "https://dexscreener.com/",
+    lable: "Merch",
+    link: "/merch",
+  },
+     {
+    path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
+    lable: "YouTube",
+    link: "/youtube",
   }
   // {
   //   path: "/images/icon_flipagram.png",

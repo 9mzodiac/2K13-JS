@@ -40,10 +40,10 @@ const MobileInterface: React.FC<any> = ({
     if (data) {
       if (unlocked) {
         const index = data?.findIndex((x: any) => x.type === "homescreen");
-        setHomescreen(data[index].imageURL);
+        setHomescreen("");
       } else {
         const index = data?.findIndex((x: any) => x.type === "lockscreen");
-        setLockscreen(data[index].imageURL);
+        setLockscreen("");
       }
     }
   }, [unlocked, data]);
