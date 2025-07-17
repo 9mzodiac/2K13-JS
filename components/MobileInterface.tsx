@@ -90,27 +90,27 @@ const MobileInterface: React.FC<any> = ({
           </NotificationTrayBar>
           {unlocked
             ? homescreen && (
-                <Image
-                  src={homescreen}
-                  layout="fill"
-                  objectFit="cover"
-                  className="index-behind"
-                  priority
-                  blurDataURL={homescreen}
-                  placeholder="blur"
-                />
-              )
+              <Image
+                src={homescreen}
+                layout="fill"
+                objectFit="cover"
+                className="index-behind"
+                priority
+                blurDataURL={homescreen}
+                placeholder="blur"
+              />
+            )
             : lockscreen && (
-                <Image
-                  src={lockscreen}
-                  layout="fill"
-                  objectFit="cover"
-                  className="index-behind"
-                  priority
-                  blurDataURL={lockscreen}
-                  placeholder="blur"
-                />
-              )}
+              <Image
+                src={lockscreen}
+                layout="fill"
+                objectFit="cover"
+                className="index-behind"
+                priority
+                blurDataURL={lockscreen}
+                placeholder="blur"
+              />
+            )}
 
           {children}
           <div
@@ -155,7 +155,7 @@ const IPhoneFrame = styled.div(() => [
 const IphoneScreenContainer = styled.div(() => [
   tw`container mx-auto flex flex-col`,
   tw`w-full h-full relative justify-center items-center px-0 pt-0 pb-0`,
-  tw`md:(px-[11%] pt-[30%] pb-[28%])`,
+  tw`md:(px-[7%] pt-[30%] pb-[30%])`,
 ]);
 
 const IPhoneInside = styled.div(() => [
@@ -167,13 +167,13 @@ const NotificationTrayBar = styled.div(
     tw`w-full bg-[#00000080] relative grid grid-flow-row grid-cols-3 text-white text-sm items-center px-1 py-1 shadow z-50`,
     innerPage && unlocked && tw`bg-[#000000]`,
     statusBarbgColor &&
-      unlocked &&
-      css`
+    unlocked &&
+    css`
         background: ${statusBarbgColor};
       `,
     statusBartextColor &&
-      unlocked &&
-      css`
+    unlocked &&
+    css`
         color: ${statusBartextColor};
       `,
   ]

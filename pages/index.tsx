@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import tw from "twin.macro";
 import { CustomPage } from "types/pages";
 
- 
+
 const Home: CustomPage = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(false);
 
@@ -99,7 +99,7 @@ const AppTrayWrapper = styled.div(() => [
 const AppIcon = styled.div((props: any) => [
   tw`h-16 w-16 relative cursor-pointer`,
   props.backdrop &&
-    css`
+  css`
       &:before {
         content: "";
         background-image: url("${props.backdrop}");
@@ -202,14 +202,14 @@ const Apps = [
   {
     path: "/images/icon_kik.png",
     lable: "Kik",
-    link: "/",
+    link: "/kik",
   },
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/wallpapers%2Fwallpaper-96faedc8-6aa4-4ecc-8e71-203c82339b9b.png?alt=media",
     lable: "@2k13ai",
     link: "https://twitter.com/2k13ai",
   },
-   {
+  {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
     lable: "Dex",
     link: "https://dexscreener.com/",
