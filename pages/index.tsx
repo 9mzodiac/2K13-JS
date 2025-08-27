@@ -133,7 +133,7 @@ const TrayApps = [
   },
   {
     path: "/images/icon_safari.png",
-    link: "https://www.dextools.io/app/en/ether/pair-explorer/0x780faa810bda4f82ca9da5ec84743c804ed92416",
+    link: "",
     lable: "Dextools",
   },
   {
