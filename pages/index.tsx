@@ -212,7 +212,7 @@ const Apps = [
   {
     path: "https://firebasestorage.googleapis.com/v0/b/k13-e9f6f.appspot.com/o/icons%2Fdexscreenericon.png?alt=media&token=e14d1437-3ae5-422a-9d2d-030501c12304",
     lable: "Dex",
-    link: "https://twitter.com/2k13ai",
+    link: "https://dexscreener.com/solana/Bifra4YtBnbAwsWVe8nECDocUNoyfLYko2HnfGoGpump",
   }
   // {
   //   path: "/images/icon_flipagram.png",
