@@ -1,4 +1,4 @@
-# iPhone 5 Simulator 
+# iPhone 5 Emulator 
 
 ## Demo
 https://xxxxxxxxxxxxxxxxx-git-main-starlightmasters-projects.vercel.app/
